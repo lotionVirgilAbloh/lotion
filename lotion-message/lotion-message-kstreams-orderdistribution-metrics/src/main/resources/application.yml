@@ -1,0 +1,45 @@
+spring.cloud.stream.bindings.outputDashboard.contentType: application/json
+spring.cloud.stream.kafka.streams.binder.configuration.commit.interval.ms: 1000
+spring.cloud.stream.kafka.streams.binder.configuration:
+  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+  default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+spring.cloud.stream.bindings.inputMetrics:
+  destination: orderdistribution-metrics
+  consumer:
+    headerMode: raw
+spring.cloud.stream.bindings.outputDashboard:
+  destination: orderdistribution-dashboard
+  producer:
+    headerMode: raw
+    useNativeEncoding: true
+spring.cloud.stream.bindings.inputDashboard.destination: orderdistribution-dashboard
+#端口的使用请参考端口设计文档
+#server.port
+server:
+  port: 19052
+#eureka.client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#spring.cloud.stream.kafka
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+          configuration:
+            auto.offset.reset: latest
+        streams:
+          binder:
+            brokers: 47.106.222.205:9092
+            application-id: lotion-message-kstreams-orderdistribution-metrics-kstreams
+            configuration:
+              auto.offset.reset: latest
+  #application.name
+  application:
+    name: lotion-message-kstreams-orderdistribution-metrics
+  kafka:
+    consumer:
+      group-id: lotion-message-kstreams-orderdistribution-metrics-kafka

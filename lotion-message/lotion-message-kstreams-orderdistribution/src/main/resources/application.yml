@@ -1,0 +1,90 @@
+spring.cloud.stream.bindings.outputMetrics.contentType: application/json
+spring.cloud.stream.bindings.outputProcessed.contentType: application/json
+spring.cloud.stream.bindings.outputRaw.contentType: application/json
+spring.cloud.stream.kafka.streams.binder.configuration.commit.interval.ms: 1000
+spring.cloud.stream.kafka.streams.binder.configuration:
+  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+  default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+spring.cloud.stream.bindings.inputRaw:
+  destination: orderdistribution-raw
+  consumer:
+    headerMode: raw
+spring.cloud.stream.bindings.outputMetrics:
+  destination: orderdistribution-metrics
+  producer:
+    headerMode: raw
+    useNativeEncoding: true
+spring.cloud.stream.bindings.outputProcessed:
+  destination: orderdistribution-processed
+  producer:
+    headerMode: raw
+    useNativeEncoding: true
+#for testing
+spring.cloud.stream.bindings.inputProcessed.destination: orderdistribution-processed
+spring.cloud.stream.bindings.outputRaw.destination: orderdistribution-raw
+#端口的使用请参考端口设计文档
+#server.port
+server:
+  port: 19051
+#eureka.client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#spring.cloud.stream.kafka
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+          configuration:
+            auto.offset.reset: latest
+        streams:
+          binder:
+            brokers: 47.106.222.205:9092
+            application-id: lotion-message-kstreams-orderdistribution-kstreams
+            configuration:
+              auto.offset.reset: latest
+  #application.name
+  application:
+    name: lotion-message-kstreams-orderdistribution
+  kafka:
+    consumer:
+      group-id: lotion-message-kstreams-orderdistribution-kafka
+
+#参考
+#spring.cloud.stream.bindings.input:
+#  destination: user-clicks3
+#  consumer:
+#    useNativeDecoding: true
+#    headerMode: raw
+#spring.cloud.stream.bindings.inputX:
+#  destination: user-regions
+#  consumer:
+#    useNativeDecoding: true
+#    headerMode: raw
+#spring.cloud.stream.bindings.output:
+#  destination: output-topic
+#  producer:
+#    useNativeEncoding: true
+#    headerMode: raw
+#spring.cloud.stream.kafka.streams.bindings.input:
+#  consumer:
+#    keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#    valueSerde: org.apache.kafka.common.serialization.Serdes$LongSerde
+#spring.cloud.stream.kafka.streams.bindings.inputX:
+#  consumer:
+#    keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#    valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#spring.cloud.stream.kafka.streams.bindings.output:
+#  producer:
+#    keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#    valueSerde: org.apache.kafka.common.serialization.Serdes$LongSerde
+#spring.cloud.stream.kafka.streams.binder:
+#  brokers: localhost #192.168.99.100
+#  zkNodes: localhost #192.168.99.100
+#  configuration:
+#    default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#    default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#    commit.interval.ms: 1000

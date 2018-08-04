@@ -1,0 +1,10 @@
+server:
+  port: 19030
+spring:
+  cloud:
+    config:
+      label: dev
+      server:
+        git:
+          uri: git@github.com:lotionVirgilAbloh/lotion.git
+          search-paths: config

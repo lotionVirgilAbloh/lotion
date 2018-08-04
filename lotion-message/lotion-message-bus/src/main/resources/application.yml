@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+server:
+  port: 19050
+spring:
+  application:
+    name: lotion-message-bus
+  cloud:
+    stream:
+      #指定用kafka来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+#启动所有映射(默认只有../actuator/health和../actuator/info)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

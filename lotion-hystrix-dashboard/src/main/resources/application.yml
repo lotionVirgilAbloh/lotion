@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19031
+spring:
+  application:
+    name: lotion-hystrix-dashboard

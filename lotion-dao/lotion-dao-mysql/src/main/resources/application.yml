@@ -1,0 +1,25 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19001
+spring:
+  application:
+    name: lotion-dao-mysql
+  datasource:
+    url: jdbc:mysql://47.106.222.205:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Qinjibo123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    #默认使用的是hikari连接池
+    hikari:
+    #防止No operations allowed after connection closed.
+      connection-test-query: SELECT 1
+      connection-init-sql: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

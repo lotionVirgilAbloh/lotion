@@ -1,0 +1,24 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19002
+spring:
+  application:
+    name: lotion-dao-redis
+# redis配置，以下有默认配置的也可以使用默认配置
+redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 1000
+    pool:
+      maxIdle: -1
+      maxTotal: 100
+      maxWaitMillis: 1000
+      minEvictableIdleTimeMillis: 1000
+      numTestsPerEvictionRun: 1000
+      timeBetweenEvictionRunsMillis: 1000
+      testOnBorrow: false
+      testWhileIdle: false

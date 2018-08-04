@@ -1,0 +1,39 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19080
+spring:
+  application:
+    name: lotion-web-index
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  cloud:
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+  mvc:
+    static-path-pattern: /**
+logging:
+  config: classpath:log4j2.yml
+feign:
+  hystrix:
+    enabled: true
+#启动所有映射(默认只有../actuator/health和../actuator/info)
+#可以解决hystrix.stream的映射问题默认在../actuator/hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+custom:
+  abc: '{cipher}6ece310775d913461c359d0fbd589e56afe9056e13d133c453767953ccd516cc'

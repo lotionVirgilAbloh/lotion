@@ -1,0 +1,43 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19099
+spring:
+  application:
+    name: lotion-web-zuul
+  cloud:
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+#启动所有映射(默认只有../actuator/health和../actuator/info)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#zuul
+zuul:
+  routes:
+    #指定web服务路由
+    #zuul不需要指定顺序，DiscoveryClientRouteLocator会动态覆盖路由
+    lotion-web-index: /**
+    lotion-web-webuis: /webuis/**
+    lotion-web-control: /control/**
+  #不暴露未路由的服务，默认注册在eureka的服务路由为../${service-id}/
+  ignored-services: '*'
+  #设置全局参数为空覆盖默认过滤头信息，包括Cookie、Set-Cookie、Authorization
+  sensitive-headers:
+  #不忽略安全请求头属性
+  ignore-security-headers: false
+  #解决加入Spring Security后的重定向问题，该问题会暴露具体Web服务的地址，该参数会在路由转发前为请求设置Host头信息，标识zuul网关地址
+  add-host-header: true
+  #忽略/**/actuator/**的请求
+  ignored-patterns: /**/actuator/**
+#默认hystrix请求超时时间60秒
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000

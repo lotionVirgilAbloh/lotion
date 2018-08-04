@@ -1,0 +1,82 @@
+#关于GateWay的配置请参考文档http://cloud.spring.io/spring-cloud-gateway/single/spring-cloud-gateway.html
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19099
+spring:
+  application:
+    name: lotion-web-gateway
+  cloud:
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+    #gateway
+    #目前的gateway暂时还没有类似zuul ignore-patterns可以过滤形如/**/actuator/**请求的过滤器，需要进行如下配置
+    #默认集群内lb://serviceId;兼容websocket，ws://url;两者混合使用lb:ws://serviceId
+    gateway:
+      default-filters:
+      #hystrix过滤器
+      - name: Hystrix
+        args:
+          name: fallback
+          fallbackUri: forward:/fallback
+      #SaveSessiong过滤器
+      #Spring Security结合Spring Seesion时使用
+      #- SaveSession
+      routes:
+      #/actuator/**映射到本地
+      - id: local-actuator
+        uri: forward:///actuator
+        predicates:
+        - Path=/actuator/**
+        filters:
+        #Strip过滤器
+        - StripPrefix=1
+      #拒绝/**/actuator/**路由
+      - id: local-actuator
+        uri: forward:///reject
+        predicates:
+        - Path=/**/actuator/**
+      #webuis
+      - id: web-webuis
+        uri: lb://lotion-web-webuis
+        predicates:
+        - Path=/webuis/**
+        filters:
+        #Strip过滤器
+        - StripPrefix=1
+      #control
+      - id: web-control
+        uri: lb://lotion-web-control
+        predicates:
+        - Path=/control/**
+        filters:
+        #Strip过滤器
+        - StripPrefix=1
+      #index
+      #存在映射顺序问题，index必须放在最后，因为是按照顺序遍历的
+      - id: web-index
+        uri: lb://lotion-web-index
+        predicates:
+        - Path=/**
+        filters:
+      discovery:
+        locator:
+          #启动与eureka结合
+          enabled: true
+          #serviceId小写
+          lower-case-service-id: true
+#设置hystrix断路超时时间为60秒，防止由于过短的超时时间导致网页加载未完成就断路
+hystrix.command.fallback.execution.isolation.thread.timeoutInMilliseconds: 60000
+#启动所有映射(默认只有../actuator/health和../actuator/info)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19032
+spring:
+  application:
+    name: lotion-hystrix-turbine
+  cloud:
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+turbine:
+  app-config: LOTION-WEB-INDEX,LOTION-WEB-CONTROL
+  cluster-name-expression: new String('default')
+  combine-host-port: true

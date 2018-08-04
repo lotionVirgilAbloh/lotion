@@ -1,0 +1,11 @@
+#端口的使用请参考端口设计文档
+server:
+  port: 19000
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
