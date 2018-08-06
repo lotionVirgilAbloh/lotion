@@ -21,6 +21,7 @@
         <module>lotion-web-index</module>
         <module>lotion-web-webuis</module>
         <module>lotion-web-control</module>
+		<module>lotion-web-login</module>
     </modules>
 
 
