@@ -82,23 +82,6 @@
             <version>2.9.6</version>
         </dependency>
 
-        <!-- angularjs -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>angularjs</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-        <!-- 请增加version -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-        </dependency>
-        <!-- 请增加version -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-        </dependency>
-
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
