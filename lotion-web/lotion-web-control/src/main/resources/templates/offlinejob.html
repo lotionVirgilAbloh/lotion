@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">-->
     <!--<link href="https://keenthemes.com/preview/metronic/theme//assets/global/css/components.min.css" rel="stylesheet" type="text/css"> -->
-    <link rel="shortcut icon" th:href="@{#{web.static.url} + 'assets/lotion/media/img/lotion_favicon.ico'}"/>
-    <link th:href="@{#{web.static.url} + 'assets/vendors/base/vendors.bundle.css'}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{#{web.static.url} + 'assets/demo/default/base/style.bundle.css'}" rel="stylesheet"
+    <link rel="shortcut icon" th:href="@{${webStaticUrl} + 'assets/lotion/media/img/lotion_favicon.ico'}"/>
+    <link th:href="@{${webStaticUrl} + 'assets/vendors/base/vendors.bundle.css'}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{${webStaticUrl} + 'assets/demo/default/base/style.bundle.css'}" rel="stylesheet"
           type="text/css"/>
 </head>
 <!-- end::Head -->
@@ -127,13 +127,13 @@
 <!-- end::Body -->
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <!--<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
-<script th:src="#{web.static.url} + 'assets/vendors/base/vendors.bundle.js'" type="text/javascript"></script>
-<script th:src="#{web.static.url} + 'assets/demo/default/base/scripts.bundle.js'" type="text/javascript"></script>
-<script th:src="#{web.static.url} + 'assets/vendors/custom/datatables/datatables.bundle.js'"
+<script th:src="${webStaticUrl} + 'assets/vendors/base/vendors.bundle.js'" type="text/javascript"></script>
+<script th:src="${webStaticUrl} + 'assets/demo/default/base/scripts.bundle.js'" type="text/javascript"></script>
+<script th:src="${webStaticUrl} + 'assets/vendors/custom/datatables/datatables.bundle.js'"
         type="text/javascript"></script>
-<script th:src="#{web.static.url} + 'assets/demo/default/custom/crud/datatables/basic/basic.js'"
+<script th:src="${webStaticUrl} + 'assets/demo/default/custom/crud/datatables/basic/basic.js'"
         type="text/javascript"></script>
-<script th:src="#{web.static.url} + 'assets/lotion/js/control_offlinejob.js'" type="text/javascript"></script>
+<script th:src="${webStaticUrl} + 'assets/lotion/js/control_offlinejob.js'" type="text/javascript"></script>
 <!--<script src="../control/assets/js/control_realtimejob.js" type="text/javascript"></script>-->
 <script type="text/javascript">
     window.Job.init();

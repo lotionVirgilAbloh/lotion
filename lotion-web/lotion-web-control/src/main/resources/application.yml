@@ -39,6 +39,18 @@ management:
         include: '*'
 #默认hystrix请求超时时间60秒
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#默认ribbon请求连接超时时间2秒
+ribbon.ConnectTimeout: 2000
+#默认ribbon请求读取超时时间20秒
+ribbon.ReadTimeout: 20000
+#默认ribbon请求可以重试
+ribbon.OktoRetryOnAllOperations: true
+#默认ribbon请求对当前实例重试次数为1
+ribbon.MaxAutoRetries: 1
+#默认ribbon请求切换实例重试次数为1
+ribbon.MaxAutoRetriesNextServer: 1
 #自定义配置
 custom:
+  web.static.url: http://47.106.222.205:8080/tfile/lotion-ui/
+  web.host.url: http://127.0.0.1:19099/
   store-sh-path: /tfile/

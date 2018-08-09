@@ -19,6 +19,12 @@ spring:
     #防止No operations allowed after connection closed.
       connection-test-query: SELECT 1
       connection-init-sql: SELECT 1
+      maximum-pool-size: 30
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 7170000
+      connection-timeout: 60000
+      validation-timeout: 30000
   jpa:
     show-sql: true
     hibernate:

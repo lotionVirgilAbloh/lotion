@@ -4,10 +4,10 @@ eureka:
       defaultZone: http://localhost:19000/eureka/
 #端口的使用请参考端口设计文档
 server:
-  port: 19081
+  port: 19082
 spring:
   application:
-    name: lotion-web-webuis
+    name: lotion-web-application
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -53,11 +53,3 @@ ribbon.MaxAutoRetriesNextServer: 1
 custom:
   web.static.url: http://47.106.222.205:8080/tfile/lotion-ui/
   web.host.url: http://127.0.0.1:19099/
-  eureka-url: http://127.0.0.1:19000
-  hbase-url: http://127.0.0.1:60010
-  hdfs-url: http://127.0.0.1:9000
-  hystrix-url: http://127.0.0.1:19031/hystrix
-  kafka-url: http://127.0.0.1:8089
-  spark-url: http://127.0.0.1:8090
-  yarn-url: http://127.0.0.1:8088
-  zookeeper-url: http://127.0.0.1:10000

@@ -20,6 +20,8 @@
         <module>lotion-web-gateway</module>
         <module>lotion-web-index</module>
         <module>lotion-web-webuis</module>
+        <module>lotion-web-application</module>
+        <module>lotion-web-supervision</module>
         <module>lotion-web-control</module>
         <module>lotion-web-user</module>
     </modules>

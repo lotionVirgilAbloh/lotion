@@ -9,6 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class WebUIsController {
 
+    /**
+     * 静态资源地址
+     */
+    @Value("${custom.web.static.url}")
+    private String webStaticUrl;
+    /**
+     * host地址
+     */
+    @Value("${custom.web.host.url}")
+    private String webHostUrl;
+
     @Value("${custom.eureka-url}")
     private String eurekaUrl;
     @Value("${custom.hbase-url}")
@@ -28,42 +39,56 @@ public class WebUIsController {
 
     @RequestMapping("eureka")
     public String eureka(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", eurekaUrl);
         return "webuis";
     }
 
     @RequestMapping("hbase")
     public String hbase(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", hbaseUrl);
         return "webuis";
     }
 
     @RequestMapping("hdfs")
     public String hdfs(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", hdfsUrl);
         return "webuis";
     }
 
     @RequestMapping("hystrix")
     public String hystrix(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", hystrixUrl);
         return "webuis";
     }
 
     @RequestMapping("kafka")
     public String kafka(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", kafkaUrl);
         return "webuis";
     }
 
     @RequestMapping("yarn")
     public String yarn(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", yarnUrl);
         return "webuis";
     }
 
     @RequestMapping("zookeeper")
     public String zookeeper(ModelMap modelMap) {
+        modelMap.addAttribute("webStaticUrl", webStaticUrl);
+        modelMap.addAttribute("webHostUrl", webHostUrl);
         modelMap.addAttribute("whichwebui", zookeeperUrl);
         return "webuis";
     }
