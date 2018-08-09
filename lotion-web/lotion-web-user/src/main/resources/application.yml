@@ -7,22 +7,11 @@ server:
   port: 19098
 spring:
   application:
-    name: lotion-web-login
-    security:
-      basic:
-        enabled: true    #启用SpringSecurity的安全配置项
-      user:
-        name: root    #认证用户名
-        password: Qinjibo123 #认证密码
-        role:
-  cloud:
-      stream:
-        #指定用kafka stream来作为默认消息中间件
-        default-binder: kafka
-        kafka:
-          binder:
-            brokers: 47.106.222.205:9092
-
+    name: lotion-web-user
+  security:
+    user:
+      name: root    #认证用户名
+      password: Qinjibo123 #认证密码
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
