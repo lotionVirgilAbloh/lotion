@@ -3,7 +3,10 @@ package org.lotionvirgilabloh.lotionwebindex.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
@@ -31,5 +34,15 @@ public class IndexController {
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
         return "indexframe";
+    }
+
+    @RequestMapping(value = "/getWebStaticUrl", method = RequestMethod.POST)
+    public @ResponseBody String requestWebStaticUrl() {
+        return webStaticUrl;
+    }
+
+    @RequestMapping(value = "/getWebHostUrl", method = RequestMethod.POST)
+    public @ResponseBody String requestWebHostUrl() {
+        return webHostUrl;
     }
 }

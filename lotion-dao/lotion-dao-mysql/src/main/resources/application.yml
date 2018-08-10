@@ -21,10 +21,10 @@ spring:
       connection-init-sql: SELECT 1
       maximum-pool-size: 30
       minimum-idle: 10
-      idle-timeout: 600000
+      idle-timeout: 10000
       max-lifetime: 7170000
-      connection-timeout: 60000
-      validation-timeout: 30000
+      connection-timeout: 30000
+      validation-timeout: 500
   jpa:
     show-sql: true
     hibernate:
