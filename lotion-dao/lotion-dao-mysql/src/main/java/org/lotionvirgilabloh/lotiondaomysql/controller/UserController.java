@@ -1,5 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomysql.controller;
 
+import org.lotionVirgilAbloh.lotionbase.dto.LotionUser;
 import org.lotionvirgilabloh.lotiondaomysql.dao.UserRepository;
 import org.lotionvirgilabloh.lotiondaomysql.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("job")
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -19,7 +20,12 @@ public class UserController {
     }
 
     @RequestMapping("getByUsername")
-    public User getByUsername(String username){
-        return userRepository.getByUsernameIs(username);
+    public LotionUser getByUsername(String username){
+        User user =userRepository.getByUsernameIs(username);
+
+        LotionUser lotionUser=new LotionUser();
+        lotionUser.setUserName(user.getUsername());
+        lotionUser.setPassword(user.getUserpwd());
+        return lotionUser;
     }
 }
