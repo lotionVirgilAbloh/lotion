@@ -101,6 +101,13 @@
             <artifactId>lotion-base</artifactId>
             <version>0.1.0</version>
         </dependency>
+        <!-- https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/html/configuration-metadata.html#configuration-metadata-annotation-processor -->
+        <!-- configuration-processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <!-- test -->
         <dependency>

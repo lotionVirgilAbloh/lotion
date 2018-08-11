@@ -2,6 +2,7 @@ package org.lotionvirgilabloh.lotionwebcontrol.controller;
 
 import org.lotionVirgilAbloh.lotionbase.dto.OfflineJob;
 import org.lotionVirgilAbloh.lotionbase.dto.RealtimeJob;
+import org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.PagerModel;
 import org.lotionvirgilabloh.lotionwebcontrol.service.JobDaoService;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class JobDaoController {
 
     @Autowired
     private JobDaoService jobDaoService;
+
+    @Autowired
+    private LotionJsCHProperties lotionJsCHProperties;
 
     @RequestMapping("{type}/getById")
     public <T> T getById(@PathVariable("type") String type, Long id) {

@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch",
+      "type": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "description": "Lotion JsCH properties."
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "Whether to enable JsCH or not."
+    },
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.store-sh-path",
+      "type": "java.lang.String",
+      "defaultValue": null,
+      "description": "The path where remote server stores all shells."
+    },
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.url",
+      "type": "java.lang.String",
+      "defaultValue": null,
+      "description": "The URL where JsCH to connect."
+    },
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.username",
+      "type": "java.lang.String",
+      "defaultValue": null,
+      "description": "The username JsCH uses to connect."
+    },
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.password",
+      "type": "java.lang.String",
+      "defaultValue": null,
+      "description": "The password JsCH uses to connect."
+    }
+  ],
+  "hints": []
+}
