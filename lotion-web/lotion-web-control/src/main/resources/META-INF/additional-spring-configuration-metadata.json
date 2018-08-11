@@ -17,6 +17,13 @@
     },
     {
       "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
+      "name": "lotion.jsch.builtin",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "Whether using builtin properties or properties form database."
+    },
+    {
+      "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
       "name": "lotion.jsch.store-sh-path",
       "type": "java.lang.String",
       "defaultValue": null,

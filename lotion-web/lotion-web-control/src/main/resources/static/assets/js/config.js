@@ -14,9 +14,7 @@
                     url = result;
                 }, error: function (jqXHR, textStatus, errorThrown) {
                     if (textStatus == 'error') {
-                        alert('JS获取静态资源地址失败！');
                     } else {
-                        alert(errorThrown + ',' + textStatus);
                     }
                 }
             });

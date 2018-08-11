@@ -3,8 +3,10 @@ package org.lotionvirgilabloh.lotionwebcontrol.controller;
 import org.lotionVirgilAbloh.lotionbase.dto.OfflineJob;
 import org.lotionVirgilAbloh.lotionbase.dto.RealtimeJob;
 import org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties;
+import org.lotionvirgilabloh.lotionwebcontrol.entity.JSchReturn;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.PagerModel;
 import org.lotionvirgilabloh.lotionwebcontrol.service.JobDaoService;
+import org.lotionvirgilabloh.lotionwebcontrol.service.SshService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
@@ -24,6 +27,9 @@ public class JobDaoController {
 
     @Autowired
     private JobDaoService jobDaoService;
+
+    @Autowired
+    private SshService sshService;
 
     @Autowired
     private LotionJsCHProperties lotionJsCHProperties;
@@ -61,9 +67,37 @@ public class JobDaoController {
     }
 
     @RequestMapping("{type}/deleteByJobname/{jobname}")
-    public boolean deleteByJobname(@PathVariable("type") String type, @PathVariable("jobname") String jobname) {
+    public <T> boolean deleteByJobname(@PathVariable("type") String type, @PathVariable("jobname") String jobname) {
         logger.info("JobDaoController获取请求:/jobdao/" + type + "/deleteByJobname/" + jobname);
-        return jobDaoService.deleteByJobname(type, jobname);
+        List<T> t = jobDaoService.getByJobname(type, jobname);
+        if (t == null || t.size() == 0) {
+            logger.error("MySQL删除失败");
+            return false;
+        }
+
+        boolean flag = jobDaoService.deleteByJobname(type, jobname);
+        if (!flag) {
+            logger.error("MySQL删除失败");
+            return false;
+        }
+
+        // 执行JsCH删除
+        if (lotionJsCHProperties.getEnabled()) {
+            logger.info("执行JsCH删除");
+            JSchReturn j;
+            if (lotionJsCHProperties.getBuiltin()) {
+                j = sshService.deleteDirectory(lotionJsCHProperties.getUrl(), lotionJsCHProperties.getUsername(), lotionJsCHProperties.getPassword(), lotionJsCHProperties.getStoreShPath() + jobname + "/");
+            } else {
+                j = sshService.deleteDirectory(lotionJsCHProperties.getUrl(), ((String) ((LinkedHashMap) t.get(0)).get("username")), ((String) ((LinkedHashMap) t.get(0)).get("password")), lotionJsCHProperties.getStoreShPath() + jobname + "/");
+            }
+            logger.info(j.toString());
+            flag = j.isSuccess();
+            if (!flag) {
+                logger.error("JsCH删除失败");
+                return false;
+            }
+        }
+        return true;
     }
 
     @RequestMapping("{type}/save")
@@ -73,6 +107,7 @@ public class JobDaoController {
         switch (type) {
             case "rt":
                 //由于表单提交过来的对象不明确，需要利用HttpServletRequest.getParameter的方式获取属性以重建实体
+                //另外可以通过利用Json转化为Map的形式进行反序列化，在这里并没有实现
                 RealtimeJob realtimeJob = new RealtimeJob();
                 realtimeJob.setJobname(request.getParameter("jobname"));
                 realtimeJob.setDestination(request.getParameter("destination"));
@@ -108,6 +143,48 @@ public class JobDaoController {
             default:
                 return false;
         }
-        return flag;
+
+        if (!flag) {
+            logger.error("MySQL保存失败");
+        }
+        // 执行JsCH保存
+        if (lotionJsCHProperties.getEnabled()) {
+            logger.info("执行JsCH保存");
+            String[] startShContents = request.getParameter("startsh").split("\n");
+            JSchReturn j1;
+            if (lotionJsCHProperties.getBuiltin()) {
+                j1 = sshService.transferFile(lotionJsCHProperties.getUrl(), lotionJsCHProperties.getUsername(), lotionJsCHProperties.getPassword(), lotionJsCHProperties.getStoreShPath() + request.getParameter("jobname") + "/", request.getParameter("jobname") + "_startSh.sh", startShContents);
+            } else {
+                j1 = sshService.transferFile(lotionJsCHProperties.getUrl(), request.getParameter("username"), request.getParameter("password"), lotionJsCHProperties.getStoreShPath() + request.getParameter("jobname") + "/", request.getParameter("jobname") + "_startSh.sh", startShContents);
+            }
+            logger.info(j1.toString());
+            flag = j1.isSuccess();
+            if (!flag) {
+                logger.error("JsCH保存startSh失败");
+                return false;
+            }
+            switch (type) {
+                case "rt":
+                    String[] stopShContents = request.getParameter("stopsh").split("\n");
+                    JSchReturn j2;
+                    if (lotionJsCHProperties.getBuiltin()) {
+                        j2 = sshService.transferFile(lotionJsCHProperties.getUrl(), lotionJsCHProperties.getUsername(), lotionJsCHProperties.getPassword(), lotionJsCHProperties.getStoreShPath() + request.getParameter("jobname") + "/", request.getParameter("jobname") + "_stopSh.sh", stopShContents);
+                    } else {
+                        j2 = sshService.transferFile(lotionJsCHProperties.getUrl(), request.getParameter("username"), request.getParameter("password"), lotionJsCHProperties.getStoreShPath() + request.getParameter("jobname") + "/", request.getParameter("jobname") + "_stopSh.sh", stopShContents);
+                    }
+                    logger.info(j2.toString());
+                    flag = j2.isSuccess();
+                    if (!flag) {
+                        logger.error("JsCH保存stopSh失败");
+                        return false;
+                    }
+                    break;
+                case "of":
+                    break;
+                default:
+                    return false;
+            }
+        }
+        return true;
     }
 }

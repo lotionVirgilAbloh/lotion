@@ -58,10 +58,12 @@ lotion:
       url: http://127.0.0.1:19099/
   #jsch配置
   jsch:
-  #是否激活JsCH联动，激活后会在作业创建和修改时在远程服务器创建相应bash文件，并可远程执行
+    #是否激活JsCH联动，激活后会在作业创建和修改时在远程服务器创建相应bash文件，并可远程执行
     enabled: false
     #远程服务器存储各作业路径
     store-sh-path: /tfile/jsch/
+    #使用配置文件的URL/username/password还是数据库存储各作业的配置，false表示使用数据库配置
+    builtin: false
     url: 47.106.222.205
     username: root
     password: Qinjibo123

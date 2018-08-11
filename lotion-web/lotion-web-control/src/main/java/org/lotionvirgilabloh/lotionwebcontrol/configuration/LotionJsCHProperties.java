@@ -15,6 +15,10 @@ public class LotionJsCHProperties {
      */
     private Boolean enabled;
     /**
+     * Whether using builtin properties or properties form database.
+     */
+    private Boolean builtin;
+    /**
      * The path where remote server stores all shells.
      */
     private String storeShPath;
@@ -41,6 +45,14 @@ public class LotionJsCHProperties {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Boolean getBuiltin() {
+        return builtin;
+    }
+
+    public void setBuiltin(Boolean builtin) {
+        this.builtin = builtin;
     }
 
     public String getStoreShPath() {
@@ -79,6 +91,7 @@ public class LotionJsCHProperties {
     public String toString() {
         return "LotionJsCHProperties{" +
                 "enabled=" + enabled +
+                ", builtin=" + builtin +
                 ", storeShPath='" + storeShPath + '\'' +
                 ", url='" + url + '\'' +
                 ", username='" + username + '\'' +
