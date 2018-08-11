@@ -48,7 +48,7 @@ const isLocal = false;
                             }
                             var buttonStyle = "margin-left: 5px";
                             var begin_div = '<div style="display: flex; flex-wrap: nowrap; justify-content: flex-start">';
-                            var action = '<input type="button" value="' + actionValue + '" onclick="toupd(' + jobname + ')" class="' + actionClass + '" style="' + buttonStyle + '">';
+                            var action = '<input type="button" value="' + actionValue + '" onclick="action(' + jobname + ')" class="' + actionClass + '" style="' + buttonStyle + '">';
                             var edit = '<input type="button" value="编辑" onclick="toupd(' + jobname + ')" class="btn m-btn m-btn--gradient-from-brand m-btn--gradient-to-info" style="' + buttonStyle + '">';
                             var del = '<input type="button" value="删除" onclick="del(' + jobname + ')" class="btn m-btn m-btn--gradient-from-focus m-btn--gradient-to-danger" style="' + buttonStyle + '">';
                             var end_div = '</div>';
@@ -71,6 +71,29 @@ function showEditJobModal() {
     $('#jobname').attr("readonly", false);
     document.getElementById("jobform").reset();
     $('#editjob').modal('show');
+}
+
+function action(jobname) {
+    $.ajax({
+        url: window.Config.webHostUrl + "jobdao/rt/action",
+        data: {"jobname": jobname},
+        async: true,
+        type: "GET",
+        dataType: 'json',
+        success: function (result) {
+            if (result != true) {
+                alert('提交失败！');
+            }
+            window.Job.init();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (textStatus == 'error') {
+                alert('网络通信失败，请稍后重试！');
+            } else {
+                alert(errorThrown + ',' + textStatus);
+            }
+        }
+    });
 }
 
 function save() {

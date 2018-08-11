@@ -32,9 +32,16 @@ const isLocal = false;
                 "autoWidth": true,
                 "ajax": window.Config.webHostUrl + "jobdao/of/getAll",
                 "columns": [
-                    {data: "jobname"}, {data: "type"}, {data: "destination"}, {data: "lastrun"}
+                    {data: "jobname"}, {data: "type"}, {data: "destination"}
                 ],
                 "columnDefs": [
+                    {
+                        "targets": [3],
+                        "render": function (data, type, full) {
+                            const date = full.lastrun.replace(/(\+\d{2})(\d{2})$/, "$1:$2");
+                            return window.Config.dateFormat(new Date(date));
+                        }
+                    },
                     {
                         "targets": [4],
                         "render": function (data, type, full) {
@@ -43,7 +50,7 @@ const isLocal = false;
                             var actionClass = "btn m-btn m-btn--gradient-from-success m-btn--gradient-to-accent";
                             var buttonStyle = "margin-left: 5px";
                             var begin_div = '<div style="display: flex; flex-wrap: nowrap; justify-content: flex-start">';
-                            var action = '<input type="button" value="' + actionValue + '" onclick="toupd(' + jobname + ')" class="' + actionClass + '" style="' + buttonStyle + '">';
+                            var action = '<input type="button" value="' + actionValue + '" onclick="action(' + jobname + ')" class="' + actionClass + '" style="' + buttonStyle + '">';
                             var edit = '<input type="button" value="编辑" onclick="toupd(' + jobname + ')" class="btn m-btn m-btn--gradient-from-brand m-btn--gradient-to-info" style="' + buttonStyle + '">';
                             var del = '<input type="button" value="删除" onclick="del(' + jobname + ')" class="btn m-btn m-btn--gradient-from-focus m-btn--gradient-to-danger" style="' + buttonStyle + '">';
                             var end_div = '</div>';
@@ -66,6 +73,29 @@ function showEditJobModal() {
     $('#jobname').attr("readonly", false);
     document.getElementById("jobform").reset();
     $('#editjob').modal('show');
+}
+
+function action(jobname) {
+    $.ajax({
+        url: window.Config.webHostUrl + "jobdao/of/action",
+        data: {"jobname": jobname},
+        async: true,
+        type: "GET",
+        dataType: 'json',
+        success: function (result) {
+            if (result != true) {
+                alert('提交失败！');
+            }
+            window.Job.init();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (textStatus == 'error') {
+                alert('网络通信失败，请稍后重试！');
+            } else {
+                alert(errorThrown + ',' + textStatus);
+            }
+        }
+    });
 }
 
 function save() {

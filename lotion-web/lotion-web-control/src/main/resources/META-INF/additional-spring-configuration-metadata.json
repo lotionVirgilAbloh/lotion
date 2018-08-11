@@ -20,7 +20,7 @@
       "name": "lotion.jsch.builtin",
       "type": "java.lang.Boolean",
       "defaultValue": false,
-      "description": "Whether using builtin properties or properties form database."
+      "description": "Whether using builtin properties(url/username/password) or properties form database."
     },
     {
       "sourceType": "org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties",
