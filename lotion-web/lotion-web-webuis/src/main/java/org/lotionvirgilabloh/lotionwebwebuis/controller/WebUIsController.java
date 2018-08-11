@@ -12,29 +12,29 @@ public class WebUIsController {
     /**
      * 静态资源地址
      */
-    @Value("${custom.web.static.url}")
+    @Value("${lotion.web.static.url}")
     private String webStaticUrl;
     /**
      * host地址
      */
-    @Value("${custom.web.host.url}")
+    @Value("${lotion.web.host.url}")
     private String webHostUrl;
 
-    @Value("${custom.eureka-url}")
+    @Value("${lotion.web.eureka-url}")
     private String eurekaUrl;
-    @Value("${custom.hbase-url}")
+    @Value("${lotion.web.hbase-url}")
     private String hbaseUrl;
-    @Value("${custom.hdfs-url}")
+    @Value("${lotion.web.hdfs-url}")
     private String hdfsUrl;
-    @Value("${custom.hystrix-url}")
+    @Value("${lotion.web.hystrix-url}")
     private String hystrixUrl;
-    @Value("${custom.kafka-url}")
+    @Value("${lotion.web.kafka-url}")
     private String kafkaUrl;
-    @Value("${custom.spark-url}")
+    @Value("${lotion.web.spark-url}")
     private String sparkUrl;
-    @Value("${custom.yarn-url}")
+    @Value("${lotion.web.yarn-url}")
     private String yarnUrl;
-    @Value("${custom.zookeeper-url}")
+    @Value("${lotion.web.zookeeper-url}")
     private String zookeeperUrl;
 
     @RequestMapping("eureka")

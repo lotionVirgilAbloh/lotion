@@ -50,14 +50,25 @@ ribbon.MaxAutoRetries: 1
 #默认ribbon请求切换实例重试次数为1
 ribbon.MaxAutoRetriesNextServer: 1
 #自定义配置
-custom:
-  web.static.url: http://47.106.222.205:8080/tfile/lotion-ui/
-  web.host.url: http://127.0.0.1:19099/
-  eureka-url: http://127.0.0.1:19000
-  hbase-url: http://127.0.0.1:60010
-  hdfs-url: http://127.0.0.1:9000
-  hystrix-url: http://127.0.0.1:19031/hystrix
-  kafka-url: http://127.0.0.1:8089
-  spark-url: http://127.0.0.1:8090
-  yarn-url: http://127.0.0.1:8088
-  zookeeper-url: http://127.0.0.1:10000
+lotion:
+  web:
+    static:
+      url: http://47.106.222.205:8080/tfile/lotion-ui/
+    host:
+      url: http://127.0.0.1:19099/
+    eureka:
+      url: http://127.0.0.1:19000
+    hbase:
+      url: http://127.0.0.1:60010
+    hdfs:
+      url: http://127.0.0.1:9000
+    hystrix:
+      url: http://127.0.0.1:19031/hystrix
+    kafka:
+      url: http://127.0.0.1:8089
+    spark:
+      url: http://127.0.0.1:8090
+    yarn:
+      url: http://127.0.0.1:8088
+    zookeeper:
+      url: http://127.0.0.1:10000

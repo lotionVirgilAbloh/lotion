@@ -12,12 +12,12 @@ public class ControlController {
     /**
      * 静态资源地址
      */
-    @Value("${custom.web.static.url}")
+    @Value("${lotion.web.static.url}")
     private String webStaticUrl;
     /**
      * host地址
      */
-    @Value("${custom.web.host.url}")
+    @Value("${lotion.web.host.url}")
     private String webHostUrl;
 
     @RequestMapping("realtimejob")
