@@ -8,10 +8,18 @@ server:
 spring:
   application:
     name: lotion-web-user
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      mode: HTML
   security:
     user:
-      name: root    #认证用户名
-      password: Qinjibo123 #认证密码
+          name: root    #认证用户名
+          password: Qinjibo123 #认证密码
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml

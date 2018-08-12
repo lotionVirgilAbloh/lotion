@@ -22,10 +22,13 @@ public class UserController {
     @RequestMapping("getByUsername")
     public LotionUser getByUsername(String username){
         User user =userRepository.getByUsernameIs(username);
+        LotionUser lotionUser=null;
+if (user!=null){
+    lotionUser=new LotionUser();
+    lotionUser.setUserName(user.getUsername());
+    lotionUser.setPassword(user.getUserpwd());
+}
 
-        LotionUser lotionUser=new LotionUser();
-        lotionUser.setUserName(user.getUsername());
-        lotionUser.setPassword(user.getUserpwd());
         return lotionUser;
     }
 }
