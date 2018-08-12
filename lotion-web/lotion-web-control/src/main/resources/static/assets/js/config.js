@@ -31,7 +31,15 @@
                 + '-';
             D = date.getDate().toString().length == 1 ? '0' + date.getDate()
                 : date.getDate();
-            return Y + M + D;
+            h = (date.getHours().toString().length == 1 ? '0' + date.getHours()
+                : date.getHours())
+                + ':';
+            m = (date.getMinutes().toString().length == 1 ? '0' + date.getMinutes()
+                : date.getMinutes())
+                + ':'
+            s = date.getSeconds().toString().length== 1 ? '0' + date.getSeconds()
+                : date.getSeconds();
+            return Y + M + D + ' ' + h + m + s;
         }
 	};
 	config.refreshWebStaticUrl();
