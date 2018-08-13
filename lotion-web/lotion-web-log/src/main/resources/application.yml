@@ -1,0 +1,58 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 19086
+spring:
+  application:
+    name: lotion-web-log
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  cloud:
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: 47.106.222.205:9092
+  mvc:
+    static-path-pattern: /**
+#开启log4j2日志
+logging:
+  config: classpath:log4j2.yml
+#开启feign与hystrix联动
+feign:
+  hystrix:
+    enabled: true
+#启动所有映射(默认只有../actuator/health和../actuator/info)
+#可以解决hystrix.stream的映射问题默认在../actuator/hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#默认hystrix请求超时时间60秒
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+#默认ribbon请求连接超时时间2秒
+ribbon.ConnectTimeout: 2000
+#默认ribbon请求读取超时时间20秒
+ribbon.ReadTimeout: 20000
+#默认ribbon请求可以重试
+ribbon.OktoRetryOnAllOperations: true
+#默认ribbon请求对当前实例重试次数为1
+ribbon.MaxAutoRetries: 1
+#默认ribbon请求切换实例重试次数为1
+ribbon.MaxAutoRetriesNextServer: 1
+#自定义配置
+lotion:
+  web:
+    static:
+      url: http://47.106.222.205:8080/tfile/lotion-ui/
+    host:
+      url: http://127.0.0.1:19099/

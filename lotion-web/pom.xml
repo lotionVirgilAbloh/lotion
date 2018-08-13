@@ -23,6 +23,7 @@
         <module>lotion-web-application</module>
         <module>lotion-web-supervision</module>
         <module>lotion-web-control</module>
+        <module>lotion-web-log</module>
         <module>lotion-web-user</module>
     </modules>
 

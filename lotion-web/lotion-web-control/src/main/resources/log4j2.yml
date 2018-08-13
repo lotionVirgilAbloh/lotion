@@ -19,20 +19,33 @@ Configuration:
       PatternLayout:
         pattern: ${log.pattern}
     RollingFile:  #本地日志文件
-      - name: ROLLING_FILE
-        fileName: ${log.path}/${project.name}.log
-        filePattern: "${log.path}/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
-        PatternLayout:
-          pattern: ${log.pattern}
-        Policies:
-          TimeBasedTriggeringPolicy:  # 按天分类
-            modulate: true
-            interval: 1
-        DefaultRolloverStrategy:     # 文件最多100个
-          max: 100
+      name: ROLLING_FILE
+      fileName: ${log.path}/${project.name}.log
+      filePattern: "${log.path}/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        pattern: ${log.pattern}
+      Policies:
+        TimeBasedTriggeringPolicy:  # 按天分类
+          modulate: true
+          interval: 1
+      DefaultRolloverStrategy:     # 文件最多100个
+        max: 100
+    Kafka: #输出到Kafka
+      name: KAFKA_ERROR
+      topic: lotion_log_error
+      ThresholdFilter:
+        level: error
+        onMatch: ACCEPT
+        onMismatch: DENY
+      PatternLayout:
+        pattern: ${log.pattern}
+      Property:
+        - name: bootstrap.servers
+          value: 47.106.222.205:9092
   Loggers:
     Root:
       level: info
       AppenderRef:
         - ref: CONSOLE
         - ref: ROLLING_FILE
+        - ref: KAFKA_ERROR
