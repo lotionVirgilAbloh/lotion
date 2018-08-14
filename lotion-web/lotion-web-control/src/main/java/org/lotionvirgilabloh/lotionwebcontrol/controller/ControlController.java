@@ -1,5 +1,7 @@
 package org.lotionvirgilabloh.lotionwebcontrol.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class ControlController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 静态资源地址

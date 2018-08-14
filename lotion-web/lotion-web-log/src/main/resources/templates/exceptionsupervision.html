@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8"/>
+    <title>
+        异常监控
+    </title>
+    <meta name="description" content="Basic datatables examples">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 使用Metronic官网静态文件服务器 -->
+    <link href="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/vendors/base/vendors.bundle.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/style.bundle.css"
+          rel="stylesheet" type="text/css"/>
+    <!-- 使用阿里云静态文件服务器 -->
+    <!--
+    <link th:href="@{${webStaticUrl} + 'assets/vendors/base/vendors.bundle.css'}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{${webStaticUrl} + 'assets/demo/default/base/style.bundle.css'}" rel="stylesheet" type="text/css"/>
+    -->
+    <link rel="shortcut icon" th:href="@{${webStaticUrl} + 'assets/lotion/media/img/lotion_favicon.ico'}"/>
+    <!-- 自定义style -->
+    <style type="text/css">
+        .journaldiv {
+            height: 400px;
+            width: 100%;
+            overflow: auto;
+            overflow-x: hidden;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!-- BEGIN: Content -->
+<div class="m-content" id="main_content">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title">
+                    异常监控
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN: 实时异常监控 Div -->
+    <div id="rt_div" class="m-portlet m-portlet--head-sm" m-portlet="true">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        实时异常监控
+                    </h3>
+                </div>
+            </div>
+            <div class="m-portlet__head-tools">
+                <ul class="m-portlet__nav">
+                    <li class="m-portlet__nav-item">
+                        <a href="#" m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                            <i class="la la-angle-down"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+            <div id="rt_journal_div" class="journaldiv"></div>
+        </div>
+    </div>
+    <!-- BEGIN: 实时异常监控 Div -->
+</div>
+<!-- END: Content -->
+<!-- 使用Metronic官网静态文件服务器 -->
+<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/vendors/base/vendors.bundle.js"
+        type="text/javascript"></script>
+<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/scripts.bundle.js"
+        type="text/javascript"></script>
+<!-- 使用阿里云静态文件服务器 -->
+<!--
+<script th:src="${webStaticUrl} + 'assets/vendors/base/vendors.bundle.js'" type="text/javascript"></script>
+<script th:src="${webStaticUrl} + 'assets/demo/default/base/scripts.bundle.js'" type="text/javascript"></script>
+-->
+<!-- Global Config -->
+<script th:src="${webStaticUrl} + 'assets/lotion/js/config.js'" type="text/javascript"></script>
+<!-- Frame Specific JS -->
+<script th:src="${webStaticUrl} + 'assets/lotion/js/log_exceptionsupervision.js'" type="text/javascript"></script>
+<!--<script src="../log/assets/js/control_offlinejob.js" type="text/javascript"></script>-->
+</body>
+</html>

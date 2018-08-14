@@ -2,6 +2,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:19000/eureka/
+spring.cloud.stream.bindings.inputProcessed.destination: orderdistribution-processed
 #端口的使用请参考端口设计文档
 server:
   port: 19086
@@ -21,8 +22,19 @@ spring:
       kafka:
         binder:
           brokers: 47.106.222.205:9092
+          configuration:
+            auto.offset.reset: latest
+      bindings:
+        inputLotionLogError:
+          destination: lotion-log-error
+          consumer:
+            #防止在集群下sse接收不到event
+            autoRebalanceEnabled: false
   mvc:
     static-path-pattern: /**
+  kafka:
+    consumer:
+      group-id: lotion-web-log
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml

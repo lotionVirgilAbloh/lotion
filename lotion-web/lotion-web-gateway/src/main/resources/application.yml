@@ -59,6 +59,14 @@ spring:
         filters:
         #Strip过滤器
         - StripPrefix=1
+      #log
+      - id: web-log
+        uri: lb://lotion-web-log
+        predicates:
+        - Path=/log/**
+        filters:
+        #Strip过滤器
+        - StripPrefix=1
       #index
       #存在映射顺序问题，index必须放在最后，因为是按照顺序遍历的
       - id: web-index

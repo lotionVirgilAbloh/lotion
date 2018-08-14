@@ -28,7 +28,6 @@ import java.util.Random;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@RemoteApplicationEventScan(basePackages = "org.lotionVirgilAbloh.lotionbase.event")
 public class LotionMessageKafkaApplication {
 
     public static void main(String[] args) {

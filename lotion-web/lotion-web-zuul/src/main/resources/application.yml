@@ -29,6 +29,7 @@ zuul:
     lotion-web-index: /**
     lotion-web-webuis: /webuis/**
     lotion-web-control: /control/**
+    lotion-web-log: /log/**
   #不暴露未路由的服务，默认注册在eureka的服务路由为../${service-id}/
   ignored-services: '*'
   #设置全局参数为空覆盖默认过滤头信息，包括Cookie、Set-Cookie、Authorization
