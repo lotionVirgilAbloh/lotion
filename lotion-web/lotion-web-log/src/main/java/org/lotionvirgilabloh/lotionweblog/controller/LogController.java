@@ -47,7 +47,7 @@ public class LogController {
         //回应连接已建立
         try {
             sseEmitter.send(SseEmitter.event().build());
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("SSE连接建立失败");
             sseEmitter.complete();
         }

@@ -19,20 +19,29 @@ public class SseServiceImpl implements SseService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final Collection<SseEmitter> emitters = Collections.synchronizedCollection(new HashSet<SseEmitter>());
+    /**
+     * SseEmitter池
+     */
+    private final Collection<SseEmitter> emitters = Collections.synchronizedCollection(new HashSet<>());
 
+    /**
+     * 格式化输出Log4jLogEvent
+     */
     private final PatternLayout patternLayout = PatternLayout.newBuilder().withPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-30.30c{1.} : %m%n").build();
 
     private void complete(SseEmitter emitter) {
-        logger.info("emitter completed");
+        logger.info("emitter" + emitter.hashCode() + " completed");
         emitters.remove(emitter);
     }
 
     private void timeout(SseEmitter emitter) {
-        logger.info("emitter timeout");
+        logger.info("emitter" + emitter.hashCode() + " timeout");
         emitters.remove(emitter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void register(SseEmitter emitter) {
         emitter.onTimeout(() -> timeout(emitter));
@@ -40,6 +49,9 @@ public class SseServiceImpl implements SseService {
         emitters.add(emitter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void sendSseEventsToUI(ExceptionEvent exceptionEvent) {
         for (SseEmitter emitter : emitters) {
@@ -51,6 +63,11 @@ public class SseServiceImpl implements SseService {
         }
     }
 
+    /**
+     * 用于接收系统ExceptionEvent事件，并调用sendSseEventsToUI将事件发送至前端实时显示
+     *
+     * @param exceptionEvent
+     */
     @EventListener
     public void exceptionEventHandler(ExceptionEvent exceptionEvent) {
         this.sendSseEventsToUI(exceptionEvent);
