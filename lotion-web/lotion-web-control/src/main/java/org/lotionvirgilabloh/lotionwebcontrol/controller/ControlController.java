@@ -26,6 +26,11 @@ public class ControlController {
 
     @RequestMapping("realtimejob")
     public String realtimejob(ModelMap modelMap){
+        /*try{
+            throw(new Exception());
+        } catch (Exception e) {
+            logger.error("abc", e);
+        }*/
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
         return "realtimejob";

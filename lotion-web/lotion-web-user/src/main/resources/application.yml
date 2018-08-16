@@ -18,8 +18,8 @@ spring:
       mode: HTML
   security:
     user:
-          name: root    #认证用户名
-          password: Qinjibo123 #认证密码
+      name: root    #认证用户名
+      password: Qinjibo123 #认证密码
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
@@ -53,3 +53,5 @@ lotion:
       url: http://47.106.222.205:8080/tfile/lotion-ui/
     host:
       url: http://127.0.0.1:19099/
+security:
+  ignored:

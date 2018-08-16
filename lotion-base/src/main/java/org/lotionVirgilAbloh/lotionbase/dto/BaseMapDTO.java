@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class BaseMapDTO implements Serializable {
 
-    private static final long serialVersionUID = -2387196972406927899L;
+    private static final long serialVersionUID = 5238091498471853720L;
 
     private Map<String, Object> msg;
 

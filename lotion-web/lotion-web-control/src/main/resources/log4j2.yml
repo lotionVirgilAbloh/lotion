@@ -39,6 +39,12 @@ Configuration:
         onMismatch: DENY
       JsonLayout:
         compact: true
+        #增加自定义标识以定义来源与日期
+        KeyValuePair:
+          - key: project
+            value: ${project.name}
+          - key: date
+            value: $${date:yyyy-MM-dd}
       Property:
         - name: bootstrap.servers
           value: 47.106.222.205:9092

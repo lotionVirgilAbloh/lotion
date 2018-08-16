@@ -1,5 +1,6 @@
 package org.lotionvirgilabloh.lotionweblog.consumer;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.apache.logging.log4j.core.impl.Log4jLogEvent;
 import org.apache.logging.log4j.core.jackson.Log4jJsonObjectMapper;
 import org.lotionvirgilabloh.lotionweblog.event.ExceptionEvent;
@@ -13,6 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.messaging.SubscribableChannel;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class ExceptionConsumer {
@@ -26,18 +29,34 @@ public class ExceptionConsumer {
         @Autowired
         private ApplicationContext applicationContext;
 
+        private final Log4jJsonObjectMapper log4jJsonObjectMapper = new Log4jJsonObjectMapper();
+
         private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
         @StreamListener(InputLotionLogError.INPUT)
         public void receive(String data) {
             logger.info("InputLotionLogErrorConsumer data received..." + data);
+            Map map;
             Log4jLogEvent log4jLogEvent = null;
+            Map<String, String> customProperties = new HashMap<>();
             try {
-                log4jLogEvent = (new Log4jJsonObjectMapper()).readValue(data, Log4jLogEvent.class);
+                //保证转换时不会发生unknown properties的错误
+                if (log4jJsonObjectMapper.getDeserializationConfig().isEnabled(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES))
+                    log4jJsonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                //先转换为map对象
+                map = log4jJsonObjectMapper.readValue(data, Map.class);
+                //从map对象转换到log4jLogEvent
+                log4jLogEvent = log4jJsonObjectMapper.convertValue(map, Log4jLogEvent.class);
+                //自定义custom properties的转换
+                if (map.containsKey("project"))
+                    customProperties.put("project", (String) map.get("project"));
+                if (map.containsKey("date"))
+                    customProperties.put("date", (String) map.get("date"));
             } catch (IOException e) {
-                logger.error("Log4jLogEvent转换失败", e);
+                logger.error("Log4j2转换失败", e);
             }
-            applicationContext.publishEvent(new ExceptionEvent(this, log4jLogEvent));
+            ExceptionEvent exceptionEvent = new ExceptionEvent(this, log4jLogEvent, customProperties);
+            applicationContext.publishEvent(exceptionEvent);
         }
     }
 

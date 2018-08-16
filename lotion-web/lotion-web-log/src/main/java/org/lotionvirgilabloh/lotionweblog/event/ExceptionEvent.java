@@ -3,9 +3,13 @@ package org.lotionvirgilabloh.lotionweblog.event;
 import org.apache.logging.log4j.core.impl.Log4jLogEvent;
 import org.springframework.context.ApplicationEvent;
 
+import java.util.Map;
+
 public class ExceptionEvent extends ApplicationEvent {
 
     private Log4jLogEvent log4jLogEvent;
+
+    private Map<String, String> customProperties;
 
     public ExceptionEvent(Object source) {
         super(source);
@@ -16,11 +20,33 @@ public class ExceptionEvent extends ApplicationEvent {
         this.log4jLogEvent = log4jLogEvent;
     }
 
+    public ExceptionEvent(Object source, Log4jLogEvent log4jLogEvent, Map<String, String> customProperties) {
+        super(source);
+        this.log4jLogEvent = log4jLogEvent;
+        this.customProperties = customProperties;
+    }
+
     public Log4jLogEvent getLog4jLogEvent() {
         return log4jLogEvent;
     }
 
     public void setLog4jLogEvent(Log4jLogEvent log4jLogEvent) {
         this.log4jLogEvent = log4jLogEvent;
+    }
+
+    public Map<String, String> getCustomProperties() {
+        return customProperties;
+    }
+
+    public void setCustomProperties(Map<String, String> customProperties) {
+        this.customProperties = customProperties;
+    }
+
+    @Override
+    public String toString() {
+        return "ExceptionEvent{" +
+                "log4jLogEvent=" + log4jLogEvent +
+                ", customProperties=" + customProperties +
+                '}';
     }
 }
