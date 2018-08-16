@@ -8,7 +8,7 @@ public class LotionUser {
 
     private String password;
 
-    private int status;
+    private int status=1;
 
 
     private Set<String> roleSet ;

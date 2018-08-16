@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -23,11 +26,14 @@ public class UserController {
     public LotionUser getByUsername(String username){
         User user =userRepository.getByUsernameIs(username);
         LotionUser lotionUser=null;
-if (user!=null){
-    lotionUser=new LotionUser();
-    lotionUser.setUserName(user.getUsername());
-    lotionUser.setPassword(user.getUserpwd());
-}
+        if (user!=null){
+            Set<String> s =new HashSet<>();
+            s.add("admin");
+            lotionUser=new LotionUser();
+            lotionUser.setUserName(user.getUsername());
+            lotionUser.setPassword(user.getUserpwd());
+            lotionUser.setRoleSet(s);
+        }
 
         return lotionUser;
     }

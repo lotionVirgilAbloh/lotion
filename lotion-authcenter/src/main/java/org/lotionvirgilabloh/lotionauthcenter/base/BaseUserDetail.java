@@ -33,6 +33,7 @@ public class BaseUserDetail implements UserDetails, CredentialsContainer {
         return user.getPassword();
     }
 
+
     @Override
     public String getUsername() {
         return user.getUsername();
