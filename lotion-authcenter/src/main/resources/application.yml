@@ -4,15 +4,14 @@ eureka:
       defaultZone: http://localhost:19000/eureka/
 #端口的使用请参考端口设计文档
 server:
-  port: 19088
+  port: 19033
 spring:
   application:
-    name: lotion-web-authcenter
+    name: lotion-authcenter
   security:
       user:
             name: root    #认证用户名
             password: Qinjibo123 #认证密码
-  
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
@@ -40,9 +39,3 @@ ribbon.MaxAutoRetries: 1
 #默认ribbon请求切换实例重试次数为1
 ribbon.MaxAutoRetriesNextServer: 1
 #自定义配置
-lotion:
-  web:
-    static:
-      url: http://47.106.222.205:8080/tfile/lotion-ui/
-    host:
-      url: http://127.0.0.1:19099/

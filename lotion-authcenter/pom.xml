@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.lotionVirgilAbloh</groupId>
-    <artifactId>lotion-web-authcenter</artifactId>
+    <artifactId>lotion-authcenter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>lotion-web-authcenter</name>
+    <name>lotion-authcenter</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -26,15 +26,21 @@
     </properties>
 
     <dependencies>
-        <!-- cloud security -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security</artifactId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.49</version>
+        </dependency>
+
         <!-- actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
