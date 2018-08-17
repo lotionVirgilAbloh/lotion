@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class ExceptionEvent extends ApplicationEvent {
 
+    private static final long serialVersionUID = -4740364740046417008L;
+
     private Log4jLogEvent log4jLogEvent;
 
     private Map<String, String> customProperties;

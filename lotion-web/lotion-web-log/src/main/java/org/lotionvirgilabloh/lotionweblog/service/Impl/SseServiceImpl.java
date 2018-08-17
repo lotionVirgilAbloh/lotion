@@ -27,7 +27,7 @@ public class SseServiceImpl implements SseService {
     /**
      * 格式化输出Log4jLogEvent
      */
-    private final PatternLayout patternLayout = PatternLayout.newBuilder().withPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%5p ${PID:-} [%15.15t] %-30.30c{1.} : %m%n").build();
+    private final PatternLayout patternLayout = PatternLayout.newBuilder().withPattern("%d{yyyy-MM-dd HH:mm:ss.SSS} -%highlight{%5p} ${PID:-} [%15.15t] %-30.30c{1.} : %m%n").build();
 
     private void complete(SseEmitter emitter) {
         logger.info("emitter" + emitter.hashCode() + " completed");

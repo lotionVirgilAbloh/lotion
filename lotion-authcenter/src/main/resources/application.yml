@@ -9,9 +9,9 @@ spring:
   application:
     name: lotion-authcenter
   security:
-      user:
-            name: root    #认证用户名
-            password: Qinjibo123 #认证密码
+    user:
+      name: root    #认证用户名
+      password: Qinjibo123 #认证密码
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml

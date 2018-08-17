@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 @SpringCloudApplication
-@EnableEurekaClient
 @EnableAuthorizationServer
 @EnableFeignClients
 public class LotionAuthApplication {
