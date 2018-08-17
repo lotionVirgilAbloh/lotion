@@ -14,22 +14,4 @@ public class LotionWebControlApplication {
         application.addListeners(new ApplicationEnvironmentPreparedListener());
         application.run(args);
     }
-
-
-    /**
-     * 另一种解决Spring boot 2没有自动映射../actuator/hystrix.stream问题的方法
-     *
-     * @return
-     */
-    /*@Bean
-    public ServletRegistrationBean getServlet(){
-
-        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-        registrationBean.setLoadOnStartup(1);
-        registrationBean.addUrlMappings("/actuator/hystrix.stream");
-        registrationBean.setName("HystrixMetricsStreamServlet");
-
-        return registrationBean;
-    }*/
 }

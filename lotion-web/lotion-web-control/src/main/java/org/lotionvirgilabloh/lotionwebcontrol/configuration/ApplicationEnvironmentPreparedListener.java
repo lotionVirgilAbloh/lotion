@@ -8,8 +8,8 @@ import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 
 /**
- * 用于在加载配置文件时获取信息并通过log4j的ThreadContext发送至log4j，该listener必须在application注册，
- * 若在@Configuration中注册，会慢于ApplicationEnvironmentPreparedEvent事件产生，导致错过
+ * 用于在加载配置文件时获取信息并通过log4j的ThreadContext发送至log4j，该listener必须利用application.addListeners注册，
+ * 若以@Bean注册，则在Spring boot Autowired检测阶段才会注册，会错过ApplicationEnvironmentPreparedEvent事件产生
  */
 public class ApplicationEnvironmentPreparedListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
     private boolean setFlag =false;
