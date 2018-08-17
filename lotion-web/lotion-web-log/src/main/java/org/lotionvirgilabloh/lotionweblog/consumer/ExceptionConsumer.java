@@ -15,6 +15,7 @@ import org.springframework.messaging.SubscribableChannel;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @SuppressWarnings("unused")
@@ -38,7 +39,7 @@ public class ExceptionConsumer {
             logger.info("InputLotionLogErrorConsumer data received..." + data);
             Map<?, ?> map;
             Log4jLogEvent log4jLogEvent = null;
-            Map<String, Object> customProperties = new HashMap<>();
+            Map<String, Object> customProperties = new LinkedHashMap<>();
             try {
                 //保证转换时不会发生unknown properties的错误
                 if (log4jJsonObjectMapper.getDeserializationConfig().isEnabled(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES))

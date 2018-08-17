@@ -36,6 +36,21 @@ public class FormattedException implements Serializable {
     public FormattedException() {
     }
 
+    public FormattedException(long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
+        this.timeMillis = timeMillis;
+        this.message = message;
+        this.project = project;
+        this.additionalProperties = additionalProperties;
+    }
+
+    public FormattedException(String exceptionID, long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
+        this.exceptionID = exceptionID;
+        this.timeMillis = timeMillis;
+        this.message = message;
+        this.project = project;
+        this.additionalProperties = additionalProperties;
+    }
+
     public String getExceptionID() {
         return exceptionID;
     }
