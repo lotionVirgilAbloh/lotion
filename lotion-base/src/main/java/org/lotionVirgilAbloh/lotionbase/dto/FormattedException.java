@@ -1,6 +1,7 @@
 package org.lotionVirgilAbloh.lotionbase.dto;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Objects;
 
 public class FormattedException implements Serializable {
@@ -28,31 +29,11 @@ public class FormattedException implements Serializable {
     private String project;
 
     /**
-     * 发生Exception的loggerName
+     * 其余参数
      */
-    private String loggerName;
-
-    /**
-     * 发生Exception的线程
-     */
-    private String thread;
-
-    /**
-     * 发生Exception的日期
-     */
-    private String date;
+    private Map<String, Object> additionalProperties;
 
     public FormattedException() {
-    }
-
-    public FormattedException(String exceptionID, long timeMillis, String message, String project, String loggerName, String thread, String date) {
-        this.exceptionID = exceptionID;
-        this.timeMillis = timeMillis;
-        this.message = message;
-        this.project = project;
-        this.loggerName = loggerName;
-        this.thread = thread;
-        this.date = date;
     }
 
     public String getExceptionID() {
@@ -87,45 +68,28 @@ public class FormattedException implements Serializable {
         this.project = project;
     }
 
-    public String getLoggerName() {
-        return loggerName;
+    public Map<String, Object> getAdditionalProperties() {
+        return additionalProperties;
     }
 
-    public void setLoggerName(String loggerName) {
-        this.loggerName = loggerName;
-    }
-
-    public String getThread() {
-        return thread;
-    }
-
-    public void setThread(String thread) {
-        this.thread = thread;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
     }
 
     @Override
-    public String toString() {
-        return "FormattedException{" +
-                "exceptionID='" + exceptionID + '\'' +
-                ", timeMillis=" + timeMillis +
-                ", message='" + message + '\'' +
-                ", project='" + project + '\'' +
-                ", loggerName='" + loggerName + '\'' +
-                ", thread='" + thread + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FormattedException that = (FormattedException) o;
+        return getTimeMillis() == that.getTimeMillis() &&
+                Objects.equals(getExceptionID(), that.getExceptionID()) &&
+                Objects.equals(getMessage(), that.getMessage()) &&
+                Objects.equals(getProject(), that.getProject()) &&
+                Objects.equals(getAdditionalProperties(), that.getAdditionalProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTimeMillis(), getMessage(), getProject(), getLoggerName(), getThread(), getDate());
+        return Objects.hash(getExceptionID(), getTimeMillis(), getProject());
     }
 }

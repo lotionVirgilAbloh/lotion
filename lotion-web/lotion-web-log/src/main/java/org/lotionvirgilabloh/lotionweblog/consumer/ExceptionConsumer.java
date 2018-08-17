@@ -36,9 +36,9 @@ public class ExceptionConsumer {
         @StreamListener(InputLotionLogError.INPUT)
         public void receive(String data) {
             logger.info("InputLotionLogErrorConsumer data received..." + data);
-            Map map;
+            Map<?, ?> map;
             Log4jLogEvent log4jLogEvent = null;
-            Map<String, String> customProperties = new HashMap<>();
+            Map<String, Object> customProperties = new HashMap<>();
             try {
                 //保证转换时不会发生unknown properties的错误
                 if (log4jJsonObjectMapper.getDeserializationConfig().isEnabled(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES))
@@ -47,13 +47,22 @@ public class ExceptionConsumer {
                 map = log4jJsonObjectMapper.readValue(data, Map.class);
                 //从map对象转换到log4jLogEvent
                 log4jLogEvent = log4jJsonObjectMapper.convertValue(map, Log4jLogEvent.class);
-                //自定义custom properties的转换
-                if (map.containsKey("project"))
-                    customProperties.put("project", (String) map.get("project"));
-                if (map.containsKey("date"))
-                    customProperties.put("date", (String) map.get("date"));
+                //custom properties的转换，由于map是LinkedHashMap，是有序的，因此可以通过遍历map获取custom properties
+                boolean flag = false;
+                for (Map.Entry<?, ?> entry : map.entrySet()) {
+                    //通过key=project获取custom properties，因此custom properties必须要有project
+                    if (entry.getKey().equals("project")) {
+                        flag = true;
+                    }
+                    if (flag) {
+                        //key必须为String
+                        customProperties.put(entry.getKey().toString(), entry.getValue());
+                    }
+                }
             } catch (IOException e) {
-                logger.error("Log4j2转换失败", e);
+                //本应logger.error("Log4j2转换失败", e);但为了防止处理异常的死循环，必须在本地输出
+                System.out.println("Log4j2转换失败");
+                e.printStackTrace();
             }
             ExceptionEvent exceptionEvent = new ExceptionEvent(this, log4jLogEvent, customProperties);
             applicationContext.publishEvent(exceptionEvent);

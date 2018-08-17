@@ -11,7 +11,7 @@ public class ExceptionEvent extends ApplicationEvent {
 
     private Log4jLogEvent log4jLogEvent;
 
-    private Map<String, String> customProperties;
+    private Map<String, Object> customProperties;
 
     public ExceptionEvent(Object source) {
         super(source);
@@ -22,7 +22,7 @@ public class ExceptionEvent extends ApplicationEvent {
         this.log4jLogEvent = log4jLogEvent;
     }
 
-    public ExceptionEvent(Object source, Log4jLogEvent log4jLogEvent, Map<String, String> customProperties) {
+    public ExceptionEvent(Object source, Log4jLogEvent log4jLogEvent, Map<String, Object> customProperties) {
         super(source);
         this.log4jLogEvent = log4jLogEvent;
         this.customProperties = customProperties;
@@ -36,11 +36,11 @@ public class ExceptionEvent extends ApplicationEvent {
         this.log4jLogEvent = log4jLogEvent;
     }
 
-    public Map<String, String> getCustomProperties() {
+    public Map<String, Object> getCustomProperties() {
         return customProperties;
     }
 
-    public void setCustomProperties(Map<String, String> customProperties) {
+    public void setCustomProperties(Map<String, Object> customProperties) {
         this.customProperties = customProperties;
     }
 

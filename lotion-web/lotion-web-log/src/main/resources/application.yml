@@ -30,11 +30,11 @@ spring:
           consumer:
             #防止在集群下sse接收不到event
             autoRebalanceEnabled: false
+            configuration:
+            - key: group-id
+            - value: lotion-web-log-error
   mvc:
     static-path-pattern: /**
-  kafka:
-    consumer:
-      group-id: lotion-web-log
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml

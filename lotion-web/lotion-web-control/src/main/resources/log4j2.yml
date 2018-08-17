@@ -9,7 +9,7 @@ Configuration:
       - name: log.path
         value: log
       - name: project.name
-        value: lotion-web-control
+        value: ${ctx:app.name}
       - name: log.pattern
         value: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%highlight{%5p} ${PID:-} [%15.15t] %-30.30c{1.} : %m%n"
   Appenders:
@@ -39,10 +39,14 @@ Configuration:
         onMismatch: DENY
       JsonLayout:
         compact: true
-        #增加自定义标识以定义来源与日期
+        #增加自定义标识
         KeyValuePair:
           - key: project
             value: ${project.name}
+          - key: ip
+            value: ${ctx:ip-address}
+          - key: port
+            value: ${ctx:server.port}
           - key: date
             value: $${date:yyyy-MM-dd}
       Property:
