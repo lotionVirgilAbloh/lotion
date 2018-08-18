@@ -44,7 +44,7 @@ Configuration:
           - key: project
             value: ${project.name}
           - key: ip
-            value: ${ctx:ip-address}
+            value: ${ctx:server.ip}
           - key: port
             value: ${ctx:server.port}
           - key: date
