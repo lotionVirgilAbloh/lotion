@@ -11,7 +11,10 @@ import org.springframework.core.env.PropertySource;
  * 用于在加载配置文件时获取信息并通过log4j的ThreadContext发送至log4j，该listener必须利用application.addListeners注册，
  * 若以@Bean注册，则在Spring boot Autowired检测阶段才会注册，会错过ApplicationEnvironmentPreparedEvent事件产生
  */
-public class ApplicationEnvironmentPreparedListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
+public class Log4j2EnvironmentPreparedListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
+    /**
+     * 防止接收到其他ApplicationEnvironmentPreparedEvent并刷新配置
+     */
     private boolean setFlag =false;
 
     @Override
@@ -23,6 +26,7 @@ public class ApplicationEnvironmentPreparedListener implements ApplicationListen
         }
     }
     private void setPropertySource(MutablePropertySources mutablePropertySources) {
+        //如果是config server的配置则PropertySource名称会不一样
         PropertySource<?> applicationConfigPropertySource = mutablePropertySources.get("applicationConfig: [classpath:/application.yml]");
         if (applicationConfigPropertySource != null && applicationConfigPropertySource.containsProperty("spring.application.name")) {
             String appName = (String) applicationConfigPropertySource.getProperty("spring.application.name");
@@ -35,8 +39,8 @@ public class ApplicationEnvironmentPreparedListener implements ApplicationListen
 
         PropertySource<?> springCloudClientHostInfoPropertySource = mutablePropertySources.get("springCloudClientHostInfo");
         if (springCloudClientHostInfoPropertySource != null && springCloudClientHostInfoPropertySource.containsProperty("spring.cloud.client.ip-address")) {
-            String ipAddress = (String) springCloudClientHostInfoPropertySource.getProperty("spring.cloud.client.ip-address");
-            ThreadContext.put("ip-address", ipAddress);
+            String serverIp = (String) springCloudClientHostInfoPropertySource.getProperty("spring.cloud.client.ip-address");
+            ThreadContext.put("server.ip", serverIp);
         }
     }
 }
