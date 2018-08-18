@@ -43,10 +43,10 @@ public final class DigestEncoder {
 		byte []b = (username + ":" + passwd).getBytes();
 		return digestEncode(ALGM_MD5, b);
 	}
-	
+
 	public static void main(String []args){
 		BCryptPasswordEncoder bce =new BCryptPasswordEncoder(6);
-		System.out.println(bce.encode("sb"));
+		System.out.println(bce.encode("acmesecret"));
 //		System.out.println(encodePassword("qz","sb"));
 	}
 }
