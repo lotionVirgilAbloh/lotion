@@ -11,7 +11,7 @@ public class FormattedException implements Serializable {
     /**
      * 标识该Exception的ID
      */
-    private String exceptionID;
+    private int exceptionID;
 
     /**
      * 发生Exception的时间
@@ -36,14 +36,7 @@ public class FormattedException implements Serializable {
     public FormattedException() {
     }
 
-    public FormattedException(long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
-        this.timeMillis = timeMillis;
-        this.message = message;
-        this.project = project;
-        this.additionalProperties = additionalProperties;
-    }
-
-    public FormattedException(String exceptionID, long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
+    public FormattedException(int exceptionID, long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
         this.exceptionID = exceptionID;
         this.timeMillis = timeMillis;
         this.message = message;
@@ -51,11 +44,18 @@ public class FormattedException implements Serializable {
         this.additionalProperties = additionalProperties;
     }
 
-    public String getExceptionID() {
+    public FormattedException(long timeMillis, String message, String project, Map<String, Object> additionalProperties) {
+        this.timeMillis = timeMillis;
+        this.message = message;
+        this.project = project;
+        this.additionalProperties = additionalProperties;
+    }
+
+    public int getExceptionID() {
         return exceptionID;
     }
 
-    public void setExceptionID(String exceptionID) {
+    public void setExceptionID(int exceptionID) {
         this.exceptionID = exceptionID;
     }
 
@@ -105,6 +105,6 @@ public class FormattedException implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getExceptionID(), getTimeMillis(), getProject());
+        return Objects.hash(getTimeMillis(), getProject());
     }
 }
