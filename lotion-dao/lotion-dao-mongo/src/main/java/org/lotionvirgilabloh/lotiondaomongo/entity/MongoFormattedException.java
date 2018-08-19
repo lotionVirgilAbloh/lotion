@@ -3,6 +3,8 @@ package org.lotionvirgilabloh.lotiondaomongo.entity;
 import org.lotionVirgilAbloh.lotionbase.dto.FormattedException;
 import org.springframework.data.annotation.Id;
 
+import java.util.Random;
+
 public class MongoFormattedException extends FormattedException {
 
     @Id
@@ -17,13 +19,14 @@ public class MongoFormattedException extends FormattedException {
     public MongoFormattedException(String id ,String projectName){
         super();
         this.uid =id;
-        super.setExceptionID(id);
+        Random r =new Random();
+        super.setExceptionID(r.nextInt());
         super.setProject(projectName);
         super.setTimeMillis(System.currentTimeMillis());
     }
 
     public MongoFormattedException(FormattedException fe){
-        this.uid =fe.getExceptionID();
+        this.uid =String.valueOf(fe.getExceptionID());
     }
 
     public String getUid() {
