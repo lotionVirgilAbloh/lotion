@@ -35,7 +35,7 @@ public class LogExceptionController {
     //返回持久态文件
     @RequestMapping(value = "insert",method = RequestMethod.POST)
     public MongoFormattedException insert(FormattedException fe){
-        if(feRepository.existsById(fe.getExceptionID())){
+        if(feRepository.existsById(String.valueOf(fe.getExceptionID()))){
             System.out.print("id已存在覆盖");
         }
         MongoFormattedException mongoFormattedException =feRepository.insert(new MongoFormattedException(fe));
