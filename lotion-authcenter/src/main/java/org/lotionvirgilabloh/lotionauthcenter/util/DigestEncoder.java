@@ -44,9 +44,4 @@ public final class DigestEncoder {
 		return digestEncode(ALGM_MD5, b);
 	}
 
-	public static void main(String []args){
-		BCryptPasswordEncoder bce =new BCryptPasswordEncoder(6);
-		System.out.println(bce.encode("acmesecret"));
-//		System.out.println(encodePassword("qz","sb"));
-	}
 }
