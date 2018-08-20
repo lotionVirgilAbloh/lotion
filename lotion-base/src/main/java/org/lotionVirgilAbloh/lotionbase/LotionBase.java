@@ -1,4 +1,4 @@
-package org.lotionVirgilAbloh.lotionbase;
+package org.lotionvirgilabloh.lotionbase;
 
 public class LotionBase {
 }

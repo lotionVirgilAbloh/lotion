@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotionweblog.configuration;
 
-import org.lotionVirgilAbloh.lotionbase.dto.FormattedException;
+import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotionweblog.event.ExceptionEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package org.lotionVirgilAbloh.lotionbase.auth;
+package org.lotionvirgilabloh.lotionbase.auth;
 
 import java.util.Set;
 

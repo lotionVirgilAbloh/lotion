@@ -67,10 +67,3 @@ lotion:
     url: 47.106.222.205
     username: root
     password: Qinjibo123
----
-spring:
-  profiles:
-  - test
-  - test1
-server:
-  port: 19088

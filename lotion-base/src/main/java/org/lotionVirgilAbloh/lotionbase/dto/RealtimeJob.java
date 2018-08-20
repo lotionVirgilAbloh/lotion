@@ -1,4 +1,4 @@
-package org.lotionVirgilAbloh.lotionbase.dto;
+package org.lotionvirgilabloh.lotionbase.dto;
 
 import java.io.Serializable;
 
