@@ -25,6 +25,7 @@
         <module>lotion-web</module>
         <module>lotion-hystrix-dashboard</module>
         <module>lotion-hystrix-turbine</module>
+        <module>lotion-starters</module>
     </modules>
 
 </project>

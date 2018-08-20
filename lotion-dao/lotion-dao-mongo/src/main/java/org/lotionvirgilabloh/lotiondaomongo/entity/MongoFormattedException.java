@@ -16,17 +16,17 @@ public class MongoFormattedException extends FormattedException {
     }
 
 
-    public MongoFormattedException(String id ,String projectName){
+    public MongoFormattedException(String id, String projectName) {
         super();
-        this.uid =id;
-        Random r =new Random();
+        this.uid = id;
+        Random r = new Random();
         super.setExceptionID(r.nextInt());
         super.setProject(projectName);
         super.setTimeMillis(System.currentTimeMillis());
     }
 
-    public MongoFormattedException(FormattedException fe){
-        this.uid =String.valueOf(fe.getExceptionID());
+    public MongoFormattedException(FormattedException fe) {
+        this.uid = String.valueOf(fe.getExceptionID());
     }
 
     public String getUid() {

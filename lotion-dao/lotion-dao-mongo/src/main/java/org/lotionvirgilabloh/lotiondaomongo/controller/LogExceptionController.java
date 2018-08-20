@@ -4,7 +4,6 @@ import org.lotionVirgilAbloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.entity.MongoFormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.repository.FERepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
