@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotionmessagebusevent;
 
-import org.lotionVirgilAbloh.lotionbase.dto.BaseMapDTO;
+import org.lotionvirgilabloh.lotionbase.dto.BaseMapDTO;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
 
 public class BaseMapBusEvent extends RemoteApplicationEvent {

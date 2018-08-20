@@ -1,7 +1,7 @@
 package org.lotionvirgilabloh.lotionauthcenter.service;
 
 
-import org.lotionVirgilAbloh.lotionbase.auth.LotionUser;
+import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

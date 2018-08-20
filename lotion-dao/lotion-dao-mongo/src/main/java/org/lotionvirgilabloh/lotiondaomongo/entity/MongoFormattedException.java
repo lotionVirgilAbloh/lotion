@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomongo.entity;
 
-import org.lotionVirgilAbloh.lotionbase.dto.FormattedException;
+import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.springframework.data.annotation.Id;
 
 import java.util.Random;

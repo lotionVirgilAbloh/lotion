@@ -1,8 +1,8 @@
 package org.lotionvirgilabloh.lotionwebcontrol.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.lotionVirgilAbloh.lotionbase.dto.OfflineJob;
-import org.lotionVirgilAbloh.lotionbase.dto.RealtimeJob;
+import org.lotionvirgilabloh.lotionbase.dto.OfflineJob;
+import org.lotionvirgilabloh.lotionbase.dto.RealtimeJob;
 import org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.JSchReturn;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.PagerModel;

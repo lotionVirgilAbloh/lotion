@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomysql.controller;
 
-import org.lotionVirgilAbloh.lotionbase.auth.LotionUser;
+import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.lotionvirgilabloh.lotiondaomysql.dao.UserRepository;
 import org.lotionvirgilabloh.lotiondaomysql.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

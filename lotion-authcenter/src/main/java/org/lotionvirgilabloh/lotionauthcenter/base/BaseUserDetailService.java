@@ -1,8 +1,8 @@
 package org.lotionvirgilabloh.lotionauthcenter.base;
 
 
-import org.lotionVirgilAbloh.lotionbase.auth.LotionUser;
 import org.lotionvirgilabloh.lotionauthcenter.service.AuthCenterManager;
+import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

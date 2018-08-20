@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotionauthcenter.base;
 
-import org.lotionVirgilAbloh.lotionbase.auth.LotionUser;
+import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

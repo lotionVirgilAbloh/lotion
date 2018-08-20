@@ -1,6 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomongo.controller;
 
-import org.lotionVirgilAbloh.lotionbase.dto.FormattedException;
+import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.entity.MongoFormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.repository.FERepository;
 import org.springframework.beans.factory.annotation.Autowired;

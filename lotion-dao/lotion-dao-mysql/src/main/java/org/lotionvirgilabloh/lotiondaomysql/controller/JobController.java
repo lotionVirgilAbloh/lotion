@@ -1,8 +1,8 @@
 package org.lotionvirgilabloh.lotiondaomysql.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.lotionVirgilAbloh.lotionbase.dto.OfflineJob;
-import org.lotionVirgilAbloh.lotionbase.dto.RealtimeJob;
+import org.lotionvirgilabloh.lotionbase.dto.OfflineJob;
+import org.lotionvirgilabloh.lotionbase.dto.RealtimeJob;
 import org.lotionvirgilabloh.lotiondaomysql.dao.OfflineJobRepository;
 import org.lotionvirgilabloh.lotiondaomysql.dao.RealtimeJobRepository;
 import org.lotionvirgilabloh.lotiondaomysql.entity.DBOfflineJob;
