@@ -56,7 +56,12 @@ public class SseServiceImpl implements SseService {
     public void sendSseEventsToUI(ExceptionEvent exceptionEvent) {
         for (SseEmitter emitter : emitters) {
             try {
-                emitter.send(patternLayout.toSerializable(exceptionEvent.getLog4jLogEvent()), MediaType.APPLICATION_JSON);
+                String sendString = patternLayout.toSerializable(exceptionEvent.getLog4jLogEvent());
+                String[] sends = sendString.split("\n");
+                for (String send : sends) {
+                    emitter.send(send, MediaType.TEXT_PLAIN);
+                }
+                logger.info("SSE已发送异常消息至前端");
             } catch (Exception e) {
                 emitter.complete();
             }

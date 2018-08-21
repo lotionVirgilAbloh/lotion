@@ -45,11 +45,11 @@ Configuration:
           - key: project
             value: ${project.name}
           - key: appnames
-            value: $${ctx:app.name}
+            value: ${ctx:app.name}
           - key: ip
-            value: $${ctx:server.ip}
+            value: ${ctx:server.ip}
           - key: port
-            value: $${ctx:server.port}
+            value: ${ctx:server.port}
           - key: date
             value: $${date:yyyy-MM-dd}
       Property:

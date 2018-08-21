@@ -8,6 +8,8 @@ const isLocal = false;
     }
 })();
 
+var ansi_up = new AnsiUp;
+
 //用于将rt_journal_div通过SSE连接到服务器端
 (function (win, $) {
 
@@ -25,8 +27,10 @@ const isLocal = false;
     };
 
     source.onmessage = function (event) {
-        if (!(event.data === "[]")) {
-            $("#rt_journal_div").append("<p>" + event.data + "</p>");
+        var data = event.data;
+        if (!(data === "[]")) {
+            var t_data = ansi_up.ansi_to_html(data);
+            $("#rt_journal_div").append("<p>" + t_data+ "</p>");
             $("#rt_journal_div").scrollTop( $("#rt_journal_div")[0].scrollHeight);
         }
     };

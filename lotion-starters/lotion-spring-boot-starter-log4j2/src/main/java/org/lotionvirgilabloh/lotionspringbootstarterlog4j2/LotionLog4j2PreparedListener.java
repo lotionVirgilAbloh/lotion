@@ -169,6 +169,7 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<Applica
         }
         if (mapPropertySource.containsProperty("server.port")) {
             String serverPort = getPropertyMaybeInteger("server.port", mapPropertySource);
+            ThreadContext.put("server.port", serverPort);
             logger.info("LotionLog4j2PreparedListener:log4j2重设参数:{key:" + "server.port" + ",value:" + serverPort + "}");
         }
     }
@@ -178,9 +179,9 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<Applica
         try {
             ret = (String) mapPropertySource.getProperty(propertyName);
         } catch (ClassCastException e) {
-            Integer port = (Integer) mapPropertySource.getProperty(propertyName);
-            if (port != null) {
-                ret = port.toString();
+            Integer integer = (Integer) mapPropertySource.getProperty(propertyName);
+            if (integer != null) {
+                ret = integer.toString();
             } else {
                 ret = "";
             }
