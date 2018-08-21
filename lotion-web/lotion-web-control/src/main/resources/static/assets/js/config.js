@@ -6,7 +6,7 @@
             var url = "http://47.106.222.205:8080/tfile/lotion-ui/"
             $.ajax({
                 url: this.webHostUrl + "getWebStaticUrl",
-                async : false,
+                async : true,
                 data : "",
                 type : "POST",
                 dataType: 'text',
