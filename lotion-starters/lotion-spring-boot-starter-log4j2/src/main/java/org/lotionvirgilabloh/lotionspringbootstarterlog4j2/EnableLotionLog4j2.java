@@ -7,6 +7,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
+@Deprecated
 @Import(LotionLog4j2MakerConfig.class)
 public @interface EnableLotionLog4j2 {
 }

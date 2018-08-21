@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringCloudApplication
 @EnableFeignClients
-@EnableLotionLog4j2
 public class LotionWebControlApplication {
 
     public static void main(String[] args) {

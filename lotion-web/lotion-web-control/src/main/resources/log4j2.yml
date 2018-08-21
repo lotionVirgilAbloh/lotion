@@ -1,15 +1,16 @@
 # 共有8个级别，按照从低到高为：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF。
+# 必须定义project.name
 Configuration:
   status: warn
   monitorInterval: 30
   Properties: # 定义全局变量
     Property:
+      - name: project.name
+        value: lotion-web-control
       - name: log.level.console
         value: info
       - name: log.path
         value: log
-      - name: project.name
-        value: ${ctx:app.name}
       - name: log.pattern
         value: "%d{yyyy-MM-dd HH:mm:ss.SSS} -%highlight{%5p} ${PID:-} [%15.15t] %-30.30c{1.} : %m%n"
   Appenders:
@@ -43,10 +44,12 @@ Configuration:
         KeyValuePair:
           - key: project
             value: ${project.name}
+          - key: appnames
+            value: $${ctx:app.name}
           - key: ip
-            value: ${ctx:server.ip}
+            value: $${ctx:server.ip}
           - key: port
-            value: ${ctx:server.port}
+            value: $${ctx:server.port}
           - key: date
             value: $${date:yyyy-MM-dd}
       Property:
