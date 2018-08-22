@@ -22,7 +22,7 @@ public class LotionLog4j2RefreshAutoConfig {
 
     @Bean
     @Autowired
-    LotionLog4j2RefreshEventSender lotionLog4j2ContextRefreshedEventSender(LotionLog4j2ApplicationContextProvider lotionLog4j2ApplicationContextProvider) {
+    LotionLog4j2RefreshEventSender lotionLog4j2RefreshEventSender(LotionLog4j2ApplicationContextProvider lotionLog4j2ApplicationContextProvider) {
         return new LotionLog4j2RefreshEventSender(lotionLog4j2ApplicationContextProvider);
     }
 }
