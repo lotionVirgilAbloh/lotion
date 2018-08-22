@@ -7,8 +7,6 @@ Configuration:
     Property:
       - name: project.name
         value: lotion-web-control
-      - name: log.level.console
-        value: info
       - name: log.path
         value: log
       - name: log.pattern

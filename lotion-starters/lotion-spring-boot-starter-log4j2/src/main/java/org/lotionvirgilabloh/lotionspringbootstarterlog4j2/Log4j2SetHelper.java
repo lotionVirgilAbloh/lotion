@@ -2,11 +2,11 @@ package org.lotionvirgilabloh.lotionspringbootstarterlog4j2;
 
 import java.util.Map;
 
-public class ThreadContextSetHelper {
+public class Log4j2SetHelper {
     private String key;
     private Map<String, String> setter;
 
-    public ThreadContextSetHelper(String key, Map<String, String> setter) {
+    public Log4j2SetHelper(String key, Map<String, String> setter) {
         this.key = key;
         this.setter = setter;
     }

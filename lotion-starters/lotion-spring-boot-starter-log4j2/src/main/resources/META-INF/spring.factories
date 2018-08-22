@@ -1,3 +1,4 @@
-#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.springframework.cloud.bootstrap.BootstrapConfiguration=\
-org.lotionvirgilabloh.lotionspringbootstarterlog4j2.LotionLog4j2AutoConfig
+#org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.lotionvirgilabloh.lotionspringbootstarterlog4j2.LotionLog4j2AutoConfig,\
+org.lotionvirgilabloh.lotionspringbootstarterlog4j2.LotionLog4j2RefreshAutoConfig
