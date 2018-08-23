@@ -1,6 +1,6 @@
-package org.lotionvirgilabloh.lotionauthcenter.configure;
+package org.lotionvirgilabloh.sso.configure;
 
-import org.lotionvirgilabloh.lotionauthcenter.base.BaseUserDetailService;
+import org.lotionvirgilabloh.sso.base.BaseUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +13,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
+import java.security.KeyPair;
+
 @Configuration
 public class OathConfig extends AuthorizationServerConfigurerAdapter {
 
@@ -21,14 +23,20 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private BaseUserDetailService userDetailsService;
 
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+//        endpoints.authenticationManager(authenticationManager)
+//                // 配置JwtAccessToken转换器
+//                .accessTokenConverter(jwtAccessTokenConverter())
+//                // refresh_token需要userDetailsService
+//                .reuseRefreshTokens(false).userDetailsService(userDetailsService);
+//        //.tokenStore(getJdbcTokenStore());
+//    }
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints.authenticationManager(authenticationManager)
-                // 配置JwtAccessToken转换器
-                .accessTokenConverter(jwtAccessTokenConverter())
-                // refresh_token需要userDetailsService
-                .reuseRefreshTokens(false).userDetailsService(userDetailsService);
-        //.tokenStore(getJdbcTokenStore());
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
+            throws Exception {
+        endpoints.authenticationManager(authenticationManager).accessTokenConverter(
+                jwtAccessTokenConverter());
     }
 
     /**
@@ -37,13 +45,12 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
      */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-
-        final JwtAccessTokenConverter converter = new JwtAccessToken();
         // 导入证书
-        KeyStoreKeyFactory keyStoreKeyFactory =
-                new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "mypass".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
-
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        KeyPair keyPair = new KeyStoreKeyFactory(
+                new ClassPathResource("keystore.jks"), "foobar".toCharArray())
+                .getKeyPair("test");
+        converter.setKeyPair(keyPair);
         return converter;
     }
 

@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionauthcenter.base;
+package org.lotionvirgilabloh.sso.base;
 
 import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.springframework.security.core.CredentialsContainer;

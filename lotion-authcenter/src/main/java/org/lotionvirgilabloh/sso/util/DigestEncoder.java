@@ -1,11 +1,10 @@
-package org.lotionvirgilabloh.lotionauthcenter.util;
+package org.lotionvirgilabloh.sso.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public final class DigestEncoder {
 	static Logger logger = LoggerFactory.getLogger(DigestEncoder.class);

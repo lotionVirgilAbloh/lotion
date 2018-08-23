@@ -1,7 +1,7 @@
-package org.lotionvirgilabloh.lotionauthcenter.base;
+package org.lotionvirgilabloh.sso.base;
 
 
-import org.lotionvirgilabloh.lotionauthcenter.service.AuthCenterManager;
+import org.lotionvirgilabloh.sso.service.AuthCenterManager;
 import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

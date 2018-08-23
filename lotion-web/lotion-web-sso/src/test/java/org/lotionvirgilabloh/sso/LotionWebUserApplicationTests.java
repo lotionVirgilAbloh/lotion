@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionauthcenter;
+package org.lotionvirgilabloh.sso;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

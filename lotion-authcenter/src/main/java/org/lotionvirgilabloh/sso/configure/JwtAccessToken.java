@@ -1,7 +1,7 @@
-package org.lotionvirgilabloh.lotionauthcenter.configure;
+package org.lotionvirgilabloh.sso.configure;
 
-import org.lotionvirgilabloh.lotionauthcenter.base.BaseUserDetail;
-import org.lotionvirgilabloh.lotionauthcenter.util.JsonUtils;
+import org.lotionvirgilabloh.sso.base.BaseUserDetail;
+import org.lotionvirgilabloh.sso.util.JsonUtils;
 import org.lotionvirgilabloh.lotionbase.auth.LotionUser;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

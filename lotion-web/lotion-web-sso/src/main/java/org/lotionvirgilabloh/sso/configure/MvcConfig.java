@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionauthcenter.configure;
+package org.lotionvirgilabloh.sso.configure;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -9,7 +9,5 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/").setViewName("loginPage");
-        registry.addViewController("/login").setViewName("loginPage");
     }
 }
