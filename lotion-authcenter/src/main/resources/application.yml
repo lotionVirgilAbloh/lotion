@@ -9,10 +9,8 @@ spring:
   application:
     name: lotion-authcenter
   security:
-    user:
-      name: root    #认证用户名
-      password: Qinjibo123 #认证密码
     ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+    enabled: false
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
@@ -21,7 +19,7 @@ feign:
   hystrix:
     enabled: true
 #启动所有映射(默认只有../actuator/health和../actuator/info)
-#可以解决hystrix.stream的映射问题默认在../actuator/hystrix.stream
+#可以解决hystrix.stream的映射问题默认在../actuator/hystrix.stream\
 management:
   endpoints:
     web:

@@ -24,7 +24,6 @@ public class JwtAccessToken extends JwtAccessTokenConverter {
 
         // 设置额外用户信息
         LotionUser baseUser = ((BaseUserDetail) authentication.getPrincipal()).getBaseUser();
-        baseUser.setPassword(null);
         // 将用户信息添加到token额外信息中
         defaultOAuth2AccessToken.getAdditionalInformation().put(Constant.USER_INFO, baseUser);
 
