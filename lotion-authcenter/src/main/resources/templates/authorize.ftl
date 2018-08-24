@@ -1,10 +1,10 @@
 <html>
 <head>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<h2>Please Confirm</h2>
-
 		<p>
 			Do you authorize "${authorizationRequest.clientId}" at "${authorizationRequest.redirectUri}" to access your protected resources
 			with scope ${authorizationRequest.scope?join(", ")}.
@@ -23,4 +23,5 @@
 		</form>
 	</div>
 </body>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </html>
