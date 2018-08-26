@@ -20,21 +20,21 @@ public class WebUIsController {
     @Value("${lotion.web.host.url}")
     private String webHostUrl;
 
-    @Value("${lotion.web.eureka-url}")
+    @Value("${lotion.web.eureka.url}")
     private String eurekaUrl;
-    @Value("${lotion.web.hbase-url}")
+    @Value("${lotion.web.hbase.url}")
     private String hbaseUrl;
-    @Value("${lotion.web.hdfs-url}")
+    @Value("${lotion.web.hdfs.url}")
     private String hdfsUrl;
-    @Value("${lotion.web.hystrix-url}")
+    @Value("${lotion.web.hystrix.url}")
     private String hystrixUrl;
-    @Value("${lotion.web.kafka-url}")
+    @Value("${lotion.web.kafka.url}")
     private String kafkaUrl;
-    @Value("${lotion.web.spark-url}")
+    @Value("${lotion.web.spark.url}")
     private String sparkUrl;
-    @Value("${lotion.web.yarn-url}")
+    @Value("${lotion.web.yarn.url}")
     private String yarnUrl;
-    @Value("${lotion.web.zookeeper-url}")
+    @Value("${lotion.web.zookeeper.url}")
     private String zookeeperUrl;
 
     @RequestMapping("eureka")
