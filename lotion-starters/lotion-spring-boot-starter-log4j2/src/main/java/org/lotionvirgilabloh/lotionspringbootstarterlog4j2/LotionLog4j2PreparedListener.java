@@ -69,6 +69,13 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
         }
         // Set CustomProperties
         customProperties = setCustomProperties();
+        // Generate ID
+        addSetMain(new Log4j2SetHelper("id", new HashMap<String, String>() {
+            private static final long serialVersionUID = -800748987787071944L;
+            {
+                put("", UUID.randomUUID().toString());
+            }
+        }));
         // Get a List of OriginTrackedMapPropertySource
         List<OriginTrackedMapPropertySource> originTrackedMapPropertySources = new LinkedList<>();
         for (PropertySource<?> ps : mutablePropertySources) {
@@ -80,7 +87,6 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
                 String serverIp = (String) ps.getProperty("spring.cloud.client.ip-address");
                 addSetMain(new Log4j2SetHelper("server.ip", new HashMap<String, String>() {
                     private static final long serialVersionUID = -800748987787071944L;
-
                     {
                         put("", serverIp);
                     }
@@ -193,7 +199,6 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
             String appName = getProperty("spring.application.name", mapPropertySource).toString();
             setLog4j2SetHelper(log4j2SetHelperLinkedHashMap, "app.name", appName, new LinkedList<String>() {
                 private static final long serialVersionUID = -509786057782619142L;
-
                 {
                     add("");
                 }
@@ -204,7 +209,6 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
             String serverPort = getProperty("server.port", mapPropertySource).toString();
             setLog4j2SetHelper(log4j2SetHelperLinkedHashMap, "server.port", serverPort, new LinkedList<String>() {
                 private static final long serialVersionUID = -7331133441183959950L;
-
                 {
                     add("");
                 }
@@ -215,7 +219,6 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
                 String propertyValue = getProperty(property, mapPropertySource).toString();
                 setLog4j2SetHelper(log4j2SetHelperLinkedHashMap, property, propertyValue, new LinkedList<String>() {
                     private static final long serialVersionUID = -8178542040751699896L;
-
                     {
                         add("");
                     }

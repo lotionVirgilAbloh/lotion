@@ -42,6 +42,8 @@ Configuration:
         KeyValuePair:
           - key: project
             value: ${project.name}
+          - key: id
+            value: ${ctx:id}
           - key: appnames
             value: ${ctx:app.name}
           - key: ip
