@@ -43,7 +43,7 @@ Configuration:
           - key: project
             value: ${project.name}
           - key: id
-            value: ${ctx:id}
+            value: ${ctx:app.id}
           - key: appnames
             value: ${ctx:app.name}
           - key: ip
