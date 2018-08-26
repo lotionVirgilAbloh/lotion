@@ -8,3 +8,7 @@ server:
 spring:
   application:
     name: lotion-dao-mongo
+
+  data:
+    mongodb:
+      uri: mongodb://47.106.222.205:27017/mongo

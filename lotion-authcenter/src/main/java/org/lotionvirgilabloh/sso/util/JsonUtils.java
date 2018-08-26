@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionauthcenter.util;
+package org.lotionvirgilabloh.sso.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;

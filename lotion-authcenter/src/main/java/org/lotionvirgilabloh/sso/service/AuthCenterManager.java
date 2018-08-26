@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionauthcenter.service;
+package org.lotionvirgilabloh.sso.service;
 
 
 import org.lotionvirgilabloh.lotionbase.auth.LotionUser;

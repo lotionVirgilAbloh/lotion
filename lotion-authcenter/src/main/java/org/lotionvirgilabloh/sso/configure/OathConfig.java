@@ -1,17 +1,13 @@
-package org.lotionvirgilabloh.lotionauthcenter.configure;
+package org.lotionvirgilabloh.sso.configure;
 
-import org.lotionvirgilabloh.lotionauthcenter.base.BaseUserDetailService;
+import org.lotionvirgilabloh.sso.base.BaseUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 @Configuration
 public class OathConfig extends AuthorizationServerConfigurerAdapter {
@@ -25,27 +21,32 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.authenticationManager(authenticationManager)
                 // 配置JwtAccessToken转换器
-                .accessTokenConverter(jwtAccessTokenConverter())
+                .accessTokenConverter(new JwtAccessToken ())
                 // refresh_token需要userDetailsService
-                .reuseRefreshTokens(false).userDetailsService(userDetailsService);
+                .reuseRefreshTokens(true).userDetailsService(userDetailsService);
         //.tokenStore(getJdbcTokenStore());
     }
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
+//            throws Exception {
+//        endpoints.authenticationManager(authenticationManager).accessTokenConverter(
+//                jwtAccessTokenConverter());
+//    }
 
     /**
      * 使用非对称加密算法来对Token进行签名
      * @return
      */
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-
-        final JwtAccessTokenConverter converter = new JwtAccessToken();
-        // 导入证书
-        KeyStoreKeyFactory keyStoreKeyFactory =
-                new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "mypass".toCharArray());
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
-
-        return converter;
-    }
+//    @Bean
+//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+//        // 导入证书
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        KeyPair keyPair = new KeyStoreKeyFactory(
+//                new ClassPathResource("keystore.jks"), "foobar".toCharArray())
+//                .getKeyPair("test");
+//        converter.setKeyPair(keyPair);
+//        return converter;
+//    }
 
 
     @Override
@@ -59,10 +60,10 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
 
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer)
-            throws Exception {
-        oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess(
-                "isAuthenticated()");
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
+        oauthServer.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients();
     }
 
 }
