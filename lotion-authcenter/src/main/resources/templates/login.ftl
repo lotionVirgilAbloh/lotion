@@ -43,7 +43,7 @@
                         <div class="form-group m-form__group">
                             <input class="form-control m-input m-login__form-input--last" type="password" placeholder="username" name="password">
                         </div>
-                        <input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <#--<input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
 
                     <#--  <div class="row m-login__form-sub">
                           <div class="col m--align-left m-login__form-left">

@@ -25,35 +25,35 @@ public class OauthConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/dashboard/**").authorizeRequests().anyRequest()
-                .authenticated().and().csrf()
-                .csrfTokenRepository(csrfTokenRepository()).and()
-                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
-                .logout().logoutUrl("/dashboard/logout").permitAll()
-                .logoutSuccessUrl("/");
+                .authenticated().and ().csrf ().disable ();
+//                .csrfTokenRepository(csrfTokenRepository()).and()
+//                .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
+//                .logout().logoutUrl("/dashboard/logout").permitAll()
+//                .logoutSuccessUrl("/");
     }
 
-    private Filter csrfHeaderFilter() {
-        return new OncePerRequestFilter () {
-            @Override
-            protected void doFilterInternal(HttpServletRequest request,
-                                            HttpServletResponse response, FilterChain filterChain)
-                    throws ServletException, IOException {
-                CsrfToken csrf = (CsrfToken) request
-                        .getAttribute(CsrfToken.class.getName());
-                if (csrf != null) {
-                    Cookie cookie = new Cookie("XSRF-TOKEN",
-                            csrf.getToken());
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                }
-                filterChain.doFilter(request, response);
-            }
-        };
-    }
-
-    private CsrfTokenRepository csrfTokenRepository() {
-        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository ();
-        repository.setHeaderName("X-XSRF-TOKEN");
-        return repository;
-    }
+//    private Filter csrfHeaderFilter() {
+//        return new OncePerRequestFilter () {
+//            @Override
+//            protected void doFilterInternal(HttpServletRequest request,
+//                                            HttpServletResponse response, FilterChain filterChain)
+//                    throws ServletException, IOException {
+//                CsrfToken csrf = (CsrfToken) request
+//                        .getAttribute(CsrfToken.class.getName());
+//                if (csrf != null) {
+//                    Cookie cookie = new Cookie("XSRF-TOKEN",
+//                            csrf.getToken());
+//                    cookie.setPath("/");
+//                    response.addCookie(cookie);
+//                }
+//                filterChain.doFilter(request, response);
+//            }
+//        };
+//    }
+//
+//    private CsrfTokenRepository csrfTokenRepository() {
+//        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository ();
+//        repository.setHeaderName("X-XSRF-TOKEN");
+//        return repository;
+//    }
 }

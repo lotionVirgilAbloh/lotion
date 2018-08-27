@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登出页
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
                 // 其余所有请求全部需要鉴权认证
-                .and().authorizeRequests().anyRequest().permitAll();
+                .and().authorizeRequests().anyRequest().permitAll()
+                .and ().csrf ().disable ();
     }
 
     /**
