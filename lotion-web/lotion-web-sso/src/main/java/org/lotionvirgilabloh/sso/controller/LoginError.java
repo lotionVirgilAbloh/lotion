@@ -11,4 +11,9 @@ public class LoginError {
         return "redirect:/#/";
     }
 
+    @RequestMapping("/home")
+    public String home() {
+        return "home";
+    }
+
 }
