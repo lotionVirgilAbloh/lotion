@@ -8,8 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@ComponentScan
-@EnableAutoConfiguration
 @EnableFeignClients
 @EnableAuthorizationServer
 @SpringCloudApplication
