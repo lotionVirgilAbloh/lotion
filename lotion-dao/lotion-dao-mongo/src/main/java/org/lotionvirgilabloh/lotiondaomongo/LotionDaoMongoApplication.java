@@ -45,12 +45,13 @@ public class LotionDaoMongoApplication implements CommandLineRunner {
         ferepository.deleteAll();
 
         // save a couple of customers
+        /*
         repository.save(new Customer("Alice", "Smith"));
         repository.save(new Customer("Bob", "Smith"));
 
         ferepository.save(new MongoFormattedException(UUID.randomUUID().toString(),"lotiondaoTest"));
         ferepository.save(new MongoFormattedException(UUID.randomUUID().toString(),"lotiondaoTest2"));
-        ferepository.save(new MongoFormattedException(UUID.randomUUID().toString(),"lotiondaoTest3"));
+        ferepository.save(new MongoFormattedException(UUID.randomUUID().toString(),"lotiondaoTest3"));*/
 
         // fetch all customers
         System.out.println("Customers found with findAll():");
