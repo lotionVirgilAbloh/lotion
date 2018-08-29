@@ -1,6 +1,5 @@
 package org.lotionvirgilabloh.lotionwebcontrol.service;
 
-import org.lotionvirgilabloh.lotionwebcontrol.configuration.FeignMappingDefaultConfiguration;
 import org.lotionvirgilabloh.lotionwebcontrol.service.impl.JobDaoServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -8,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@FeignClient(name = "lotion-dao-mysql", fallback = JobDaoServiceFallback.class,
-        configuration = FeignMappingDefaultConfiguration.class)
+@FeignClient(name = "lotion-dao-mysql", fallback = JobDaoServiceFallback.class)
 @RequestMapping("job/")
 public interface JobDaoService {
 
