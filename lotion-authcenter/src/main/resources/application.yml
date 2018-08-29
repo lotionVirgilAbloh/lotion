@@ -37,4 +37,5 @@ ribbon.OktoRetryOnAllOperations: true
 ribbon.MaxAutoRetries: 1
 #默认ribbon请求切换实例重试次数为1
 ribbon.MaxAutoRetriesNextServer: 1
+logging.level.org.springframework.security: DEBUG
 #自定义配置

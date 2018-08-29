@@ -41,7 +41,7 @@
                             <input class="form-control m-input"   type="text" placeholder="username" name="username" autocomplete="off">
                         </div>
                         <div class="form-group m-form__group">
-                            <input class="form-control m-input m-login__form-input--last" type="password" placeholder="username" name="password">
+                            <input class="form-control m-input m-login__form-input--last" type="password" placeholder="password" name="password">
                         </div>
                         <#--<input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
 
