@@ -26,6 +26,7 @@ public class ControlController {
 
     @RequestMapping("realtimejob")
     public String realtimejob(ModelMap modelMap){
+        logger.info("ControlController获取请求:/realtimejob");
         try{
             throw(new Exception());
         } catch (Exception e) {
@@ -38,6 +39,7 @@ public class ControlController {
 
     @RequestMapping("offlinejob")
     public String offlinejob(ModelMap modelMap){
+        logger.info("ControlController获取请求:/offlinejob");
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
         return "offlinejob";

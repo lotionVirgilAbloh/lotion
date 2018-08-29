@@ -2,8 +2,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:19000/eureka/
-log4j2:
-  isThreadContextMapInheritable: true
 #端口的使用请参考端口设计文档
 server:
   port: 19084

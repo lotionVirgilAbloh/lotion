@@ -31,6 +31,7 @@ public class JobController {
 
     @RequestMapping("{type}/getById")
     public <T> List<T> getById(@PathVariable("type") String type, @RequestParam("id") Long id) {
+        logger.info("JobController获取请求:/job/" + type + "/getById?id=" + id.toString());
         switch (type) {
             case "rt":
                 Optional<DBRealtimeJob> optionalDbRealtimeJob = realtimeJobRepository.findById(id);
@@ -55,6 +56,7 @@ public class JobController {
 
     @RequestMapping("{type}/getByJobname")
     public <T> List<T> getByJobname(@PathVariable("type") String type, String jobname) {
+        logger.info("JobController获取请求:/job/" + type + "/getByJobname?id=" + jobname);
         switch (type) {
             case "rt":
                 DBRealtimeJob dbRealtimeJob = realtimeJobRepository.getByJobname(jobname);
@@ -81,6 +83,7 @@ public class JobController {
 
     @DeleteMapping("{type}/deleteByJobname/{jobname}")
     public Boolean deleteByJobname(@PathVariable("type") String type, @PathVariable("jobname") String jobname) {
+        logger.info("JobController获取请求:/job/" + type + "/deleteByJobname/" + jobname);
         switch (type) {
             case "rt":
                 DBRealtimeJob dbRealtimeJob = realtimeJobRepository.getByJobname(jobname);
@@ -98,6 +101,7 @@ public class JobController {
 
     @RequestMapping(value = "{type}/updateByJobname", method = RequestMethod.POST)
     public <T> Boolean updateByJobname(@PathVariable("type") String type, @RequestBody T job) {
+        logger.info("JobController获取请求:/job/" + type + "/updateByJobname");
         switch (type) {
             case "rt":
                 //由于无法解析泛型，返回的是LinkedHashMap类型，需要利用jackson进行反序列化
@@ -120,6 +124,7 @@ public class JobController {
 
     @RequestMapping("{type}/getAll")
     public <T> List<T> getAll(@PathVariable("type") String type) {
+        logger.info("JobController获取请求:/job/" + type + "/getAll");
         switch (type) {
             case "rt":
                 List<DBRealtimeJob> dbRealtimeJobs = realtimeJobRepository.findAll();
@@ -145,6 +150,7 @@ public class JobController {
 
     @RequestMapping(value = "{type}/save", method = RequestMethod.POST)
     public <T> boolean save(@PathVariable("type") String type, @RequestBody T job) {
+        logger.info("JobController获取请求:/job/" + type + "/save");
         switch (type) {
             case "rt":
                 DBRealtimeJob dbRealtimeJob = new DBRealtimeJob();

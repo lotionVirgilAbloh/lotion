@@ -5,7 +5,7 @@ import org.lotionvirgilabloh.lotionbase.dto.OfflineJob;
 import org.lotionvirgilabloh.lotionbase.dto.RealtimeJob;
 import org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.JSchReturn;
-import org.lotionvirgilabloh.lotionwebcontrol.entity.PagerModel;
+import org.lotionvirgilabloh.lotionbase.dto.PagerModel;
 import org.lotionvirgilabloh.lotionwebcontrol.service.JobDaoService;
 import org.lotionvirgilabloh.lotionwebcontrol.service.SshService;
 import org.slf4j.Logger;
