@@ -3,7 +3,7 @@ package org.lotionvirgilabloh.lotionbase.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class PagerModel<T> implements Serializable {
+public class DatatablesReturn<T> implements Serializable {
     /**
      * serialVersionUID
      */

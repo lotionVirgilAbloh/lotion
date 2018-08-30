@@ -1,13 +1,15 @@
 package org.lotionvirgilabloh.lotionwebcontrol.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.lotionvirgilabloh.lotionbase.dto.DatatablesRetrieve;
 import org.lotionvirgilabloh.lotionbase.dto.OfflineJob;
 import org.lotionvirgilabloh.lotionbase.dto.RealtimeJob;
 import org.lotionvirgilabloh.lotionwebcontrol.configuration.LotionJsCHProperties;
 import org.lotionvirgilabloh.lotionwebcontrol.entity.JSchReturn;
-import org.lotionvirgilabloh.lotionbase.dto.PagerModel;
+import org.lotionvirgilabloh.lotionbase.dto.DatatablesReturn;
 import org.lotionvirgilabloh.lotionwebcontrol.service.JobDaoService;
 import org.lotionvirgilabloh.lotionwebcontrol.service.SshService;
+import org.lotionvirgilabloh.lotionwebcontrol.util.DatatablesRetrieveConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 @RestController
 @RequestMapping("/jobdao/")
@@ -55,17 +55,28 @@ public class JobDaoController {
     }
 
     @RequestMapping("{type}/getAll")
-    public <T> PagerModel<T> getAll(@PathVariable("type") String type) {
+    public <T> DatatablesReturn<T> getAll(@PathVariable("type") String type, HttpServletRequest request) {
         logger.info("JobDaoController获取请求:/jobdao/" + type + "/getAll");
+
+        DatatablesRetrieve datatablesRetrieve = null;
+        try {
+            datatablesRetrieve = DatatablesRetrieveConverter.convert(request);
+        } catch (Exception e) {
+            logger.error("DatatablesRetrieve转换失败", e);
+        }
+        if (datatablesRetrieve != null) {
+            logger.info(datatablesRetrieve.toString());
+        }
+
         List<T> jobs = jobDaoService.getAll(type);
         if (jobs == null) {
             jobs = new ArrayList<>();
         }
-        PagerModel<T> pagerModel = new PagerModel<>();
-        pagerModel.setData(jobs);
-        pagerModel.setRecordsFiltered(jobs.size());
-        pagerModel.setRecordsTotal(jobs.size());
-        return pagerModel;
+        DatatablesReturn<T> datatablesReturn = new DatatablesReturn<>();
+        datatablesReturn.setData(jobs);
+        datatablesReturn.setRecordsFiltered(jobs.size());
+        datatablesReturn.setRecordsTotal(jobs.size());
+        return datatablesReturn;
     }
 
     @RequestMapping("{type}/deleteByJobname/{jobname}")
