@@ -1,5 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomongo.controller;
 
+import org.lotionvirgilabloh.lotionbase.dto.DatatablesReturn;
 import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.entity.MongoFormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.repository.FERepository;
@@ -8,11 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -35,12 +34,20 @@ public class LogExceptionController {
     }
 
     @RequestMapping("findAllPage")
-    public Page<FormattedException> findAllPage(int whichPage, int pageLimit) {
+    public DatatablesReturn<FormattedException> findAllPage(int whichPage, int pageLimit) {
         logger.info("LogExceptionController获取请求:/fmtexception/findAllPage?whichPage=" + whichPage + "&pageLimit=" + pageLimit);
         Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(whichPage, pageLimit));
-        return mfes.map(this::mfe2fe);
+        List<FormattedException> fes = new ArrayList<>();
+        mfes.forEach(mfe -> {
+            FormattedException fe = mfe2fe(mfe);
+            fes.add(fe);
+        });
+        DatatablesReturn<FormattedException> datatablesReturn = new DatatablesReturn<>();
+        datatablesReturn.setData(fes);
+        datatablesReturn.setRecordsFiltered(mfes.getSize());
+        datatablesReturn.setRecordsTotal((int) mfes.getTotalElements());
+        return datatablesReturn;
     }
-
 
     @RequestMapping("findById")
     public FormattedException findById(String id) {
@@ -54,11 +61,12 @@ public class LogExceptionController {
     }
 
     @RequestMapping(value = "insert", method = RequestMethod.POST)
-    public FormattedException insert(FormattedException fe) {
+    public FormattedException insert(@RequestBody FormattedException fe) {
         logger.info("LogExceptionController获取请求:/fmtexception/insert");
         if (feRepository.existsById(String.valueOf(fe.getExceptionID()))) {
-            System.out.print("id已存在覆盖");
+            logger.info("id" + Integer.toString(fe.getExceptionID()) + "已存在覆盖");
         }
+        logger.info("id" + Integer.toString(fe.getExceptionID()) + "准备存入");
         MongoFormattedException mfe = feRepository.insert(new MongoFormattedException(fe));
         return mfe2fe(mfe);
     }

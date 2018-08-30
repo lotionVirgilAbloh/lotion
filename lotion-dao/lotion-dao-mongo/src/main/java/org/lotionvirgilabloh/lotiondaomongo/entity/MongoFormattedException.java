@@ -26,6 +26,7 @@ public class MongoFormattedException extends FormattedException {
     }
 
     public MongoFormattedException(FormattedException fe) {
+        super(fe.getExceptionID(), fe.getTimeMillis(), fe.getMessage(), fe.getProject(), fe.getAdditionalProperties());
         this.uid = String.valueOf(fe.getExceptionID());
     }
 

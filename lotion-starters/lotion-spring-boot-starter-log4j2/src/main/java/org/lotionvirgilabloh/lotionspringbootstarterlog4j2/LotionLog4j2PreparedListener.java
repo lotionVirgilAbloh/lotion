@@ -18,6 +18,7 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private String[] profiles;
+    private boolean setID = true;
     private boolean setBootstrap = true;
     private boolean setLocal = true;
     private boolean setCloud = true;
@@ -70,12 +71,15 @@ public class LotionLog4j2PreparedListener implements ApplicationListener<LotionL
         // Set CustomProperties
         customProperties = setCustomProperties();
         // Generate ID
-        addSetMain(new Log4j2SetHelper("id", new HashMap<String, String>() {
-            private static final long serialVersionUID = -800748987787071944L;
-            {
-                put("", UUID.randomUUID().toString());
-            }
-        }));
+        if (setID) {
+            addSetMain(new Log4j2SetHelper("app.id", new HashMap<String, String>() {
+                private static final long serialVersionUID = -800748987787071944L;
+                {
+                    put("", UUID.randomUUID().toString());
+                }
+            }));
+            setID = false;
+        }
         // Get a List of OriginTrackedMapPropertySource
         List<OriginTrackedMapPropertySource> originTrackedMapPropertySources = new LinkedList<>();
         for (PropertySource<?> ps : mutablePropertySources) {

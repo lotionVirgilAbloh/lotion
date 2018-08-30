@@ -2,6 +2,10 @@ package org.lotionvirgilabloh.lotionweblog.configuration;
 
 import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotionweblog.event.ExceptionEvent;
+import org.lotionvirgilabloh.lotionweblog.service.ExceptionDaoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +14,11 @@ import java.util.Map;
 
 @Component
 public class ExceptionSinker {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private ExceptionDaoService exceptionDaoService;
 
     @EventListener
     public void exceptionEventHandler(ExceptionEvent exceptionEvent) {
@@ -27,6 +36,18 @@ public class ExceptionSinker {
         else
             project = null;
         FormattedException formattedException = new FormattedException(exceptionEvent.getLog4jLogEvent().getTimeMillis(), exceptionEvent.getLog4jLogEvent().getMessage().toString(), project, addtionalProperties);
-        //TODO:接下来需要落地到mongodb
+
+        formattedException.setExceptionID(formattedException.hashCode());
+
+        logger.info(Integer.toString(formattedException.getExceptionID()));
+
+        FormattedException feReturn = exceptionDaoService.insert(formattedException);
+
+        if (feReturn == null) {
+            logger.error("FE:" + formattedException.getExceptionID() + "插入MongoDB失败");
+        } else {
+            logger.info("FE:" + formattedException.getExceptionID() + "插入MongoDB成功");
+        }
+
     }
 }

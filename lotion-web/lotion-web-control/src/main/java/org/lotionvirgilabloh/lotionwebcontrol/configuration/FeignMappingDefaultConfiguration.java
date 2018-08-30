@@ -10,7 +10,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 /**
- * 解决添加@FeighClient注解后不能在类上继续添加@RequestMapping注解的问题
+ * 解决添加@FeighClient ambiguous mapping问题
  */
 @Configuration
 @ConditionalOnClass({Feign.class})

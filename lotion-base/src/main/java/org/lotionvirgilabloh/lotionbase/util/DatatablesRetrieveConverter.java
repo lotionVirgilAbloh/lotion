@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionwebcontrol.util;
+package org.lotionvirgilabloh.lotionbase.util;
 
 import org.lotionvirgilabloh.lotionbase.dto.DatatablesRetrieve;
 
