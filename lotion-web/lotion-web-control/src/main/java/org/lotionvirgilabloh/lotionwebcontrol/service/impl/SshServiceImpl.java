@@ -14,10 +14,14 @@ import java.util.List;
 import java.util.Properties;
 
 @Service
+@SuppressWarnings(value = "all")
 public class SshServiceImpl implements SshService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn exec(String destination, String username, String password, String cmd) {
         JSchReturn jSchReturn = new JSchReturn();
@@ -74,6 +78,9 @@ public class SshServiceImpl implements SshService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn shell(String destination, String username, String password, String[] cmds) {
         JSchReturn jSchReturn = new JSchReturn();
@@ -139,6 +146,9 @@ public class SshServiceImpl implements SshService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn transferFile(String destination, String username, String password, String path, String filename, String[] contents) {
         // checkDirectory，不存在则创建
@@ -183,6 +193,9 @@ public class SshServiceImpl implements SshService {
         return jSchReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn checkDirectory(String destination, String username, String password, String path) {
         String cmdCheckDirectory = "if [ -d \"" + path + "\" ]; then--echo \"dirtrue\"--else--echo \"dirfalse\"--fi";
@@ -206,12 +219,18 @@ public class SshServiceImpl implements SshService {
         return jSchReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn makeDirectory(String destination, String username, String password, String path) {
         String cmdMakeDirectory = "mkdir -p " + path;
         return exec(destination, username, password, cmdMakeDirectory);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn checkFile(String destination, String username, String password, String path, String filename) {
         String cmdCheckDirectory = "if [ -f \"" + path + filename + "\" ]; then--echo \"filetrue\"--else--echo \"filefalse\"--fi";
@@ -235,6 +254,9 @@ public class SshServiceImpl implements SshService {
         return jSchReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn makeFile(String destination, String username, String password, String path, String filename, String content) {
         // 防止与echo的单引号混淆，需要调整单引号的输出
@@ -242,6 +264,9 @@ public class SshServiceImpl implements SshService {
         return exec(destination, username, password, cmdMakeFile);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn makeFile(String destination, String username, String password, String path, String filename, String[] contents) {
         if (contents.length < 1) {
@@ -258,18 +283,27 @@ public class SshServiceImpl implements SshService {
         return shell(destination, username, password, cmdMakeFiles);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn deleteFile(String destination, String username, String password, String path, String filename) {
         String cmdDelteFile = "rm -f " + path + filename;
         return exec(destination, username, password, cmdDelteFile);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn deleteDirectory(String destination, String username, String password, String path) {
         String cmdDelteDirectory = "rm -rf " + path;
         return exec(destination, username, password, cmdDelteDirectory);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JSchReturn execSh(String destination, String username, String password, String path, String shname) {
         String cmdExecSh = path + shname;
