@@ -103,8 +103,13 @@ public class FormattedException implements Serializable {
                 Objects.equals(getAdditionalProperties(), that.getAdditionalProperties());
     }
 
+    /**
+     * 可生成exceptionID，以TimeMillis与Project属性进行hash
+     *
+     * @return FormattedException的HashCode
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(getTimeMillis(), getProject());
+        return Objects.hash(String.valueOf(getTimeMillis()) + getProject());
     }
 }

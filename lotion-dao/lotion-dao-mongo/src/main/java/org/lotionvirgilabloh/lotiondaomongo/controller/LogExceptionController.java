@@ -51,6 +51,7 @@ public class LogExceptionController {
             fes.add(fe);
         });
         DatatablesReturn<FormattedException> datatablesReturn = new DatatablesReturn<>();
+        datatablesReturn.setDraw(datatablesRetrieve.getDraw());
         datatablesReturn.setData(fes);
         datatablesReturn.setRecordsFiltered(mfes.getSize());
         datatablesReturn.setRecordsTotal((int) mfes.getTotalElements());
