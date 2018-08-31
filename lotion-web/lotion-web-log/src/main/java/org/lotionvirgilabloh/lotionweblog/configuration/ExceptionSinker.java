@@ -37,16 +37,22 @@ public class ExceptionSinker {
             project = null;
         FormattedException formattedException = new FormattedException(exceptionEvent.getLog4jLogEvent().getTimeMillis(), exceptionEvent.getLog4jLogEvent().getMessage().toString(), project, addtionalProperties);
 
+        //设置ID
         formattedException.setExceptionID(formattedException.hashCode());
-
         logger.info(Integer.toString(formattedException.getExceptionID()));
 
+        //插入FormattedException至数据库
         FormattedException feReturn = exceptionDaoService.insert(formattedException);
 
-        if (feReturn == null) {
-            logger.error("FE:" + formattedException.getExceptionID() + "插入MongoDB失败");
+        //判断是否插入成功
+        if (feReturn != null) {
+            if (feReturn.equals(formattedException)) {
+                logger.info("FE:" + formattedException.getExceptionID() + "插入MongoDB成功");
+            } else {
+                logger.error("FE:" + formattedException.getExceptionID() + "插入MongoDB失败，返回实体与插入实体不相同");
+            }
         } else {
-            logger.info("FE:" + formattedException.getExceptionID() + "插入MongoDB成功");
+            logger.error("FE:" + formattedException.getExceptionID() + "插入MongoDB失败");
         }
 
     }

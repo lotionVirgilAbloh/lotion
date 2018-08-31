@@ -29,6 +29,7 @@
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>8.5.31</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

@@ -1,5 +1,6 @@
 package org.lotionvirgilabloh.lotionweblog.service;
 
+import org.lotionvirgilabloh.lotionbase.dto.DatatablesRetrieve;
 import org.lotionvirgilabloh.lotionbase.dto.DatatablesReturn;
 import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,8 +15,8 @@ public interface ExceptionDaoService {
     @GetMapping("findAll")
     List<FormattedException> findAll();
 
-    @GetMapping("findAllPage")
-    DatatablesReturn<FormattedException> findAllPage(@RequestParam("whichPage") int whichPage, @RequestParam("pageLimit") int pageLimit);
+    @PostMapping(value = "findAllPage", consumes = "application/json")
+    DatatablesReturn<FormattedException> findAllPage(@RequestBody DatatablesRetrieve datatablesRetrieve);
 
     @GetMapping("findById")
     FormattedException findById(@RequestParam("id") String id);

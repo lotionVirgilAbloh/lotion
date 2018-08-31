@@ -41,8 +41,8 @@ public class LotionDaoMongoApplication implements CommandLineRunner {
 
 
         //init for custommer
-        repository.deleteAll();
-        ferepository.deleteAll();
+        /*repository.deleteAll();
+        ferepository.deleteAll();*/
 
         // save a couple of customers
         /*

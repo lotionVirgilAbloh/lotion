@@ -1,5 +1,6 @@
 package org.lotionvirgilabloh.lotiondaomongo.controller;
 
+import org.lotionvirgilabloh.lotionbase.dto.DatatablesRetrieve;
 import org.lotionvirgilabloh.lotionbase.dto.DatatablesReturn;
 import org.lotionvirgilabloh.lotionbase.dto.FormattedException;
 import org.lotionvirgilabloh.lotiondaomongo.entity.MongoFormattedException;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -33,10 +35,16 @@ public class LogExceptionController {
         return fes;
     }
 
-    @RequestMapping("findAllPage")
-    public DatatablesReturn<FormattedException> findAllPage(int whichPage, int pageLimit) {
-        logger.info("LogExceptionController获取请求:/fmtexception/findAllPage?whichPage=" + whichPage + "&pageLimit=" + pageLimit);
-        Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(whichPage, pageLimit));
+    @RequestMapping(value = "findAllPage", method = RequestMethod.POST)
+    public DatatablesReturn<FormattedException> findAllPage(@RequestBody DatatablesRetrieve datatablesRetrieve) {
+        logger.info("LogExceptionController获取请求:/fmtexception/findAllPage");
+        List<Sort.Order> orders = new LinkedList<>();
+        for (DatatablesRetrieve.DatatablesRetrieveOrder dro : datatablesRetrieve.getOrder()) {
+            //列名按column的data参数填充
+            orders.add(new Sort.Order(Sort.Direction.fromString(dro.getDir()), datatablesRetrieve.getColumns().get(dro.getColumn()).getData()));
+        }
+        Sort sort = Sort.by(orders);
+        Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(datatablesRetrieve.getStart(), datatablesRetrieve.getLength(), sort));
         List<FormattedException> fes = new ArrayList<>();
         mfes.forEach(mfe -> {
             FormattedException fe = mfe2fe(mfe);
