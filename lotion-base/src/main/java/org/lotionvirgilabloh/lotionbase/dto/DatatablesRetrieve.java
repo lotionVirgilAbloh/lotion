@@ -103,7 +103,7 @@ public class DatatablesRetrieve implements Serializable {
                 '}';
     }
 
-    public class DatatablesRetrieveOrder implements Serializable{
+    public static class DatatablesRetrieveOrder implements Serializable{
 
         private static final long serialVersionUID = 8714337559506472425L;
 
@@ -144,7 +144,7 @@ public class DatatablesRetrieve implements Serializable {
         }
     }
 
-    public class DatatablesRetrieveColumns implements Serializable{
+    public static class DatatablesRetrieveColumns implements Serializable{
 
         private static final long serialVersionUID = 3327616272989718612L;
 
@@ -221,7 +221,7 @@ public class DatatablesRetrieve implements Serializable {
         }
     }
 
-    public class DatatablesRetrieveSearch implements Serializable {
+    public static class DatatablesRetrieveSearch implements Serializable {
 
         private static final long serialVersionUID = 4382366860190613828L;
 

@@ -21,13 +21,13 @@ public class DatatablesRetrieveConverter {
         LinkedList<DatatablesRetrieve.DatatablesRetrieveOrder> order = new LinkedList<>();
         int start = 0;
         int length = 0;
-        DatatablesRetrieve.DatatablesRetrieveSearch search = datatablesRetrieve.new DatatablesRetrieveSearch();
+        DatatablesRetrieve.DatatablesRetrieveSearch search = new DatatablesRetrieve.DatatablesRetrieveSearch();
         long underline = 0;
 
         //临时变量
-        DatatablesRetrieve.DatatablesRetrieveColumns tempColumns = datatablesRetrieve.new DatatablesRetrieveColumns();
-        DatatablesRetrieve.DatatablesRetrieveOrder tempOrder = datatablesRetrieve.new DatatablesRetrieveOrder();
-        DatatablesRetrieve.DatatablesRetrieveSearch tempSearch = datatablesRetrieve.new DatatablesRetrieveSearch();
+        DatatablesRetrieve.DatatablesRetrieveColumns tempColumns = new DatatablesRetrieve.DatatablesRetrieveColumns();
+        DatatablesRetrieve.DatatablesRetrieveOrder tempOrder = new DatatablesRetrieve.DatatablesRetrieveOrder();
+        DatatablesRetrieve.DatatablesRetrieveSearch tempSearch = new DatatablesRetrieve.DatatablesRetrieveSearch();
 
         //顺序遍历
         for (Map.Entry<String, String[]> entry : map.entrySet()) {
@@ -42,7 +42,7 @@ public class DatatablesRetrieveConverter {
                 String lastBracket = (entry.getKey().substring(entry.getKey().lastIndexOf("[") + 1, entry.getKey().lastIndexOf("]")));
                 if (lastBracket.equals("data")) {
                     //一次columns遍历开始
-                    tempColumns = datatablesRetrieve.new DatatablesRetrieveColumns();
+                    tempColumns = new DatatablesRetrieve.DatatablesRetrieveColumns();
                     tempColumns.setData(entry.getValue()[0]);
                 } else if (lastBracket.equals("name")) {
                     tempColumns.setName(entry.getValue()[0]);
@@ -59,7 +59,7 @@ public class DatatablesRetrieveConverter {
                         throw new IOException();
                     }
                 } else if (lastBracket.equals("value")) {
-                    tempSearch = datatablesRetrieve.new DatatablesRetrieveSearch();
+                    tempSearch = new DatatablesRetrieve.DatatablesRetrieveSearch();
                     tempSearch.setValue(entry.getValue()[0]);
                 } else if (lastBracket.equals("regex")) {
                     //一次columns遍历结束
@@ -75,7 +75,7 @@ public class DatatablesRetrieveConverter {
                 String lastBracket = (entry.getKey().substring(entry.getKey().lastIndexOf("[") + 1, entry.getKey().lastIndexOf("]")));
                 if (lastBracket.equals("column")) {
                     //一次order遍历开始
-                    tempOrder = datatablesRetrieve.new DatatablesRetrieveOrder();
+                    tempOrder = new DatatablesRetrieve.DatatablesRetrieveOrder();
                     if (entry.getValue()[0] != null) {
                         tempOrder.setColumn(Integer.parseInt(entry.getValue()[0]));
                     } else {
@@ -101,7 +101,7 @@ public class DatatablesRetrieveConverter {
             } else if (entry.getKey().startsWith("search")) {
                 String lastBracket = (entry.getKey().substring(entry.getKey().lastIndexOf("[") + 1, entry.getKey().lastIndexOf("]")));
                 if (lastBracket.equals("value")) {
-                    tempSearch = datatablesRetrieve.new DatatablesRetrieveSearch();
+                    tempSearch = new DatatablesRetrieve.DatatablesRetrieveSearch();
                     tempSearch.setValue(entry.getValue()[0]);
                 } else if (lastBracket.equals("regex")) {
                     if (entry.getValue()[0] != null) {

@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 @Controller
 public class LogController {
@@ -65,7 +65,8 @@ public class LogController {
     }
 
     @RequestMapping("/exceptionsupervision/datatables")
-    public DatatablesReturn<FormattedException> datatables(HttpServletRequest request) {
+    public @ResponseBody
+    DatatablesReturn<FormattedException> datatables(HttpServletRequest request) {
         logger.info("ExceptionDaoController获取请求:/exceptionsupervision/datatables");
         DatatablesRetrieve datatablesRetrieve = null;
         try {
