@@ -20,6 +20,14 @@ spring:
     #目前的gateway暂时还没有类似zuul ignore-patterns可以过滤形如/**/actuator/**请求的过滤器，需要进行如下配置
     #默认集群内lb://serviceId;兼容websocket，ws://url;两者混合使用lb:ws://serviceId
     gateway:
+      #放开本地前后端分离开发的跨域访问权限
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "localhost"
+            allowedMethods:
+            - GET
+            - POST
       default-filters:
       #hystrix过滤器
       - name: Hystrix
