@@ -41,7 +41,7 @@ public class LogExceptionController {
         List<Sort.Order> orders = new LinkedList<>();
         for (DatatablesRetrieve.DatatablesRetrieveOrder dro : datatablesRetrieve.getOrder()) {
             //列名按column的data参数填充
-            orders.add(new Sort.Order(Sort.Direction.fromString(dro.getDir()), datatablesRetrieve.getColumns().get(dro.getColumn()).getData()));
+            orders.add(new Sort.Order(Sort.Direction.fromString(dro.getDir()), datatablesRetrieve.getColumns().get(dro.getColumn()).getName()));
         }
         Sort sort = Sort.by(orders);
         Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(datatablesRetrieve.getStart(), datatablesRetrieve.getLength(), sort));
