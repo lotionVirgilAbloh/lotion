@@ -26,6 +26,7 @@
     </properties>
 
     <dependencies>
+        <!-- config-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
