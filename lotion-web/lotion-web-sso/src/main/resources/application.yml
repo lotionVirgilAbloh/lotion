@@ -8,14 +8,6 @@ server:
 spring:
   application:
     name: lotion-web-user
-  mvc:
-    static-path-pattern: /static/**
-  thymeleaf:
-      cache: false
-      prefix: classpath:/templates/
-      suffix: .html
-      encoding: UTF-8
-      mode: HTML
 
 
 
