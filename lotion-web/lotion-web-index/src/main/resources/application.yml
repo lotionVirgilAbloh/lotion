@@ -31,14 +31,13 @@ security:
           -----END PUBLIC KEY-----
       id: openid
       serviceId: ${PREFIX:}resource
-
-  cloud:
-    stream:
-      #指定用kafka stream来作为默认消息中间件
-      default-binder: kafka
-      kafka:
-        binder:
-          brokers: 47.106.222.205:9092
+#  cloud:
+#    stream:
+#      #指定用kafka stream来作为默认消息中间件
+#      default-binder: kafka
+#      kafka:
+#        binder:
+#          brokers: 47.106.222.205:9092
   mvc:
     static-path-pattern: /**
 #开启log4j2日志
