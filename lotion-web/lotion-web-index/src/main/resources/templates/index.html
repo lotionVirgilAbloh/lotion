@@ -35,17 +35,7 @@
 <!-- end::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 <!-- begin:: Page -->
-<div ng-app="sso" class="ng-cloak">
-    <div ng-controller="navigation" class="container">
-        <ul class="nav nav-pills" role="tablist">
 
-            <li ng-class="{active:tab('dashboard')}" ng-show="authenticated"><a href='#/dashboard'>dashboard</a></li>
-            <li><a href='dashboard/login'>login</a></li>
-            <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
-        </ul>
-        <div>Authenticated: {{user}}</div>
-    </div>
-    <div ng-view class="container"></div></div>
 <div class="m-grid m-grid--hor m-grid--root m-page">
     <!-- BEGIN: Header -->
     <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
@@ -580,6 +570,16 @@
         </div>
         <!-- END: Left Aside -->
         <div class="m-grid__item m-grid__item--fluid m-wrapper" id="frameWrapper">
+            <div ng-app="sso" class="ng-cloak">
+                <div ng-controller="navigation" class="container">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li><a href='login'>login</a></li>
+                        <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
+                    </ul>
+                    <div>Authenticated: {{user}}</div>
+                </div>
+                <div ng-view class="container"></div>
+            </div>
             <iframe id="mainFrame" name="mainFrame" scrolling="no" th:src="${webHostUrl} + 'indexframe'"
                     frameborder="0" style="padding: 0px; width: 100%; height: 0px;"></iframe>
         </div>
@@ -620,14 +620,10 @@
     else
         startInitIframe('mainFrame', frameWrapperHeight);
 </script>
-<script src="webjars/angularjs/1.3.2/angular.min.js"
-        type="text/javascript"></script>
-<script src="webjars/angularjs/1.3.2/angular-route.min.js"
-        type="text/javascript"></script>
-<script src="webjars/angularjs/1.3.2/angular-resource.min.js"
-        type="text/javascript"></script>
-<script src="webjars/angularjs/1.3.2/angular-cookies.min.js"
-        type="text/javascript"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.3.20/angular.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.3.20/angular-route.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.3.20/angular-resource.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.3.20/angular-cookies.min.js"></script>
 <script type="text/javascript">
     angular.module('sso', [ 'ngRoute', 'ngResource' ]).config(
         function($routeProvider) {
@@ -636,9 +632,6 @@
             $routeProvider.when('/', {
                 templateUrl : 'home',
                 controller : 'home'
-            }).when('/dashboard', {
-                templateUrl : 'dashboard',
-                controller : 'dashboard'
             });
 
         }).controller('navigation', function($scope, $http, $window, $route) {
@@ -646,7 +639,7 @@
             return $route.current && route === $route.current.controller;
         };
         if (!$scope.user) {
-            $http.get('/dashboard/user').success(function(data) {
+            $http.get('/user').success(function(data) {
                 $scope.user = data;
                 $scope.authenticated = true;
             }).error(function() {
@@ -654,7 +647,7 @@
             });
         }
         $scope.logout = function() {
-            $http.post('/dashboard/logout', {}).success(function() {
+            $http.post('/logout', {}).success(function() {
                 delete $scope.user;
                 $scope.authenticated = false;
                 // Force reload of home page to reset all state after logout
@@ -664,7 +657,7 @@
     }).controller('home', function() {
     }).controller('dashboard', function($scope, $resource) {
 
-        $resource('/dashboard/message', {}).get({}, function(data) {
+        $resource('/message', {}).get({}, function(data) {
             $scope.message = data.message;
         }, function() {
             $scope.message = '';

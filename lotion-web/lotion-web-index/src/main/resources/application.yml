@@ -14,10 +14,11 @@ spring:
     suffix: .html
     encoding: UTF-8
     mode: HTML
+
 security:
   oauth2:
     sso:
-      loginPath: /dashboard/login
+      loginPath: /lotion/login
     client:
       accessTokenUri: http://localhost:19033/oauth/token
       userAuthorizationUri: http://localhost:19033/oauth/authorize

@@ -10,6 +10,8 @@ public class LotionUser {
 
     private int status=1;
 
+    private String headImg;
+
 
     private Set<String> roleSet ;
 
@@ -39,4 +41,5 @@ public class LotionUser {
     public int isActive(){
         return status;
     }
+
 }
