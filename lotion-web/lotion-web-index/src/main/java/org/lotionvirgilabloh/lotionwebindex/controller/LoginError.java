@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginError {
 
-    @RequestMapping("/login")
+    @RequestMapping("/lotion/login")
     public String dashboard() {
         return "redirect:/#/";
     }

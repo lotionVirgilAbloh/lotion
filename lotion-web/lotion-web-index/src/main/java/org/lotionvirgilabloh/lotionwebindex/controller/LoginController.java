@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/dashboard")
 public class LoginController {
 
        @RequestMapping("/user")
