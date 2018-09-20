@@ -576,7 +576,7 @@
                         <li><a href='login'>login</a></li>
                         <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
                     </ul>
-                    <div>Authenticated: {{user}}</div>
+                    <div>{{user}}</div>
                 </div>
                 <div ng-view class="container"></div>
             </div>
@@ -664,6 +664,22 @@
         });
 
     });
+</script>
+
+<!-- 设置了一个authenticated变量，设置了用户名和密码 20180920王宇晗 -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".ng-scope").css("display","none");//隐藏Authenticated
+        setTimeout("setAuthenticated()",200);
+    });
+    var authenticated;//设置全局变量
+    function setAuthenticated() {
+        eval("var authenticated = " + $(".ng-binding").text());
+        $(".m-card-user__details span").html(authenticated.principal);//修改用户名
+        $(".m-card-user__details a").html(authenticated.name);//修改邮箱
+    }
+
+
 </script>
 <!--end::iframe Sets -->
 </body>
