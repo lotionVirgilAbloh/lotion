@@ -28,6 +28,7 @@ zuul:
     #zuul不需要指定顺序，DiscoveryClientRouteLocator会动态覆盖路由
     lotion-web-index: /**
     lotion-web-webuis: /webuis/**
+    lotion-web-supervision: /supervision/**
     lotion-web-control: /control/**
     lotion-web-log: /log/**
   #不暴露未路由的服务，默认注册在eureka的服务路由为../${service-id}/

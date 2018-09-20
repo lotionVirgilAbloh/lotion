@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- begin::Head -->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>
         spark streaming supervision
     </title>
@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- 使用Metronic官网静态文件服务器 -->
     <!--<link href="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />-->
-    <link href="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/style.bundle.css"
+          rel="stylesheet" type="text/css"/>
     <!-- 使用阿里云静态文件服务器 -->
     <link th:href="@{${webStaticUrl} + 'assets/vendors/base/vendors.bundle.css'}" rel="stylesheet" type="text/css"/>
     <!--<link th:href="@{${webStaticUrl} + 'assets/demo/default/base/style.bundle.css'}" rel="stylesheet" type="text/css"/>-->
@@ -19,10 +20,12 @@
     <!-- 自定义脚本 -->
     <script type="text/javascript">
         // 输入input中Url后按enter键可以跳转iframe
-        function url_input_onkeypress(){
+        function url_input_onkeypress() {
             const code = event.keyCode;
+            const type = document.getElementById("type").value;
             const inputValue = document.getElementById("sparkstreamingid_input").value;
-            if(code === 13){
+            const url = document.getElementById("url").value;
+            if (code === 13) {
                 //document.getElementById("webui_iframe").src = inputValue;
             }
         };
@@ -33,30 +36,47 @@
 <div class="m-content" id="main_content">
     <!-- BEGIN: input_div Div -->
     <div id="input_div" class="row">
+        <div class="col-sm-2" style="text-align: center;line-height: 43px;margin-left: 30px;height: 43px">
+            <select class="form-control m-bootstrap-select m_selectpicker" tabindex="-98">
+                <option>
+                    YARN
+                </option>
+                <option>
+                    Mesos
+                </option>
+            </select>
+        </div>
         <div class="col-sm-2" style="text-align: center;line-height: 43px">
             <p style="vertical-align: center">Spark Streaming ID:</p>
         </div>
         <div class="col-sm-4">
-            <input id="sparkstreamingid_input" type="text" class="form-control m-input" placeholder="Spark Streaming ID" onkeypress="url_input_onkeypress()">
+            <input id="url" type="text" style="display: none" th:value="${url}">
+            <input id="sparkstreamingid_input" type="text" class="form-control m-input"
+                   placeholder="Spark Streaming ID" onkeypress="url_input_onkeypress()">
         </div>
     </div>
     <!-- END: input_div Div -->
     <!-- BEGIN: iframe_div Div -->
     <div id="iframe_div" class="row">
         <iframe id="sparkstreaming_iframe" frameborder="0" src="" scrolling="yes" width="100%"
-                style="display: none; height: 800px" ></iframe>
+                style="display: none; height: 800px"></iframe>
     </div>
     <!-- END: iframe_div Div -->
 </div>
 <!-- END: Content -->
 <!-- 使用Metronic官网静态文件服务器 -->
-<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/vendors/base/vendors.bundle.js"
+        type="text/javascript"></script>
+<script src="https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/assets/demo/default/base/scripts.bundle.js"
+        type="text/javascript"></script>
 <!-- 使用阿里云静态文件服务器 -->
 <!--<script th:src="${webStaticUrl} + 'assets/vendors/base/vendors.bundle.js'" type="text/javascript"></script>-->
 <!--<script th:src="${webStaticUrl} + 'assets/demo/default/base/scripts.bundle.js'" type="text/javascript"></script>-->
 <!-- Global Config -->
 <script th:src="${webStaticUrl} + 'assets/lotion/js/config.js'" type="text/javascript"></script>
 <!-- Frame Specific JS -->
+<script type="text/javascript">
+    var BootstrapSelect={init:function(){$(".m_selectpicker").selectpicker()}};jQuery(document).ready(function(){BootstrapSelect.init()});
+</script>
 </body>
 </html>

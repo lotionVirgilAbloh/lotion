@@ -47,7 +47,7 @@ spring:
         #Strip过滤器
         - StripPrefix=1
       #拒绝/**/actuator/**路由
-      - id: local-actuator
+      - id: local-actuator-reject
         uri: forward:///reject
         predicates:
         - Path=/**/actuator/**
@@ -56,6 +56,14 @@ spring:
         uri: lb://lotion-web-webuis
         predicates:
         - Path=/webuis/**
+        filters:
+        #Strip过滤器
+        - StripPrefix=1
+      #supervision
+      - id: web-webuis
+        uri: lb://lotion-web-supervision
+        predicates:
+        - Path=/supervision/**
         filters:
         #Strip过滤器
         - StripPrefix=1

@@ -22,6 +22,7 @@
         function url_input_onkeypress(){
             const code = event.keyCode;
             const inputValue = document.getElementById("mapreduceid_input").value;
+            const url = document.getElementById("url").value;
             if(code === 13){
                 //document.getElementById("webui_iframe").src = inputValue;
             }
@@ -37,6 +38,7 @@
             <p style="vertical-align: center">MapReduce ID:</p>
         </div>
         <div class="col-sm-4">
+            <input id="url" type="text" style="display: none" th:value="${url}">
             <input id="mapreduceid_input" type="text" class="form-control m-input" placeholder="MapReduce ID" onkeypress="url_input_onkeypress()">
         </div>
     </div>
