@@ -19,19 +19,4 @@ public class LotionDaoMysqlApplication {
         SpringApplication.run(LotionDaoMysqlApplication.class, args);
     }
 
-    @Autowired
-    private UserRepository userRepository;
-
-    /**
-     * 测试使用
-     *
-     * @param username
-     * @return
-     */
-    @RequestMapping("/searchUser/{username}")
-    public List<User> searchUser(@PathVariable("username") String username) {
-        List<User> result = this.userRepository.findByUsernameContaining(username);
-        return result;
-    }
-
 }

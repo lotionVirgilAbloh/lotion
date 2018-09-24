@@ -14,19 +14,18 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rid")
     protected String rid;
-
+    @Column(name = "COMMONNAME")
     protected String commonName;
-
+    @Column(name="type")
     protected Integer type;
-
+    @Column(name = "SUMMARY")
     protected String summary;
-
+    @Column(name = "STATUS")
     protected String status;
-
+    @Column(name = "LASTUPDATE")
     protected Long lastUpdate;
 
-    public Role() {
-    }
+
     public String getRid() {
         return rid;
     }
@@ -34,7 +33,7 @@ public class Role {
     public void setRid(String rid) {
         this.rid = rid;
     }
-    @Column(name = "COMMONNAME")
+
     public String getCommonName() {
         return commonName;
     }
@@ -42,7 +41,7 @@ public class Role {
     public void setCommonName(String commonName) {
         this.commonName = commonName;
     }
-    @Column(name="type")
+
     public Integer getType() {
         return type;
     }
@@ -50,7 +49,7 @@ public class Role {
     public void setType(Integer type) {
         this.type = type;
     }
-    @Column(name = "SUMMARY")
+
     public String getSummary() {
         return summary;
     }
@@ -58,7 +57,7 @@ public class Role {
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    @Column(name = "STATUS")
+
     public String getStatus() {
         return status;
     }
@@ -66,7 +65,7 @@ public class Role {
     public void setStatus(String status) {
         this.status = status;
     }
-    @Column(name = "LASTUPDATE")
+
     public Long getLastUpdate() {
         return lastUpdate;
     }
