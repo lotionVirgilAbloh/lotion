@@ -1,6 +1,10 @@
 package org.lotionvirgilabloh.lotiondaomysql.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,13 +18,19 @@ public class User {
         this.userpwd = userpwd;
     }
 
-    private long userId;
-    private String username;
-    private String userpwd;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
+    private long userId;
+    @Column(name="username")
+    private String username;
+    @Column(name = "userpwd")
+    private String userpwd;
+    @Column(name = "roles")
+    @Type(type = "org.lotionvirgilabloh.lotiondaomysql.entity.StringSetType")
+    private Set<String> roles =new LinkedHashSet<> ();
+
+
     public long getUserId() {
         return userId;
     }
@@ -29,7 +39,7 @@ public class User {
         this.userId = userId;
     }
 
-    @Column(name="username")
+
     public String getUsername() {
         return username;
     }
@@ -38,7 +48,7 @@ public class User {
         this.username = username;
     }
 
-    @Column(name = "userpwd")
+
     public String getUserpwd() {
         return userpwd;
     }
@@ -47,14 +57,11 @@ public class User {
         this.userpwd = userpwd;
     }
 
+    public Set<String> getRoles() {
+        return roles;
+    }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", userpwd='" + userpwd + '\'' +
-                '}';
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 }

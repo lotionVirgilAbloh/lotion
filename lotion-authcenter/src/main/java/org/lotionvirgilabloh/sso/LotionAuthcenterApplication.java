@@ -23,14 +23,4 @@ public class LotionAuthcenterApplication {
 		SpringApplication.run(LotionAuthcenterApplication.class, args);
 	}
 
-	@Autowired
-	private AuthCenterManager authCenterManager;
-
-	@RequestMapping("test")
-	public String test(){
-		System.out.println(authCenterManager.getAllPerm().size());
-		System.out.println(authCenterManager.getAllRole().size());
-		return "test";
-	}
-
 }

@@ -1,7 +1,11 @@
 package org.lotionvirgilabloh.lotiondaomysql.entity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "perm")
@@ -11,23 +15,32 @@ public class Permission{
     public static final String TYPE_BUTTON = "BUTTON";
     public static final String TYPE_UDEF = "UDEF";
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PERMID")
     protected Integer permId;
+    @Column(name = "NAME")
     protected String name;
+    @Column(name = "RESOURCE")
     protected String resource;
+    @Column(name = "TYPE")
     protected String type;
+    @Column(name = "ANYROLES")
     protected Boolean anyRoles;
-    protected String roles;
+    @Column(name = "roles")
+    @Type(type = "org.lotionvirgilabloh.lotiondaomysql.entity.StringSetType")
+    protected Set<String> roles =new LinkedHashSet<> ();
+    @Column(name = "AUTHC")
     protected Boolean authc;
+    @Column(name = "avaliable")
     protected Boolean avaliable;
+    @Column(name = "LASTUPDATE")
     protected Long lastUpdate;
 
     public Permission(){
 
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PERMID")
+
     public Integer getPermId() {
         return permId;
     }
@@ -35,7 +48,7 @@ public class Permission{
     public void setPermId(Integer permId) {
         this.permId = permId;
     }
-    @Column(name = "NAME")
+
     public String getName() {
         return name;
     }
@@ -43,7 +56,6 @@ public class Permission{
     public void setName(String name) {
         this.name = name;
     }
-    @Column(name = "RESOURCE")
     public String getResource() {
         return resource;
     }
@@ -51,7 +63,6 @@ public class Permission{
     public void setResource(String resource) {
         this.resource = resource;
     }
-    @Column(name = "TYPE")
     public String getType() {
         return type;
     }
@@ -59,7 +70,7 @@ public class Permission{
     public void setType(String type) {
         this.type = type;
     }
-    @Column(name = "ANYROLES")
+
     public Boolean getAnyRoles() {
         return anyRoles;
     }
@@ -67,15 +78,18 @@ public class Permission{
     public void setAnyRoles(Boolean anyRoles) {
         this.anyRoles = anyRoles;
     }
-    @Column(name = "ROLES")
-    public String getRoles() {
+
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
-    @Column(name = "AUTHC")
+
+
+
+
     public Boolean getAuthc() {
         return authc;
     }
@@ -83,7 +97,7 @@ public class Permission{
     public void setAuthc(Boolean authc) {
         this.authc = authc;
     }
-    @Column(name = "avaliable")
+
     public Boolean getAvaliable() {
         return avaliable;
     }
@@ -91,7 +105,7 @@ public class Permission{
     public void setAvaliable(Boolean avaliable) {
         this.avaliable = avaliable;
     }
-    @Column(name = "LASTUPDATE")
+
     public Long getLastUpdate() {
         return lastUpdate;
     }

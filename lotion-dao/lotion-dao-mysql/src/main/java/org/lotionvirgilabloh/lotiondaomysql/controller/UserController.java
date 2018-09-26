@@ -42,12 +42,10 @@ public class UserController {
         User user =userRepository.getByUsernameIs(username);
         LotionUser lotionUser=null;
         if (user!=null){
-            Set<String> s =new HashSet<>();
-            s.add("admin");
             lotionUser=new LotionUser();
             lotionUser.setUserName(user.getUsername());
             lotionUser.setPassword(user.getUserpwd());
-            lotionUser.setRoleSet(s);
+            lotionUser.setRoleSet(user.getRoles ());
         }
 
         return lotionUser;
@@ -59,6 +57,8 @@ public class UserController {
         for(Permission p :permissions){
             LotionPermission lotionPermission =new LotionPermission();
             BeanUtils.copyProperties(p,lotionPermission);
+            lotionPermission.setRoles (p.getRoles ());
+            System.out.println (p.getRoles ().size ());
             lop.add(lotionPermission);
         }
         return lop;
