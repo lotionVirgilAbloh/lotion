@@ -1,6 +1,7 @@
 package org.lotionvirgilabloh.lotionwebindex.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,5 +45,17 @@ public class IndexController {
     @RequestMapping(value = "/getWebHostUrl", method = RequestMethod.POST)
     public @ResponseBody String requestWebHostUrl() {
         return webHostUrl;
+    }
+
+    @RequestMapping(value = "/testadmin")
+    @PreAuthorize("hasAuthority('admin')")
+    public @ResponseBody String testadmin() {
+        return "admin ok";
+    }
+
+    @RequestMapping(value = "/testroot")
+    @PreAuthorize("hasAuthority('root')")
+    public @ResponseBody String testroot() {
+        return "root ok";
     }
 }

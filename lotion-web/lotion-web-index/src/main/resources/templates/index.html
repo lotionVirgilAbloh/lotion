@@ -185,7 +185,7 @@
                                                         </li>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
-                                                            <a href="snippets/pages/user/login-1.html"
+                                                            <a href="logout"
                                                                class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                                 Logout
                                                             </a>
@@ -575,6 +575,9 @@
                     <ul class="nav nav-pills" role="tablist">
                         <li><a href='login'>login</a></li>
                         <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
+                        <li ng-show="authenticated"><a href="/testadmin">adminPer</a></li>
+                        <li ng-show="authenticated"><a href="/testroot">rootPer</a></li>
+
                     </ul>
                     <div>{{user}}</div>
                 </div>
@@ -669,7 +672,6 @@
 <!-- 设置了一个authenticated变量，设置了用户名和密码 20180920王宇晗 -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".ng-scope").css("display","none");//隐藏Authenticated
         setTimeout("setAuthenticated()",200);
     });
     var authenticated;//设置全局变量
