@@ -47,14 +47,15 @@ public class IndexController {
         return webHostUrl;
     }
 
+    @PreAuthorize("hasAuthority('adm')")
     @RequestMapping(value = "/testadmin")
-    @PreAuthorize("hasAuthority('admin')")
     public @ResponseBody String testadmin() {
         return "admin ok";
     }
 
-    @RequestMapping(value = "/testroot")
     @PreAuthorize("hasAuthority('root')")
+    @RequestMapping(value = "/testroot")
+//    @PreAuthorize("hasRole('root')")
     public @ResponseBody String testroot() {
         return "root ok";
     }
