@@ -3,6 +3,7 @@ package org.lotionvirgilabloh.sso.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -57,4 +58,10 @@ public class JsonUtils {
 
         return null;
     }
+
+    public static void main(String[] args){
+        BCryptPasswordEncoder bc =new BCryptPasswordEncoder(6);
+        System.out.print(bc.encode("1111111111"));
+    }
+
 }

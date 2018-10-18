@@ -4,12 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringCloudApplication
 @EnableZuulProxy
+@Controller
 public class LotionWebZuulApplication {
 
     public static void main(String[] args) {
@@ -38,5 +43,27 @@ public class LotionWebZuulApplication {
         config.addAllowedMethod("PATCH");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
+    }
+    @PreAuthorize("hasAuthority('adm')")
+    @RequestMapping(value = "/testadmin")
+    public @ResponseBody String testadmin() {
+        return "admin ok";
+    }
+
+    @PreAuthorize("hasAuthority('root')")
+    @RequestMapping(value = "/testroot")
+    public @ResponseBody String testroot() {
+        return "root ok";
+    }
+
+    @RequestMapping("/lotion/login")
+    public String dashboard() {
+        return "redirect:/#/";
+    }
+
+
+    @RequestMapping("/")
+    public String login() {
+        return "login";
     }
 }

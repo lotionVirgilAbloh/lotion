@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionwebindex.controller;
+package org.lotionvirgilabloh.lotionwebzuul;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

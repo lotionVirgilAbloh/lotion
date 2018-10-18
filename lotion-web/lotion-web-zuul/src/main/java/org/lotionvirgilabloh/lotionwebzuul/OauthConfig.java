@@ -1,4 +1,4 @@
-package org.lotionvirgilabloh.lotionwebindex.config;
+package org.lotionvirgilabloh.lotionwebzuul;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,6 +20,8 @@ public class OauthConfig extends WebSecurityConfigurerAdapter {
                 .and ().csrf ().disable ()
                 .logout().logoutUrl("/logout").permitAll()
                 .logoutSuccessUrl("/");
+        http.headers().frameOptions().disable();
+        http.headers().cacheControl();
     }
 
 }
