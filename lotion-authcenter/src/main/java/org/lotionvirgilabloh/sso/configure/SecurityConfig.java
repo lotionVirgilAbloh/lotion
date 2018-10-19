@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其余所有请求全部需要鉴权认证
                 .and().authorizeRequests().anyRequest().permitAll()
                 .and ().csrf ().disable ();
+        http.headers().frameOptions().disable();
+        http.headers().cacheControl();
     }
 
     /**
