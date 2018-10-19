@@ -27,11 +27,6 @@ public class ControlController {
     @RequestMapping("realtimejob")
     public String realtimejob(ModelMap modelMap){
         logger.info("ControlController获取请求:/realtimejob");
-        try{
-            throw(new Exception());
-        } catch (Exception e) {
-            logger.error("abc", e);
-        }
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
         return "realtimejob";
