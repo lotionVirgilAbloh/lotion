@@ -56,6 +56,18 @@ public class LotionWebZuulApplication {
         return "root ok";
     }
 
+    @PreAuthorize("hasAuthority('root')")
+    @RequestMapping(value = "/control")
+    public  String control() {
+        return "control";
+    }
+
+    @PreAuthorize("hasAuthority('admin')")
+    @RequestMapping(value = "/log")
+    public String log() {
+        return "log";
+    }
+
     @RequestMapping("/lotion/login")
     public String dashboard() {
         return "redirect:/#/";

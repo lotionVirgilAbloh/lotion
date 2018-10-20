@@ -500,7 +500,7 @@
 												</span>
 											</span>
                                 </li>
-                                <li class="m-menu__item " aria-haspopup="true">
+                                <li class="m-menu__item " aria-haspopup="true" ng-show="authenticated">
                                     <a href="javascript:;" th:onclick="'javascript:navigatorHref(\'' + ${webHostUrl} + 'control/realtimejob\')'" class="m-menu__link ">
                                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                             <span></span>
@@ -541,7 +541,7 @@
 												</span>
 											</span>
                                 </li>
-                                <li class="m-menu__item " aria-haspopup="true">
+                                <li class="m-menu__item " aria-haspopup="true" ng-show="authenticated">
                                     <a href="javascript:;" th:onclick="'javascript:navigatorHref(\'' + ${webHostUrl} + 'log/exceptionsupervision\')'" class="m-menu__link ">
                                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                             <span></span>
@@ -577,13 +577,14 @@
                         <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
                         <li ng-show="authenticated"><a href="/testadmin">adminPer</a></li>
                         <li ng-show="authenticated"><a href="/testroot">rootPer</a></li>
+                        <li ng-show="authenticated"><a href="/idx">1111</a></li>
 
                     </ul>
                     <div>{{user}}</div>
                 </div>
                 <div ng-view class="container"></div>
             </div>
-            <iframe id="mainFrame" name="mainFrame" scrolling="no" th:src="${webHostUrl} + 'control/indexframe'"
+            <iframe id="mainFrame" name="mainFrame" scrolling="no" th:src="${webHostUrl} + 'home'"
                     frameborder="0" style="padding: 0px; width: 100%; height: 0px;"></iframe>
         </div>
     </div>

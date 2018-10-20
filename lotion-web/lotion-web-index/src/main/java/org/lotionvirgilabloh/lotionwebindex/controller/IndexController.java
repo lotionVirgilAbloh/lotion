@@ -21,6 +21,9 @@ public class IndexController {
     @Value("${lotion.web.host.url}")
     private String webHostUrl;
 
+    @Value("${lotion.web.this.url}")
+    private String thisUrl;
+
     @RequestMapping({"/", "/index"})
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
@@ -28,7 +31,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/indexframe")
+    @RequestMapping("/idx")
     public String indexframe(ModelMap modelMap) {
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
