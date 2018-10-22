@@ -43,7 +43,7 @@ zuul:
   routes:
     #指定web服务路由
     #zuul不需要指定顺序，DiscoveryClientRouteLocator会动态覆盖路由
-    lotion-web-index: /
+    lotion-web-index: /index/**
     lotion-web-webuis: /webuis/**
     lotion-web-supervision: /supervision/**
     lotion-web-control: /control/**
