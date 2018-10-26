@@ -48,6 +48,7 @@ public class LotionWebZuulApplication {
         return new CorsFilter(source);
     }
 
+    @PreAuthorize("hasAuthority('adm')")
     @RequestMapping("/")
     public String index() {
         return "index";
