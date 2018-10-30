@@ -38,8 +38,12 @@ const isLocal = false;
                     {
                         "targets": [3],
                         "render": function (data, type, full) {
-                            const date = full.lastrun.replace(/(\+\d{2})(\d{2})$/, "$1:$2");
-                            return window.Config.dateFormat(new Date(date));
+                            if (full.lastrun != null) {
+                                const date = full.lastrun.replace(/(\+\d{2})(\d{2})$/, "$1:$2");
+                                return window.Config.dateFormat(new Date(date));
+                            } else {
+                                return "无日期记录";
+                            }
                         }
                     },
                     {
