@@ -574,10 +574,8 @@
                 <div ng-controller="navigation" class="container">
                     <ul class="nav nav-pills" role="tablist">
                         <li><a href='login'>login</a></li>
-                        <li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
                         <li ng-show="authenticated"><a href="/testadmin">adminPer</a></li>
                         <li ng-show="authenticated"><a href="/testroot">rootPer</a></li>
-                        <li ng-show="authenticated"><a href="/idx">1111</a></li>
 
                     </ul>
                     <div>{{user}}</div>
@@ -631,13 +629,6 @@
 <script type="text/javascript">
     angular.module('sso', [ 'ngRoute', 'ngResource' ]).config(
         function($routeProvider) {
-
-            $routeProvider.otherwise('/');
-            $routeProvider.when('/', {
-                templateUrl : 'home',
-                controller : 'home'
-            });
-
         }).controller('navigation', function($scope, $http, $window, $route) {
         $scope.tab = function(route) {
             return $route.current && route === $route.current.controller;
@@ -650,15 +641,6 @@
                 $scope.authenticated = false;
             });
         }
-        $scope.logout = function() {
-            $http.post('/logout', {}).success(function() {
-                delete $scope.user;
-                $scope.authenticated = false;
-                // Force reload of home page to reset all state after logout
-                //$window.location.hash = '';
-                $window.location.reload();
-            });
-        };
     }).controller('home', function() {
     }).controller('dashboard', function($scope, $resource) {
 

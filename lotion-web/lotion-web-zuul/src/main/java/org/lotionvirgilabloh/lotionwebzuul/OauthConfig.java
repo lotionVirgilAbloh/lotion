@@ -15,8 +15,6 @@ public class OauthConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**").authorizeRequests()
                 .anyRequest().authenticated()
-                .antMatchers("/testroot").hasAuthority ("root")
-                .antMatchers("/testadmin").hasAuthority("adm")
                 .and ().csrf ().disable ()
                 .logout().logoutUrl("/logout").permitAll()
                 .logoutSuccessUrl("/");
