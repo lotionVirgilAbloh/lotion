@@ -24,14 +24,21 @@ public class ControlController {
     @Value("${lotion.web.host.url}")
     private String webHostUrl;
 
+    //@PreAuthorize("hasAuthority('root')")
     @RequestMapping("realtimejob")
     public String realtimejob(ModelMap modelMap){
+        try {
+            throw new Exception("测试");
+        } catch (Exception e) {
+            logger.error("测试异常",e);
+        }
         logger.info("ControlController获取请求:/realtimejob");
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);
         return "realtimejob";
     }
 
+    //@PreAuthorize("hasAuthority('adm')")
     @RequestMapping("offlinejob")
     public String offlinejob(ModelMap modelMap){
         logger.info("ControlController获取请求:/offlinejob");

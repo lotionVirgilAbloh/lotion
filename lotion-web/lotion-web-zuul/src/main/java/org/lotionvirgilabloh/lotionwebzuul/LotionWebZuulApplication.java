@@ -1,5 +1,7 @@
 package org.lotionvirgilabloh.lotionwebzuul;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -48,27 +50,5 @@ public class LotionWebZuulApplication {
         return new CorsFilter(source);
     }
 
-    @PreAuthorize("hasAuthority('adm')")
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
-    @PreAuthorize("hasAuthority('adm')")
-    @RequestMapping(value = "/testadmin")
-    public @ResponseBody String testadmin() {
-        return "admin ok";
-    }
-
-    @PreAuthorize("hasAuthority('root')")
-    @RequestMapping(value = "/testroot")
-    public @ResponseBody String testroot() {
-        return "root ok";
-    }
-
-    @RequestMapping("/lotion/login")
-    public String dashboard() {return "redirect:/#/"; }
-
-    @RequestMapping("/login")
-    public String login() {return "/"; }
 
 }

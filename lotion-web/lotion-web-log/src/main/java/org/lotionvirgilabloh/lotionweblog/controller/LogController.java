@@ -78,6 +78,7 @@ public class LogController {
             logger.info(datatablesRetrieve.toString());
         }
 
-        return exceptionDaoService.findAllPage(datatablesRetrieve);
+        DatatablesReturn<FormattedException> d = exceptionDaoService.findAllPage(datatablesRetrieve);
+        return d;
     }
 }

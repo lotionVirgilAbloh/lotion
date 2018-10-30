@@ -38,13 +38,15 @@ public class LogExceptionController {
     @RequestMapping(value = "findAllPage", method = RequestMethod.POST)
     public DatatablesReturn<FormattedException> findAllPage(@RequestBody DatatablesRetrieve datatablesRetrieve) {
         logger.info("LogExceptionController获取请求:/fmtexception/findAllPage");
+        long recordsTotal = feRepository.count();
+        int page = datatablesRetrieve.getStart() / datatablesRetrieve.getLength();
         List<Sort.Order> orders = new LinkedList<>();
         for (DatatablesRetrieve.DatatablesRetrieveOrder dro : datatablesRetrieve.getOrder()) {
             //列名按column的data参数填充
             orders.add(new Sort.Order(Sort.Direction.fromString(dro.getDir()), datatablesRetrieve.getColumns().get(dro.getColumn()).getName()));
         }
         Sort sort = Sort.by(orders);
-        Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(datatablesRetrieve.getStart(), datatablesRetrieve.getLength(), sort));
+        Page<MongoFormattedException> mfes = feRepository.findAll(PageRequest.of(page, datatablesRetrieve.getLength(), sort));
         List<FormattedException> fes = new ArrayList<>();
         mfes.forEach(mfe -> {
             FormattedException fe = mfe2fe(mfe);
@@ -53,8 +55,8 @@ public class LogExceptionController {
         DatatablesReturn<FormattedException> datatablesReturn = new DatatablesReturn<>();
         datatablesReturn.setDraw(datatablesRetrieve.getDraw());
         datatablesReturn.setData(fes);
-        datatablesReturn.setRecordsFiltered(mfes.getSize());
-        datatablesReturn.setRecordsTotal((int) mfes.getTotalElements());
+        datatablesReturn.setRecordsFiltered((int) mfes.getTotalElements());
+        datatablesReturn.setRecordsTotal((int) recordsTotal);
         return datatablesReturn;
     }
 

@@ -43,11 +43,41 @@ zuul:
   routes:
     #指定web服务路由
     #zuul不需要指定顺序，DiscoveryClientRouteLocator会动态覆盖路由
-    lotion-web-index: /index/**
-    lotion-web-webuis: /webuis/**
-    lotion-web-supervision: /supervision/**
-    lotion-web-control: /control/**
-    lotion-web-log: /log/**
+    index:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /index/**
+      service-id: lotion-web-index
+      strip-prefix: true
+      custom-sensitive-headers: true
+    webuis:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /webuis/**
+      service-id: lotion-web-webuis
+      strip-prefix: true
+      custom-sensitive-headers: true
+    supervision:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /supervision/**
+      service-id: lotion-web-supervision
+      strip-prefix: true
+      custom-sensitive-headers: true
+    control:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /control/**
+      service-id: lotion-web-control
+      strip-prefix: true
+      custom-sensitive-headers: true
+    log:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /log/**
+      service-id: lotion-web-log
+      strip-prefix: true
+      custom-sensitive-headers: true
+    #lotion-web-index: /index/**
+    #lotion-web-webuis: /webuis/**
+    #lotion-web-supervision: /supervision/**
+    #lotion-web-control: /control/**
+    #lotion-web-log: /log/**
   #不暴露未路由的服务，默认注册在eureka的服务路由为../${service-id}/
   ignored-services: '*'
   #设置全局参数为空覆盖默认过滤头信息，包括Cookie、Set-Cookie、Authorization
@@ -57,7 +87,7 @@ zuul:
   #解决加入Spring Security后的重定向问题，该问题会暴露具体Web服务的地址，该参数会在路由转发前为请求设置Host头信息，标识zuul网关地址
   add-host-header: true
   #忽略/**/actuator/**的请求
-  ignored-patterns: /**/actuator/**
+  ignored-patterns: /**/actuator/**,/lotion/**
 #默认hystrix请求超时时间60秒
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 #默认ribbon请求连接超时时间2秒

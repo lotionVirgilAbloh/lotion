@@ -46,7 +46,9 @@ var ansi_up = new AnsiUp;
             dttable.fnClearTable(); //清空一下table
             dttable.fnDestroy(); //还原初始化了的datatable
             $("#exception_table").DataTable({
+                "responsive" : true,
                 "paging": true,
+                "pagingType": "full_numbers",
                 "lengthChange": false,
                 "pageLength": 10,
                 "order": [ 1, 'desc' ],

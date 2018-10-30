@@ -98,7 +98,7 @@
                                     m-dropdown-toggle="click">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img th:src="@{${webStaticUrl} + 'assets/lotion/media/img/lotion_logo_circuit.png'}"
+													<img id="img_user" th:src="@{${webStaticUrl} + 'assets/lotion/media/img/lotion_logo_circuit.png'}"
                                                          class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
                                         <span class="m-topbar__username m--hide">
@@ -655,7 +655,8 @@
                 delete $scope.user;
                 $scope.authenticated = false;
                 // Force reload of home page to reset all state after logout
-                $window.location.hash = '';
+                //$window.location.hash = '';
+                $window.location.reload();
             });
         };
     }).controller('home', function() {
