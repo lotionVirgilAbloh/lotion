@@ -34,8 +34,14 @@ public class ExceptionSinker {
         if (exceptionEvent.getCustomProperties().containsKey("project"))
             project = exceptionEvent.getCustomProperties().get("project").toString();
         else
-            project = null;
-        FormattedException formattedException = new FormattedException(exceptionEvent.getLog4jLogEvent().getTimeMillis(), exceptionEvent.getLog4jLogEvent().getMessage().toString(), project, addtionalProperties);
+            project = "unknown";
+        String eventMsg;
+        try {
+            eventMsg = exceptionEvent.getLog4jLogEvent().getMessage().toString();
+        } catch (Exception e) {
+            eventMsg = "";
+        }
+        FormattedException formattedException = new FormattedException(exceptionEvent.getLog4jLogEvent().getTimeMillis(), eventMsg, project, addtionalProperties);
 
         //设置ID
         formattedException.setExceptionID(formattedException.hashCode());
@@ -46,7 +52,7 @@ public class ExceptionSinker {
 
         //判断是否插入成功
         if (feReturn != null) {
-            if (feReturn.equals(formattedException)) {
+            if (feReturn.getExceptionID() == formattedException.getExceptionID()) {
                 logger.info("FE:" + formattedException.getExceptionID() + "插入MongoDB成功");
             } else {
                 logger.error("FE:" + formattedException.getExceptionID() + "插入MongoDB失败，返回实体与插入实体不相同");
