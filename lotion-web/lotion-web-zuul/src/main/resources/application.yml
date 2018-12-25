@@ -8,13 +8,6 @@ server:
 spring:
   application:
     name: lotion-web-zuul
-  cloud:
-    stream:
-      #指定用kafka stream来作为默认消息中间件
-      default-binder: kafka
-      kafka:
-        binder:
-          brokers: 47.106.222.205:9092
 #启动所有映射(默认只有../actuator/health和../actuator/info)
 management:
   endpoints:
