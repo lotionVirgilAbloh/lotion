@@ -1,18 +1,12 @@
 package org.lotionvirgilabloh.lotionwebzuul;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.session.data.redis.RedisFlushMode;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -20,6 +14,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringCloudApplication
 @EnableZuulProxy
 @Controller
+@EnableRedisHttpSession(redisFlushMode = RedisFlushMode.IMMEDIATE)
 public class LotionWebZuulApplication {
 
     public static void main(String[] args) {

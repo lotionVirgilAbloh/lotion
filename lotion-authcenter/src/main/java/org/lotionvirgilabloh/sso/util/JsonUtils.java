@@ -59,5 +59,8 @@ public class JsonUtils {
         return null;
     }
 
-
+public  static void main(String[] args){
+        BCryptPasswordEncoder bCryptPasswordEncoder =new BCryptPasswordEncoder (6);
+        System.out.println (bCryptPasswordEncoder.encode ("qwer1234"));
+}
 }

@@ -8,6 +8,16 @@ server:
 spring:
   application:
     name: lotion-web-zuul
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        min-idle: 0
 #启动所有映射(默认只有../actuator/health和../actuator/info)
 management:
   endpoints:
@@ -16,8 +26,6 @@ management:
         include: '*'
 security:
   oauth2:
-    sso:
-      loginPath: /lotion/login
     client:
       accessTokenUri: http://localhost:19033/oauth/token
       userAuthorizationUri: http://localhost:19033/oauth/authorize
@@ -37,31 +45,31 @@ zuul:
     #指定web服务路由
     #zuul不需要指定顺序，DiscoveryClientRouteLocator会动态覆盖路由
     index:
-      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      sensitiveHeaders: "*"
       path: /index/**
       service-id: lotion-web-index
       strip-prefix: true
       custom-sensitive-headers: true
     webuis:
-      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      sensitiveHeaders: A
       path: /webuis/**
       service-id: lotion-web-webuis
       strip-prefix: true
       custom-sensitive-headers: true
     supervision:
-      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      sensitiveHeaders: "*"
       path: /supervision/**
       service-id: lotion-web-supervision
       strip-prefix: true
       custom-sensitive-headers: true
     control:
-      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      sensitiveHeaders: "*"
       path: /control/**
       service-id: lotion-web-control
       strip-prefix: true
       custom-sensitive-headers: true
     log:
-      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      sensitiveHeaders: "*"
       path: /log/**
       service-id: lotion-web-log
       strip-prefix: true
