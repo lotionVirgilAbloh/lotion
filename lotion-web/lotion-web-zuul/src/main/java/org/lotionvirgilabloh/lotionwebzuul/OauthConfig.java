@@ -19,7 +19,6 @@ public class OauthConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").permitAll()
                 .logoutSuccessUrl("/");
         http.headers().frameOptions().disable();
-        http.headers().cacheControl();
     }
 
 }

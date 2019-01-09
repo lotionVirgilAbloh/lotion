@@ -62,6 +62,11 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("acme")
                 .secret("{noop}acmesecret")
                 .authorizedGrantTypes("authorization_code", "refresh_token",
+                        "password").scopes("openid").accessTokenValiditySeconds (36000)
+                .and ()
+                .withClient ("control")
+                .secret ("controllsecret")
+                .authorizedGrantTypes("authorization_code", "refresh_token",
                         "password").scopes("openid").accessTokenValiditySeconds (36000);
     }
 
