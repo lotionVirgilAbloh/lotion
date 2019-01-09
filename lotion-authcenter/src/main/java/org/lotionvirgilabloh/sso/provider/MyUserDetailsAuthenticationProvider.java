@@ -2,6 +2,7 @@ package org.lotionvirgilabloh.sso.provider;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.lotionvirgilabloh.sso.configure.token.MyAuthenticationToken;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
@@ -98,8 +99,9 @@ public class MyUserDetailsAuthenticationProvider implements AuthenticationProvid
 
     //@Todo aaaaa
     protected  Authentication createSuccessAuthentication(Object principal, Authentication authentication, UserDetails user){
-
-        return authentication;
+        MyAuthenticationToken result = new MyAuthenticationToken(principal, authentication.getCredentials(), this.authoritiesMapper.mapAuthorities(user.getAuthorities()));
+        result.setDetails(authentication.getDetails());
+        return result;
     }
 
     protected void doAfterPropertiesSet() throws Exception {
@@ -118,9 +120,23 @@ public class MyUserDetailsAuthenticationProvider implements AuthenticationProvid
     }
 
     //@Todo bbbbbbbb
-    protected UserDetails retrieveUser(String var1, Authentication var2) throws AuthenticationException{
+    protected UserDetails retrieveUser(String username, Authentication authentication) throws AuthenticationException{
+        UserDetails loadedUser;
+        try {
+            loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+        } catch (UsernameNotFoundException var6) {
+            if(authentication.getCredentials() != null) {
+            }
 
-        return null;
+            throw var6;
+        } catch (Exception var7) {
+            throw new InternalAuthenticationServiceException(var7.getMessage(), var7);
+        }
+        if(loadedUser == null) {
+            throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
+        } else {
+            return loadedUser;
+        }
     }
 
     public void setForcePrincipalAsString(boolean forcePrincipalAsString) {
