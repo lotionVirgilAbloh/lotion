@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.session.data.redis.RedisFlushMode;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringCloudApplication
 @EnableZuulProxy
 @Controller
+@EnableResourceServer
 @EnableRedisHttpSession(redisFlushMode = RedisFlushMode.IMMEDIATE)
 public class LotionWebZuulApplication {
 

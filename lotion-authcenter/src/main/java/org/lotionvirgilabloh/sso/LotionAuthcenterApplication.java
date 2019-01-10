@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @EnableFeignClients
 @EnableAuthorizationServer
 @SpringCloudApplication
-@SessionAttributes("authorizationRequest")
-@RestController
 public class LotionAuthcenterApplication {
 
 	public static void main(String[] args) {

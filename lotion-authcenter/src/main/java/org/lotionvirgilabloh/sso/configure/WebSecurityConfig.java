@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * Created by fp295 on 2018/4/15.
  */
 @Configuration
-@Order(200)
+@Order(2147483636)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 自动注入UserDetailsService
@@ -56,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(daoAuthenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Bean
@@ -64,17 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder (6);
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider1 = new DaoAuthenticationProvider ();
-        // 设置userDetailsService
-        provider1.setUserDetailsService(usernameUserDetailService);
-        // 禁止隐藏用户未找到异常
-        provider1.setHideUserNotFoundExceptions(false);
-        // 使用BCrypt进行密码的hash
-        provider1.setPasswordEncoder(myEncoder());
-        return provider1;
-    }
+
+
     @Bean
     public MyUserDetailsAuthenticationProvider authenticationProvider(){
         MyUserDetailsAuthenticationProvider provider = new MyUserDetailsAuthenticationProvider();
@@ -82,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(usernameUserDetailService);
         // 禁止隐藏用户未找到异常
         provider.setHideUserNotFoundExceptions(false);
+        provider.setPasswordEncoder(myEncoder());
         return provider;
     }
     @Bean

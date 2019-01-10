@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import java.security.KeyPair;
+/*
 
 @Configuration
 public class OathConfig extends AuthorizationServerConfigurerAdapter {
@@ -40,10 +41,12 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
                 jwtAccessTokenConverter());
     }
 
-    /**
+    */
+/**
      * 使用非对称加密算法来对Token进行签名
      * @return
-     */
+     *//*
+
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         // 导入证书
@@ -79,3 +82,4 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
     }
 
 }
+*/

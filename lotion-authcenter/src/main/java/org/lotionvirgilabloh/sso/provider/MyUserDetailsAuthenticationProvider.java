@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.userdetails.cache.NullUserCache;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 
 /**
@@ -32,6 +33,7 @@ public class MyUserDetailsAuthenticationProvider implements AuthenticationProvid
     private UserDetailsChecker postAuthenticationChecks = new DefaultPostAuthenticationChecks();
     private GrantedAuthoritiesMapper authoritiesMapper = new NullAuthoritiesMapper ();
     private UserDetailsService userDetailsService;
+    private PasswordEncoder passwordEncoder;
 
 
     protected  void additionalAuthenticationChecks(UserDetails var1, Authentication var2) throws AuthenticationException{
@@ -123,11 +125,10 @@ public class MyUserDetailsAuthenticationProvider implements AuthenticationProvid
     protected UserDetails retrieveUser(String username, Authentication authentication) throws AuthenticationException{
         UserDetails loadedUser;
         try {
-            loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+            loadedUser = userDetailsService.loadUserByUsername(username);
         } catch (UsernameNotFoundException var6) {
             if(authentication.getCredentials() != null) {
             }
-
             throw var6;
         } catch (Exception var7) {
             throw new InternalAuthenticationServiceException(var7.getMessage(), var7);
@@ -205,12 +206,12 @@ public class MyUserDetailsAuthenticationProvider implements AuthenticationProvid
             }
         }
     }
-    public UserDetailsService getUserDetailsService() {
-        return userDetailsService;
-    }
 
     public void setUserDetailsService(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder){
+        this.passwordEncoder =passwordEncoder;
+    }
 }
