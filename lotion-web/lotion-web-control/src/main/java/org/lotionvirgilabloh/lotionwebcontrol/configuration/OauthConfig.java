@@ -1,3 +1,4 @@
+/*
 package org.lotionvirgilabloh.lotionwebcontrol.configuration;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -23,3 +24,4 @@ public class OauthConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+*/

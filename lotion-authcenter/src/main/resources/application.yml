@@ -8,9 +8,10 @@ server:
 spring:
   application:
     name: lotion-authcenter
-  security:
-    ignored: /css/**,/js/**,/favicon.ico,/webjars/**
-    enabled: false
+  data:
+    mongodb:
+      port: 27017
+      database: auth_server
 #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
@@ -26,16 +27,27 @@ management:
       exposure:
         include: '*'
 #默认hystrix请求超时时间60秒
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
 #默认ribbon请求连接超时时间2秒
-ribbon.ConnectTimeout: 2000
+ribbon:
+  ConnectTimeout: 2000
 #默认ribbon请求读取超时时间20秒
-ribbon.ReadTimeout: 20000
+  ReadTimeout: 20000
 #默认ribbon请求可以重试
-ribbon.OktoRetryOnAllOperations: true
+  OktoRetryOnAllOperations: true
 #默认ribbon请求对当前实例重试次数为1
-ribbon.MaxAutoRetries: 1
+  MaxAutoRetries: 1
 #默认ribbon请求切换实例重试次数为1
-ribbon.MaxAutoRetriesNextServer: 1
-logging.level.org.springframework.security: DEBUG
+  MaxAutoRetriesNextServer: 1
 #自定义配置
+security:
+  #oauth2配置
+  oauth2:
+    resource:
+      filter-order: 3
