@@ -7,12 +7,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/")
 public class ControlController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     /**
      * 静态资源地址
@@ -28,11 +32,6 @@ public class ControlController {
     @PreAuthorize("hasAuthority('root')")
     @RequestMapping("realtimejob")
     public String realtimejob(ModelMap modelMap){
-        try {
-            throw new Exception("测试");
-        } catch (Exception e) {
-            logger.error("测试异常",e);
-        }
         logger.info("ControlController获取请求:/realtimejob");
         modelMap.addAttribute("webStaticUrl", webStaticUrl);
         modelMap.addAttribute("webHostUrl", webHostUrl);

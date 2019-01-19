@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import java.security.KeyPair;
-/*
 
 @Configuration
 public class OathConfig extends AuthorizationServerConfigurerAdapter {
@@ -41,12 +40,10 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
                 jwtAccessTokenConverter());
     }
 
-    */
-/**
+    /**
      * 使用非对称加密算法来对Token进行签名
      * @return
-     *//*
-
+     */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         // 导入证书
@@ -55,6 +52,7 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
                 new ClassPathResource ("keystore.jks"), "foobar".toCharArray())
                 .getKeyPair("test");
         converter.setKeyPair(keyPair);
+        converter.setAccessTokenConverter (new JwtAccessToken());
         return converter;
     }
 
@@ -64,11 +62,6 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
         clients.inMemory()
                 .withClient("acme")
                 .secret("{noop}acmesecret")
-                .authorizedGrantTypes("authorization_code", "refresh_token",
-                        "password").scopes("openid").accessTokenValiditySeconds (36000)
-                .and ()
-                .withClient ("control")
-                .secret ("controllsecret")
                 .authorizedGrantTypes("authorization_code", "refresh_token",
                         "password").scopes("openid").accessTokenValiditySeconds (36000);
     }
@@ -82,4 +75,3 @@ public class OathConfig extends AuthorizationServerConfigurerAdapter {
     }
 
 }
-*/

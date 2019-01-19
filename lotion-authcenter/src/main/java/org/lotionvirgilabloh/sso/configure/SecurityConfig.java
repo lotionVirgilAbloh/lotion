@@ -13,10 +13,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-/*
 
 @Configuration
-@Order(SecurityProperties.BASIC_AUTH_ORDER)
+@Order(SecurityProperties.BASIC_AUTH_ORDER-1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 自动注入UserDetailsService
@@ -41,12 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().cacheControl();
     }
 
-    */
-/**
+    /**
      * 用户验证
      * @param auth
-     *//*
-
+     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider());
@@ -65,4 +62,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 }
-*/
