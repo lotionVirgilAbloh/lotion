@@ -74,6 +74,24 @@ zuul:
       service-id: lotion-web-log
       strip-prefix: true
       custom-sensitive-headers: true
+    mysql:
+      sensitiveHeaders: "*"
+      path: /mysql/**
+      service-id: lotion-mysql-dao
+      strip-prefix: true
+      custom-sensitive-headers: true
+    mongo:
+      sensitiveHeaders: "*"
+      path: /mongo/**
+      service-id: lotion-mongo-dao
+      strip-prefix: true
+      custom-sensitive-headers: true
+    redis:
+      sensitiveHeaders: "*"
+      path: /redis/**
+      service-id: lotion-redis-dao
+      strip-prefix: true
+      custom-sensitive-headers: true
     #lotion-web-index: /index/**
     #lotion-web-webuis: /webuis/**
     #lotion-web-supervision: /supervision/**
