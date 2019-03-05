@@ -1,5 +1,6 @@
 /target/
 /log/
+/logs/
 .mvn
 mvnw
 mvnw.cmd

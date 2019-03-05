@@ -11,12 +11,12 @@ spring:
   redis:
     host: localhost
     port: 6379
-    timeout: 5000
+    timeout: 5000ms
     database: 0
     lettuce:
       pool:
         max-active: 8
-        max-wait: -1
+        max-wait: -1ms
         min-idle: 0
 #启动所有映射(默认只有../actuator/health和../actuator/info)
 management:
@@ -77,19 +77,19 @@ zuul:
     mysql:
       sensitiveHeaders: "*"
       path: /mysql/**
-      service-id: lotion-mysql-dao
+      service-id: lotion-dao-mysql
       strip-prefix: true
       custom-sensitive-headers: true
     mongo:
       sensitiveHeaders: "*"
       path: /mongo/**
-      service-id: lotion-mongo-dao
+      service-id: lotion-dao-mongo
       strip-prefix: true
       custom-sensitive-headers: true
     redis:
       sensitiveHeaders: "*"
       path: /redis/**
-      service-id: lotion-redis-dao
+      service-id: lotion-dao-redis
       strip-prefix: true
       custom-sensitive-headers: true
     #lotion-web-index: /index/**
