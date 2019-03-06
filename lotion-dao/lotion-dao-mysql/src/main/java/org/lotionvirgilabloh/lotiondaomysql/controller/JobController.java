@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("service/job/")
+@RequestMapping("/job/")
 public class JobController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

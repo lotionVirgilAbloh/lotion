@@ -22,6 +22,7 @@
         <module>lotion-dao-redis</module>
         <module>lotion-dao-mongo</module>
         <module>lotion-dao-mysql</module>
+        <module>lotion-dao-zuul</module>
     </modules>
 
 </project>

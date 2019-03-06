@@ -1,0 +1,30 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:19000/eureka/
+#端口的使用请参考端口设计文档
+server:
+  port: 8900
+spring:
+  application:
+    name: lotion-dao-zuul
+zuul:
+  routes:
+    mysql:
+      sensitiveHeaders: "*"
+      path: /mysql/**
+      service-id: lotion-dao-mysql
+      strip-prefix: true
+      custom-sensitive-headers: true
+    mongo:
+      sensitiveHeaders: "*"
+      path: /mongo/**
+      service-id: lotion-dao-mongo
+      strip-prefix: true
+      custom-sensitive-headers: true
+    redis:
+      sensitiveHeaders: "*"
+      path: /redis/**
+      service-id: lotion-dao-redis
+      strip-prefix: true
+      custom-sensitive-headers: true

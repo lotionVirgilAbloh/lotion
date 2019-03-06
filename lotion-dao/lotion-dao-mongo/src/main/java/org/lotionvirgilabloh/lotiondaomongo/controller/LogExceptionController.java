@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("service/fmtexception")
+@RequestMapping("/fmtexception")
 @RestController
 public class LogExceptionController {
 

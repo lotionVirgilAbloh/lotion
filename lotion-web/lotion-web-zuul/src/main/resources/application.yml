@@ -74,29 +74,6 @@ zuul:
       service-id: lotion-web-log
       strip-prefix: true
       custom-sensitive-headers: true
-    mysql:
-      sensitiveHeaders: "*"
-      path: /mysql/**
-      service-id: lotion-dao-mysql
-      strip-prefix: true
-      custom-sensitive-headers: true
-    mongo:
-      sensitiveHeaders: "*"
-      path: /mongo/**
-      service-id: lotion-dao-mongo
-      strip-prefix: true
-      custom-sensitive-headers: true
-    redis:
-      sensitiveHeaders: "*"
-      path: /redis/**
-      service-id: lotion-dao-redis
-      strip-prefix: true
-      custom-sensitive-headers: true
-    #lotion-web-index: /index/**
-    #lotion-web-webuis: /webuis/**
-    #lotion-web-supervision: /supervision/**
-    #lotion-web-control: /control/**
-    #lotion-web-log: /log/**
   #不暴露未路由的服务，默认注册在eureka的服务路由为../${service-id}/
   ignored-services: '*'
   #设置全局参数为空覆盖默认过滤头信息，包括Cookie、Set-Cookie、Authorization

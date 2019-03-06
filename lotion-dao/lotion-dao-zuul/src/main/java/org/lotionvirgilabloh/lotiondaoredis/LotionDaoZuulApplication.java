@@ -1,18 +1,15 @@
-package org.lotionvirgilabloh.lotiondaomongo;
+package org.lotionvirgilabloh.lotiondaoredis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableEurekaClient
-@RestController
-public class LotionDaoMongoApplication{
-
+@EnableZuulProxy
+public class LotionDaoZuulApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LotionDaoMongoApplication.class, args);
+        SpringApplication.run(LotionDaoZuulApplication.class, args);
     }
-
-
 }
