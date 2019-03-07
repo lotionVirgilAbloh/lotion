@@ -14,7 +14,7 @@ public class SqlController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @RequestMapping("/excute")
-    <T> DatatablesReturn<T> excute(String sql,Class clazz, LotionQueryParam queryParam){
+    <T> DatatablesReturn<T> excute(String sql, LotionQueryParam queryParam){
         logger.info (sql);
         return  new DatatablesReturn<> ();
     }
