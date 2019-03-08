@@ -1,14 +1,9 @@
 package org.lotionvirgilabloh.lotionwebapplication;
 
-import feign.Client;
-import feign.Contract;
-import feign.Feign;
-import feign.auth.BasicAuthRequestInterceptor;
-import feign.codec.Decoder;
-import feign.codec.Encoder;
+import org.lotionvirgilabloh.lotionbase.http.LotionResponse;
+import org.lotionvirgilabloh.lotionbase.query.LotionQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.converter.json.GsonFactoryBean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +22,23 @@ public class HelloAuthFeignController {
     @RequestMapping("test")
     String vv(){
         return helloZuulService.getHealth();
+    }
+
+    @RequestMapping("test2")
+    LotionResponse vv2(){
+        LotionQueryParam lqp =new LotionQueryParam();
+        lqp.setGetAndForget(true);
+        lqp.setGetRedis(true);
+        lqp.setStoreMin(true);
+        lqp.setParaGet(true);
+        lqp.setStoreRedis(true);
+        return helloZuulService.mongoDemo("find().skip(10).limit(10)",lqp);
+    }
+
+    @RequestMapping("test3")
+    LotionResponse vv3(){
+        LotionQueryParam lqp =new LotionQueryParam();
+        return helloZuulService.mysqlDemo("select * from table_1;",lqp);
     }
 
 }

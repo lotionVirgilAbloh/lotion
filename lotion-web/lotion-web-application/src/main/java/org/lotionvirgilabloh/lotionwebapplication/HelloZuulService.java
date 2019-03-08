@@ -1,17 +1,24 @@
 package org.lotionvirgilabloh.lotionwebapplication;
 
+import org.lotionvirgilabloh.lotionbase.http.LotionResponse;
+import org.lotionvirgilabloh.lotionbase.query.LotionQueryParam;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by umiderrick on 2019/3/8.
  */
-@FeignClient(name ="lotion-dao-zuul"/*,configuration = FeignConfig.class*/)
+@FeignClient(name ="lotion-dao-zuul",configuration = FeignConfig.class)
+@RequestMapping("route")
 public interface HelloZuulService {
 
-    @RequestMapping(value = "route/health",method = RequestMethod.GET)
+    @RequestMapping(value = "health",method = RequestMethod.GET)
     String getHealth();
+
+    @PostMapping("mongoDemo")
+    LotionResponse mongoDemo(@RequestParam("cmd") String cmd , @RequestParam("param") LotionQueryParam param);
+
+    @PostMapping("mysqlDemo")
+    LotionResponse mysqlDemo(@RequestParam("cmd")String sql ,@RequestParam("param") LotionQueryParam param);
 
 }

@@ -4,7 +4,7 @@ eureka:
       defaultZone: http://localhost:19000/eureka/
 #端口的使用请参考端口设计文档
 server:
-  port: 8900
+  port: 19029
 spring:
   application:
     name: lotion-dao-zuul

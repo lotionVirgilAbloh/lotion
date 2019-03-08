@@ -15,6 +15,8 @@ logging:
 feign:
   hystrix:
     enabled: true
+  okhttp:
+    enabled: true
 #启动所有映射(默认只有../actuator/health和../actuator/info)
 #可以解决hystrix.stream的映射问题默认在../actuator/hystrix.stream
 management:

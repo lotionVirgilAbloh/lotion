@@ -15,7 +15,6 @@ public class ProtoQueryController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @RequestMapping("cmd")
     <T> DatatablesReturn<T> cmd(String cmd, LotionQueryParam queryParam){
-
         logger.info (cmd);
         return null;
     }
