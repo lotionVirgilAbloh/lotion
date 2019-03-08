@@ -21,6 +21,10 @@ public class ZuulRouteController {
     @Autowired
     private MySqlFeignClient mySqlFeignClient;
 
+    @RequestMapping("health")
+    public String testhealth(){
+        return "I m health Zuul";
+    }
 
     @RequestMapping("mongoDemo")
     public BaseMapDTO mongoDemo(){

@@ -8,22 +8,7 @@ server:
 spring:
   application:
     name: lotion-web-application
-  thymeleaf:
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
-    encoding: UTF-8
-    mode: HTML
-  cloud:
-    stream:
-      #指定用kafka stream来作为默认消息中间件
-      default-binder: kafka
-      kafka:
-        binder:
-          brokers: 47.106.222.205:9092
-  mvc:
-    static-path-pattern: /**
-#开启log4j2日志
+  #开启log4j2日志
 logging:
   config: classpath:log4j2.yml
 #开启feign与hystrix联动
@@ -50,9 +35,3 @@ ribbon.MaxAutoRetries: 1
 #默认ribbon请求切换实例重试次数为1
 ribbon.MaxAutoRetriesNextServer: 1
 #自定义配置
-lotion:
-  web:
-    static:
-      url: http://47.106.222.205:8080/tfile/lotion-ui/
-    host:
-      url: http://127.0.0.1:19099/
