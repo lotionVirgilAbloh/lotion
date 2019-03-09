@@ -20,10 +20,6 @@ public final class LotionResponse implements Serializable{
 	private int status;
 	/** Response 数据容器 */
 	private Object data;
-	/** 消息 */
-	private final List<String> message = new ArrayList<>();
-	/** 自定义数据 */
-	private Map<String, Object> extra = new LinkedHashMap<>();;
 
 	public static final LotionResponse OK = new LotionResponse(LotionStatus.SUCCESS);
 	public static final LotionResponse FAILURE = new LotionResponse(LotionStatus.FAILURE);
@@ -41,7 +37,6 @@ public final class LotionResponse implements Serializable{
 
 	public LotionResponse(int status, String message) {
 		this.status = status;
-		this.message.add(message);
 	}
 
 	public LotionResponse(LotionStatus status, String message) {
@@ -62,19 +57,16 @@ public final class LotionResponse implements Serializable{
 
 	public LotionResponse setResponse(LotionStatus s, String mesg) {
 		this.status = s.id;
-		this.setMessage(mesg);
 		return this;
 	}
 	
 	public LotionResponse setResponse(int s, String mesg) {
 		this.status = s;
-		this.setMessage(mesg);
 		return this;
 	}
 	
 	public void setStatus(LotionStatus status) {
 		this.status = status.id;
-		this.message.add(status.val);
 	}
 
 	public Object getData() {
@@ -85,32 +77,5 @@ public final class LotionResponse implements Serializable{
 		this.data = data;
 	}
 
-	public List<String> getMessage() {
-		return message;
-	}
 
-	public void setMessage(String... mesg) {
-		this.message.addAll(Arrays.asList(mesg));
-
-	}
-
-	public void setMessage(List<String> message) {
-		if (message != null) {
-			this.message.addAll(message);
-		}
-	}
-
-	public Map<String, Object> getExtra() {
-		return extra;
-	}
-
-	public void setExtra(Map<String, Object> extra) {
-		if (extra != null) {
-			this.extra.putAll(extra);
-		}
-	}
-
-	public void setParam(String attr, Object value) {
-		this.extra.put(attr, value);
-	}
 }
