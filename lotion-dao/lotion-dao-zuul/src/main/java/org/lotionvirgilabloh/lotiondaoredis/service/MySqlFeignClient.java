@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MySqlFeignClient {
 
     @RequestMapping("sql/excute")
-    <T> DatatablesReturn<T> excute(@RequestParam("sql") String cmd, @RequestBody LotionQueryParam queryParam);
+    <T> DatatablesReturn<T> excute(@RequestParam("cmd") String cmd, @RequestBody LotionQueryParam queryParam);
 
 
 

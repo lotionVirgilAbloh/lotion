@@ -38,7 +38,7 @@ public class HelloAuthFeignController {
     @RequestMapping("test3")
     LotionResponse vv3(){
         LotionQueryParam lqp =new LotionQueryParam();
-        return helloZuulService.mysqlDemo("select * from table_1;",lqp);
+        return helloZuulService.mysqlDemo("select * from roles",lqp);
     }
 
 }
