@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * Created by umiderrick on 2019/3/7.
  */
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MySqlFeignClient {
 
     @RequestMapping("sql/excute")
-    <T> DatatablesReturn<T> excute(@RequestParam("cmd") String cmd, @RequestBody LotionQueryParam queryParam);
+    List excute(@RequestParam("sql") String sql, @RequestBody LotionQueryParam queryParam);
 
 
 

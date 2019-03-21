@@ -38,7 +38,10 @@ public class HelloAuthFeignController {
     @RequestMapping("test3")
     LotionResponse vv3(){
         LotionQueryParam lqp =new LotionQueryParam();
-        return helloZuulService.mysqlDemo("select * from roles",lqp);
+        long start =System.currentTimeMillis ();
+        LotionResponse lotionResponse = helloZuulService.mysqlDemo ("select * from roles", lqp);
+        System.err.println (System.currentTimeMillis ()-start);
+        return lotionResponse;
     }
 
 }

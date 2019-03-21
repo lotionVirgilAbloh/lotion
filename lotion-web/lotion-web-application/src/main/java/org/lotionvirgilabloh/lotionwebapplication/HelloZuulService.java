@@ -18,7 +18,7 @@ public interface HelloZuulService {
     @PostMapping("mongoDemo")
     LotionResponse mongoDemo(@RequestParam("cmd") String cmd , @RequestParam("param") LotionQueryParam param);
 
-    @PostMapping("mysqlDemo")
+    @PostMapping("mysqlexcute")
     LotionResponse mysqlDemo(@RequestParam("sql")String sql ,@RequestParam("param") LotionQueryParam param);
 
 }

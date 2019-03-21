@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by umiderrick on 2019/3/7.
  */
@@ -38,11 +40,13 @@ public class ZuulRouteController {
         }
     }
 
-    @PostMapping("mysqlDemo")
+    @PostMapping("mysqlexcute")
     public LotionResponse mysqlDemo(String sql ,LotionQueryParam param){
         try {
-            mySqlFeignClient.excute(sql, param);
-            return LotionResponse.OK;
+            final LotionResponse ok = LotionResponse.OK;
+            List excute = mySqlFeignClient.excute (sql, param);
+            ok.setData (excute);
+            return ok;
         }catch (Exception e){
             return LotionResponse.FAILURE;
         }

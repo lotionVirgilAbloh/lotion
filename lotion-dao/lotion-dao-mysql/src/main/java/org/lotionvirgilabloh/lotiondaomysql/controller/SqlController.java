@@ -25,20 +25,20 @@ public class SqlController {
     private EntityManager entityManager;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public<T> List<T> find(String sql, Class entityClass,Object... args) {
-        TypedQuery<T> tq = this.entityManager.createQuery(sql, entityClass);
-        for(int i=0;i<args.length;i++){
-            tq.setParameter(i, args[i]);
+    public List  find(String sql, Class entityClass,Object... args) {
+        Query query = this.entityManager.createNativeQuery(sql);
+        for (int i = 0; i < args.length; i++) {
+            query.setParameter(i + 1, args[i]);
         }
-        return tq.getResultList();
+        return query.getResultList ();
     }
     @RequestMapping("/excute")
-    <T> DatatablesReturn<T> excute(String sql, LotionQueryParam queryParam){
+     List excute(String sql, LotionQueryParam queryParam){
         logger.info (sql);
         logger.info (queryParam.toString ());
-        List<Object> objects = this.find (sql, Role.class);
+        List<Role> objects = this.find (sql, Role.class);
         System.err.println (JSON.toJSONString (objects));
-        return  new DatatablesReturn<> ();
+        return  objects;
     }
 
 }
