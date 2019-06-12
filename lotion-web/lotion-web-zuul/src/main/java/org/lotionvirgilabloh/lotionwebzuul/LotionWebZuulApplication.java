@@ -28,23 +28,23 @@ public class LotionWebZuulApplication {
      * 反之，就是非简单跨域，此跨域有一个预检机制，说直白点，就是会发两次请求，一次OPTIONS请求，一次真正的请求
      */
 
-//    @Bean
-//    public CorsFilter corsFilter() {
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        final CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("*");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("OPTIONS");
-//        config.addAllowedMethod("HEAD");
-//        config.addAllowedMethod("GET");
-//        config.addAllowedMethod("PUT");
-//        config.addAllowedMethod("POST");
-//        config.addAllowedMethod("DELETE");
-//        config.addAllowedMethod("PATCH");
-//        source.registerCorsConfiguration("/**", config);
-//        return new CorsFilter(source);
-//    }
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("HEAD");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PATCH");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
 
 
 }

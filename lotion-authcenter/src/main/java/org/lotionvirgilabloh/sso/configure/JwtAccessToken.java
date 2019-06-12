@@ -21,12 +21,10 @@ public class JwtAccessToken extends JwtAccessTokenConverter {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         DefaultOAuth2AccessToken defaultOAuth2AccessToken = new DefaultOAuth2AccessToken(accessToken);
-
         // 设置额外用户信息
         LotionUser baseUser = ((BaseUserDetail) authentication.getPrincipal()).getBaseUser();
         // 将用户信息添加到token额外信息中
         defaultOAuth2AccessToken.getAdditionalInformation().put(Constant.USER_INFO, baseUser);
-
         return super.enhance(defaultOAuth2AccessToken, authentication);
     }
 

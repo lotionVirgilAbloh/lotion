@@ -36,7 +36,9 @@ public class SqlController {
      List excute(String sql, LotionQueryParam queryParam){
         logger.info (sql);
         logger.info (queryParam.toString ());
+        long a =System.currentTimeMillis ();
         List<Role> objects = this.find (sql, Role.class);
+        logger.info (System.currentTimeMillis ()-a+"");
         System.err.println (JSON.toJSONString (objects));
         return  objects;
     }
