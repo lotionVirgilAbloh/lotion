@@ -25,6 +25,8 @@
         <module>lotion-hystrix-dashboard</module>
         <module>lotion-hystrix-turbine</module>
         <module>lotion-starters</module>
+        <module>session-redis1</module>
+        <module>session-redis2</module>
     </modules>
 
 </project>
